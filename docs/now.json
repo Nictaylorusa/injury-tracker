@@ -1,13 +1,31 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-18_11_45PM: 154 player rows, 66 kept for Right now.",
- "report_file": "2026-11-18_11_45PM",
- "report_time_utc": "2026-11-19T04:45Z",
- "report_time_et": "2026-11-18 23:45",
- "rows": 66,
+ "detail": "Read 2026-11-19_12_00AM: 23 player rows, 10 kept for Right now.",
+ "report_file": "2026-11-19_12_00AM",
+ "report_time_utc": "2026-11-19T05:00Z",
+ "report_time_et": "2026-11-19 00:00",
+ "rows": 10,
  "teams_not_submitted": [
   "Warriors",
   "Grizzlies",
-  "Bucks"
+  "Bucks",
+  "Hornets",
+  "Hawks",
+  "Pacers",
+  "Cavaliers",
+  "Magic",
+  "Nets",
+  "Raptors",
+  "Pistons",
+  "Pelicans",
+  "Thunder",
+  "Wizards",
+  "Bulls",
+  "Suns",
+  "Jazz",
+  "Rockets",
+  "Nuggets",
+  "Kings",
+  "Lakers"
  ]
 }
