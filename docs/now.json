@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_12_15PM: 23 player rows, 19 kept for Right now.",
- "report_file": "2026-11-19_12_15PM",
- "report_time_utc": "2026-11-19T17:15Z",
- "report_time_et": "2026-11-19 12:15",
+ "detail": "Read 2026-11-19_01_15PM: 23 player rows, 19 kept for Right now.",
+ "report_file": "2026-11-19_01_15PM",
+ "report_time_utc": "2026-11-19T18:15Z",
+ "report_time_et": "2026-11-19 13:15",
  "rows": 19,
  "teams_not_submitted": [
   "Warriors",
