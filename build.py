@@ -104,6 +104,53 @@ def build_current(d):
     C = pd.DataFrame(rows, columns=["Team", "Player", "Status", "Category", "Injury", "Game_Date", "Matchup", "Report_Time"])
     return C, missing
 
+PB = "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_nba_player_boxscores/player_box_%d.csv"
+ESPN_AB = {"GS": "GSW", "NY": "NYK", "SA": "SAS", "NO": "NOP", "UTAH": "UTA", "WSH": "WAS", "PHO": "PHX"}
+def norm(n):
+    import unicodedata
+    n = unicodedata.normalize("NFKD", str(n)).encode("ascii", "ignore").decode().lower()
+    n = re.sub(r"[.\']", "", n); n = re.sub(r"\b(jr|sr|ii|iii|iv)\b", "", n)
+    return re.sub(r"\s+", " ", n).strip()
+
+def build_positions(S):
+    """Small and power forwards (and generic 'F') by team: ESPN position from the box scores, plus players
+    who have a 2026-27 stay but have not played this season (position taken from last season)."""
+    def load(y):
+        try:
+            d = pd.read_csv(io.BytesIO(urllib.request.urlopen(urllib.request.Request(PB % y, headers={"User-Agent": "injury-tracker"}), timeout=300).read()), low_memory=False)
+        except Exception as e:
+            print("positions: could not load", y, e); return pd.DataFrame()
+        d = d[d.athlete_position_abbreviation.notna()].copy()
+        d["ab"] = d.team_abbreviation.map(lambda a: ESPN_AB.get(a, a)); d["min"] = pd.to_numeric(d.minutes, errors="coerce")
+        d["did"] = d["min"].fillna(0) > 0
+        return d
+    cur, prev = load(CURRENT), load(CURRENT - 1)
+    ab2short = {"ATL":"Hawks","BOS":"Celtics","BKN":"Nets","CHA":"Hornets","CHI":"Bulls","CLE":"Cavaliers","DAL":"Mavericks","DEN":"Nuggets","DET":"Pistons","GSW":"Warriors","HOU":"Rockets","IND":"Pacers","LAC":"Clippers","LAL":"Lakers","MEM":"Grizzlies","MIA":"Heat","MIL":"Bucks","MIN":"Timberwolves","NOP":"Pelicans","NYK":"Knicks","OKC":"Thunder","ORL":"Magic","PHI":"76ers","PHX":"Suns","POR":"Blazers","SAC":"Kings","SAS":"Spurs","TOR":"Raptors","UTA":"Jazz","WAS":"Wizards"}
+    short2ab = {v: k for k, v in ab2short.items()}
+    out, seen = {}, set()
+    stay_names = {norm(n): n for n in S.Player.unique()}
+    def add(ab, name, pos, gp, mpg, source):
+        key = (ab, norm(name))
+        if key in seen or pos not in ("SF", "PF", "F"): return
+        seen.add(key)
+        out.setdefault(ab, []).append(dict(name=name, stay_name=stay_names.get(norm(name), name), pos=pos, gp=int(gp), mpg=round(float(mpg), 1) if mpg == mpg else None, src=source))
+    if len(cur):
+        c = cur.sort_values("game_date")
+        for aid, g in c.groupby("athlete_id"):
+            last = g.iloc[-1]; played = g[g.did]
+            add(last.ab, last.athlete_display_name, last.athlete_position_abbreviation, len(played), played["min"].mean() if len(played) else float("nan"), "season")
+    covered = {norm(r["name"]) for v in out.values() for r in v}
+    if len(prev):
+        pv = prev.sort_values("game_date").groupby("athlete_id").tail(1).set_index(prev.sort_values("game_date").groupby("athlete_id").tail(1).athlete_display_name.map(norm))
+        cs = S[S.Season == season_name(CURRENT)]
+        for (team, pl), _ in cs.groupby(["Team", "Player"]):
+            n = norm(pl)
+            if n in covered or n not in pv.index or team not in short2ab: continue
+            r = pv.loc[n]; r = r.iloc[-1] if hasattr(r, "iloc") and getattr(r, "ndim", 1) > 1 else r
+            add(short2ab[team], pl, r.athlete_position_abbreviation, 0, float("nan"), "last season")
+    for v in out.values(): v.sort(key=lambda r: -(r["mpg"] or 0))
+    return out
+
 def main():
     past = pd.read_csv("data/stays_past.csv")
     cur_name, prev_name = season_name(CURRENT), season_name(CURRENT - 1)
@@ -122,6 +169,12 @@ def main():
     meta = dict(built_at_utc=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"), season=cur_name,
                 games_through=cutoff, latest_report=str(d_cur.report_datetime.max())[:16].replace("T", " "),
                 teams_not_filed=missing, stays=len(S))
+    try:
+        pos = build_positions(S)
+        if pos: json.dump(dict(built_at_utc=meta["built_at_utc"], teams=pos), open("docs/positions.json", "w"))
+        print("positions:", sum(len(v) for v in pos.values()), "forwards")
+    except Exception as e:
+        print("positions skipped:", repr(e))
     json.dump(meta, open("docs/meta.json", "w"))
     print(meta)
 

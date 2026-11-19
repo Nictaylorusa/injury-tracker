@@ -84,6 +84,9 @@ section[hidden]{display:none}
 <p id="spurs_note"></p>
 <h3>Listed in the latest NBA report</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
+<h3 id="spurs_fw_h">Their forwards: injury history</h3>
+<p class="note" id="spurs_fw_note"></p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th class="n" title="Minutes per game this season">Min</th><th>Now</th><th class="n" title="Stays out this season, and games missed">This season</th><th class="n" title="Stays out over the last five seasons, and games missed">Five seasons</th><th title="Body area with the most stays, and how many">Most common area</th><th>Latest stay</th></tr></thead><tbody id="spurs_fw"></tbody></table></div>
 <h3>Recent history (last 14 days)</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
 </div></details>
@@ -199,7 +202,7 @@ const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
-let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {}, RULES = [], MRULES = [], ONG = new Map();
+let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {}, RULES = [], MRULES = [], ONG = new Map(), POS = {};
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
@@ -318,6 +321,31 @@ function drawYesterday() {
     .forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, r.Matchup]));
   if (!PREV.length) emptyRow(tb, 5, 'Nothing saved yet.');
 }
+function drawForwards(ab, opp, cur) {
+  const tb = $('spurs_fw'); tb.replaceChildren();
+  const list = POS[ab] || [];
+  $('spurs_fw_h').textContent = `${opp} forwards: injury history`;
+  $('spurs_fw_note').textContent = list.length
+    ? "Everyone the feed lists as a forward on this roster. The feed only says forward (F), so small and power forwards are not split, and wings it lists as guards are not here. Click a name for the full timeline."
+    : "No roster positions are loaded yet. They come with the daily update.";
+  if (!list.length) return;
+  const today = etToday();
+  list.forEach((p) => {
+    const name = p.stay_name, mine = STAYS.filter((r) => r.Player === name);
+    const ses = mine.filter((r) => r.Season === META.season);
+    const g = (rs) => Math.round(d3.sum(rs, (r) => num(r.Games_Out)));
+    const fam = Array.from(d3.rollup(mine, (v) => v.length, (r) => famOf(r.Injury)[0])).filter((x) => x[0] !== OTHERFAM[0]).sort((a, b) => b[1] - a[1])[0];
+    const last = mine.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date))[0];
+    const c = CUR.find((r) => r.Team === opp && r.Player === name);
+    const stat = c ? `${c.Status}: ${c.Injury}` : (ses.some((r) => r.Status === 'Ongoing') ? 'Out in recent games' : '—');
+    addRow(tb, [name, { t: p.mpg == null ? '—' : p.mpg.toFixed(1), n: 1 }, { t: stat, dot: c ? (c.Status === 'Out' ? 'out' : (UNSURE.includes(c.Status) ? 'unsure' : '')) : '' },
+      { t: ses.length ? `${ses.length} · ${g(ses)} g` : '0', n: 1 }, { t: mine.length ? `${mine.length} · ${g(mine)} g` : '0', n: 1 },
+      fam ? `${fam[0]} (${fam[1]})` : '—', last ? `${last.Injury || 'Unspecified'}, ${showD(last.Start_Date)}${last.Status === 'Ongoing' ? ' (ongoing)' : ''}` : 'None on record']);
+    const a = el('button', 'chip', name); a.type = 'button'; a.title = 'Open the full injury timeline';
+    a.addEventListener('click', () => { $('q').value = name; state.q = name; show('players'); redraw(); });
+    const td = tb.lastChild.firstChild; td.replaceChildren(a);
+  });
+}
 function drawSpurs() {
   const today = etToday();
   const nowBody = $('spurs_now'), hist = $('spurs_hist'); nowBody.replaceChildren(); hist.replaceChildren();
@@ -329,7 +357,7 @@ function drawSpurs() {
   if (!g) {
     $('spurs_sum').textContent = 'Spurs: next opponent';
     $('spurs_note').textContent = 'No upcoming game found in the schedule.';
-    emptyRow(nowBody, 6, '—'); emptyRow(hist, 4, '—'); return;
+    emptyRow(nowBody, 6, '—'); emptyRow(hist, 4, '—'); $('spurs_fw').replaceChildren(); return;
   }
   const oppAb = g.opp, opp = ABBR[oppAb] || oppAb;
   const when = `${g.date === today ? 'today' : showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
@@ -339,6 +367,7 @@ function drawSpurs() {
   const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
   if (!cur.length) emptyRow(nowBody, 6, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
   cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, ...recCells(r.Injury, daysOut(opp, r.Player))]));
+  drawForwards(oppAb, opp, cur);
   const cut = new Date(Date.now() - 14 * 864e5).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   const listed = new Set(cur.map((r) => r.Player));
   const rec = STAYS.filter((r) => r.Team === opp && r.Season === META.season && !listed.has(r.Player) && (r.Status === 'Ongoing' || r.End_Date >= cut))
@@ -519,7 +548,8 @@ document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', ()
   state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
 }));
 
-Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({})), d3.json('recovery_timelines.json').catch(() => ({})), d3.json('movement_demands.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc, rj, mj]) => {
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({})), d3.json('recovery_timelines.json').catch(() => ({})), d3.json('movement_demands.json').catch(() => ({})), d3.json('positions.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc, rj, mj, pj]) => {
+  POS = (pj && pj.teams) || {};
   STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || []; SCHED = sc || {};
   RULES = ((rj && rj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
   MRULES = ((mj && mj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
