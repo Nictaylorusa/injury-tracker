@@ -1,10 +1,10 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_12_00AM: 23 player rows, 10 kept for Right now.",
- "report_file": "2026-11-19_12_00AM",
- "report_time_utc": "2026-11-19T05:00Z",
- "report_time_et": "2026-11-19 00:00",
- "rows": 10,
+ "detail": "Read 2026-11-19_12_45AM: 23 player rows, 19 kept for Right now.",
+ "report_file": "2026-11-19_12_45AM",
+ "report_time_utc": "2026-11-19T05:45Z",
+ "report_time_et": "2026-11-19 00:45",
+ "rows": 19,
  "teams_not_submitted": [
   "Warriors",
   "Grizzlies",
@@ -27,5 +27,6 @@
   "Nuggets",
   "Kings",
   "Lakers"
- ]
+ ],
+ "parser": 2
 }
