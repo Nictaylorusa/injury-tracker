@@ -54,6 +54,10 @@ svg rect.bar{fill:var(--accent)}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.two>div{min-width:0}
 details{margin-top:22px;color:var(--muted);font-size:12.5px}details p{max-width:78ch}
 section[hidden]{display:none}
+.tlhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}.tlhead h2{margin:0}
+.tlbox{position:relative;margin:6px 0 4px}.tlbox svg{display:block;width:100%;overflow:visible}
+.tlkey{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted)}.tlkey i{width:11px;height:11px;border-radius:3px;display:inline-block}
+@media print{.tabs,.bar,#headline,.sub,details,#built,#tl_print,#player_pick,.note{display:none!important}body{background:#fff;color:#000}}
 </style>
 </head>
 <body>
@@ -141,7 +145,15 @@ section[hidden]{display:none}
 </section>
 
 <section id="players" hidden>
-<div class="bar"><input id="q" type="search" placeholder="Search a player (e.g. Haliburton)" aria-label="Search a player"></div>
+<div class="bar"><input id="q" type="search" list="plist" placeholder="Search a player (e.g. Haliburton)" aria-label="Search a player"><datalist id="plist"></datalist></div>
+<div class="chips" id="player_pick" aria-label="Matching players"></div>
+<div id="tl" hidden>
+<div class="tlhead"><h2 id="tl_title"></h2><button class="chip" id="tl_print" type="button">Print or save as PDF</button></div>
+<div class="cards" id="tl_cards"></div>
+<div class="chips" id="tl_legend"></div>
+<div class="tlbox" id="tl_box"></div>
+<p class="note" id="tl_note"></p>
+</div>
 <h2 id="player_title"></h2>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="player_rows"></tbody></table></div>
 <p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. Movements to watch lists activities that tend to load, or be limited by, that kind of injury (general guidance for planning, not clinical clearance); where the injury names a side, the cutting direction is for that side.</p>
@@ -334,6 +346,78 @@ function drawSpurs() {
   if (!rec.length) emptyRow(hist, 4, 'No other stays in the last 14 days.');
   rec.forEach((r) => addRow(hist, [r.Player, r.Injury, `${showD(r.Start_Date)} to ${stayEnd(r)}`, String(num(r.Games_Out))]));
 }
+const FAM = [
+  ['Foot and ankle', '#0072B2', /^(Ankle|Foot \/ toe|Lower leg \/ shin|Achilles \/ calf \/ soleus)$/],
+  ['Knee', '#D55E00', /^(Knee|Patellar tendon \/ patella)$/],
+  ['Thigh, hip and groin', '#E69F00', /^(Hamstring|Groin \/ adductor|Quadriceps \/ hip flexor|Hip \/ glute)$/],
+  ['Back, neck and torso', '#009E73', /^(Back \/ spine|Neck|Torso \/ core)$/],
+  ['Shoulder, arm and hand', '#CC79A7', /^(Shoulder \/ arm|Wrist \/ hand \/ finger)$/],
+  ['Head and face', '#56B4E9', /^Head \/ face$/]];
+const OTHERFAM = ['Illness or other', '#8a8a8a'];
+function famOf(inj) { const r = MRULES.find((x) => x.re.test(inj || '')); if (r) for (const f of FAM) if (f[2].test(r.name)) return f; return OTHERFAM; }
+const lumOf = (hex) => { const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+function drawPicks(names, target) {
+  const box = $('player_pick'); box.replaceChildren();
+  if (names.length < 2) return;
+  box.append(el('span', 'chiplabel', 'Matching players'));
+  names.slice(0, 14).forEach((n) => {
+    const b = el('button', 'chip', n); b.type = 'button'; b.setAttribute('aria-pressed', String(n === target));
+    b.addEventListener('click', () => { $('q').value = n; state.q = n; redraw(); });
+    box.append(b);
+  });
+  if (names.length > 14) box.append(el('span', 'chiplabel', `and ${names.length - 14} more. Type more of the name to narrow it.`));
+}
+function drawTimeline(name) {
+  const rows = STAYS.filter((r) => r.Player === name).sort((a, b) => a.Start_Date.localeCompare(b.Start_Date));
+  $('tl').hidden = false;
+  const teams = Array.from(new Set(rows.map((r) => r.Team)));
+  $('tl_title').textContent = `Injury timeline: ${name}`;
+  const cards = $('tl_cards'); cards.replaceChildren();
+  const games = d3.sum(rows, (r) => num(r.Games_Out)), longest = rows.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out))[0];
+  const fc = d3.rollup(rows, (v) => v.length, (r) => famOf(r.Injury)[0]), top = Array.from(fc).sort((a, b) => b[1] - a[1])[0];
+  card(cards, String(rows.length), rows.length === 1 ? 'stay out on record' : 'stays out on record');
+  card(cards, fmtN(games), 'games missed in total');
+  card(cards, longest ? String(Math.round(num(longest.Games_Out))) : '0', longest ? `games, longest stay (${longest.Injury || 'unspecified'}, ${longest.Season})` : 'games, longest stay');
+  card(cards, top ? top[0] : '—', 'most common area');
+  const lg = $('tl_legend'); lg.replaceChildren();
+  const used = FAM.concat([OTHERFAM]).filter((f) => rows.some((r) => famOf(r.Injury)[0] === f[0]));
+  used.forEach((f) => { const k = el('span', 'tlkey'); const i = el('i'); i.style.background = f[1]; k.append(i, document.createTextNode(f[0])); lg.append(k); });
+  const sk = el('span', 'tlkey', 'Number on a bar is games missed. Dashed outline: still out.'); lg.append(sk);
+  const box = $('tl_box'); box.replaceChildren();
+  const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort();
+  const W = Math.max(300, box.clientWidth || 640), L = 62, Rm = 8, T = 20, RH = 34, BH = 18, H = T + seasons.length * RH + 4;
+  const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', `Timeline of ${rows.length} stays for ${name}, one row per season`);
+  const utc = (str) => Date.UTC(+str.slice(0, 4), +str.slice(5, 7) - 1, +str.slice(8, 10));
+  const tip = d3.select(box).append('div').attr('class', 'tip').style('display', 'none');
+  const today = etToday();
+  ['Oct', 'Dec', 'Feb', 'Apr', 'Jun'].forEach((m, i) => {
+    const mo = [10, 12, 2, 4, 6][i], yr = mo >= 10 ? 2025 : 2026, f = (Date.UTC(yr, mo - 1, 1) - Date.UTC(2025, 9, 1)) / (Date.UTC(2026, 5, 30) - Date.UTC(2025, 9, 1)), x = L + f * (W - L - Rm);
+    svg.append('line').attr('x1', x).attr('x2', x).attr('y1', T - 4).attr('y2', H - 4).attr('stroke', 'var(--line)').attr('stroke-width', 1);
+    svg.append('text').attr('x', x + 3).attr('y', T - 7).attr('font-size', 11).attr('fill', 'var(--muted)').text(m);
+  });
+  seasons.forEach((se, si) => {
+    const y0 = T + si * RH, sy = +se.slice(0, 4), a = Date.UTC(sy, 9, 1), z = Date.UTC(sy + 1, 5, 30), X = (ms) => L + Math.min(1, Math.max(0, (ms - a) / (z - a))) * (W - L - Rm);
+    svg.append('text').attr('x', 0).attr('y', y0 + RH / 2 + 4).attr('font-size', 12).attr('fill', 'var(--muted)').text(se);
+    svg.append('line').attr('x1', L).attr('x2', W - Rm).attr('y1', y0 + RH / 2).attr('y2', y0 + RH / 2).attr('stroke', 'var(--line)').attr('stroke-dasharray', '1 3');
+    if (today >= se.slice(0, 4) + '-10-01' && today <= (sy + 1) + '-06-30') svg.append('line').attr('x1', X(utc(today))).attr('x2', X(utc(today))).attr('y1', y0 + 2).attr('y2', y0 + RH - 2).attr('stroke', 'var(--fg)').attr('stroke-width', 1.5).attr('stroke-dasharray', '2 2').append('title').text('Today');
+    rows.filter((r) => r.Season === se).forEach((r) => {
+      const ongoing = r.Status === 'Ongoing', end = ongoing && today < r.End_Date ? today : r.End_Date;
+      const x0 = X(utc(r.Start_Date)), x1 = X(utc(end) + 864e5), w = Math.max(5, x1 - x0), fam = famOf(r.Injury), g = Math.round(num(r.Games_Out));
+      const rc = recov(r.Injury), days = stayDays(r);
+      let extra = '';
+      if (rc) { extra = ` · typical ${fmtRange(rc.min, rc.max)}`; if (days != null && !rc.nopace) { const pc = Math.round((rc.min + rc.max) / 2) - days; extra += ` · pace ${pc >= 0 ? '+' : '−'}${Math.abs(pc)} days`; } }
+      const tx = `${r.Injury || 'Unspecified'} · ${showD(r.Start_Date)} to ${ongoing ? 'now' : showD(r.End_Date)} · ${g} games · ${r.Team}${extra}`;
+      const rect = svg.append('rect').attr('x', x0).attr('y', y0 + (RH - BH) / 2).attr('width', Math.min(w, W - Rm - x0 + 0.01)).attr('height', BH).attr('rx', 3).attr('fill', fam[1]).attr('stroke', ongoing ? 'var(--fg)' : 'var(--bg)').attr('stroke-width', ongoing ? 1.5 : 1).attr('stroke-dasharray', ongoing ? '3 2' : null).style('cursor', 'default');
+      rect.on('mousemove', (ev) => { const bx = box.getBoundingClientRect(); tip.style('display', 'block').text(tx); const tw = tip.node().offsetWidth; tip.style('left', Math.max(0, Math.min(box.clientWidth - tw, ev.clientX - bx.left + 10)) + 'px').style('top', (ev.clientY - bx.top + 14) + 'px'); }).on('mouseleave', () => tip.style('display', 'none'));
+      rect.append('title').text(tx);
+      if (w >= 24) svg.append('text').attr('x', x0 + Math.min(w, W - Rm - x0) / 2).attr('y', y0 + RH / 2 + 4).attr('text-anchor', 'middle').attr('font-size', 11).attr('font-weight', 700).attr('pointer-events', 'none').attr('fill', lumOf(fam[1]) > 0.28 ? '#1d1d1b' : '#ffffff').text(String(g));
+    });
+  });
+  const cur = CUR.filter((r) => r.Player === name);
+  $('tl_note').textContent = (cur.length ? `Listed in the latest NBA report: ${cur.map((r) => `${r.Status}, ${r.Injury} (${r.Matchup} ${showD(r.Game_Date)})`).join('; ')}. ` : '') +
+    `Each row is one season, October to June. Bars start at the first missed game and end at the last. Hover a bar for the injury, dates, typical recovery and pace.`;
+}
+$('tl_print').addEventListener('click', () => window.print());
 const R = {
   now() {
     const out = CUR.filter((r) => r.Status === 'Out').length, un = CUR.filter((r) => UNSURE.includes(r.Status)).length;
@@ -404,6 +488,9 @@ const R = {
     const q = state.q.trim().toLowerCase(); $('player_title').textContent = q ? `Stays matching "${state.q.trim()}"` : 'Longest stays out on record';
     let rs = q ? STAYS.filter((r) => r.Player.toLowerCase().includes(q)).sort((a, b) => b.Start_Date.localeCompare(a.Start_Date))
                : STAYS.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 25);
+    const names = q ? Array.from(new Set(rs.map((r) => r.Player))).sort() : [];
+    const target = names.find((n) => n.toLowerCase() === q) || (names.length === 1 ? names[0] : null);
+    drawPicks(names, target); if (target) drawTimeline(target); else $('tl').hidden = true;
     const total = rs.length; rs = rs.slice(0, 150);
     const tb = $('player_rows'); tb.replaceChildren();
     if (!rs.length) { emptyRow(tb, 10, 'No player matches that name.'); return; }
@@ -437,6 +524,7 @@ Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d
   RULES = ((rj && rj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
   MRULES = ((mj && mj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
   buildOngoing();
+  { const dl = $('plist'), fr = document.createDocumentFragment(); Array.from(new Set(STAYS.map((r) => r.Player))).sort().forEach((n) => { const o = document.createElement('option'); o.value = n; fr.append(o); }); dl.append(fr); }
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
   fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });
