@@ -1,0 +1,218 @@
+{
+ "note": "Movements that tend to load, or be limited by, each kind of injury. General guidance for planning, not clinical clearance. First matching rule wins. {S}/{s} is the injured side (Right/right) and {O}/{o} the opposite side. Edit freely.",
+ "rules": [
+  {
+   "match": "patell|jumper|quad.*tendon",
+   "name": "Patellar tendon / patella",
+   "moves": [
+    "Rapid deceleration (stopping from a sprint)",
+    "Horizontal landings after forward acceleration",
+    "Repeated jumping and landing",
+    "Deep knee bends and lunges"
+   ],
+   "sided": [],
+   "basis": "Van der Worp et al. 2014 (systematic review): horizontal landing after forward acceleration carries the greatest risk; stiff landing patterns linked to onset."
+  },
+  {
+   "match": "achilles|soleus|gastroc|calf",
+   "name": "Achilles / calf / soleus",
+   "moves": [
+    "Multiple-effort jumps (repeat jump attempts)",
+    "Sprint acceleration and push-off",
+    "Explosive toe-off when driving or cutting",
+    "Hard deceleration (eccentric calf load)"
+   ],
+   "sided": [
+    "Push-off from the {s} leg when driving or cutting"
+   ],
+   "basis": "General reasoning; Habets et al. 2017 (review) describes running and jumping as the activities held back until Achilles symptoms settle."
+  },
+  {
+   "match": "hamstring",
+   "name": "Hamstring",
+   "moves": [
+    "High-speed sprinting (late swing phase)",
+    "Hard deceleration with a straight leg",
+    "Long strides and lunging forward (stretch under load)",
+    "Explosive acceleration"
+   ],
+   "sided": [],
+   "basis": "Late-swing review (Scand J Med Sci Sports 2019): the most likely injury phase in high-speed running is late swing."
+  },
+  {
+   "match": "groin|adductor",
+   "name": "Groin / adductor",
+   "moves": [
+    "Defensive lateral slides",
+    "Quick cuts and crossovers in a wide stance",
+    "Hard sideways push-off",
+    "Sprint acceleration"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "quad|hip.*flexor|flexor.*hip|psoas",
+   "name": "Quadriceps / hip flexor",
+   "moves": [
+    "Sprint acceleration (knee drive)",
+    "Hard deceleration (knee control)",
+    "Jump takeoff and landing",
+    "High-knee or kicking-type leg swings"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "\\bhip\\b|glute|pelvi|pointer",
+   "name": "Hip / glute",
+   "moves": [
+    "Deep defensive stance and lateral slides",
+    "Hard plants and cuts",
+    "Contact in the lane (drives, screens)",
+    "Sprint acceleration"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "ankle|syndesmo|malleol",
+   "name": "Ankle",
+   "moves": [
+    "Cutting and change of direction (sideways loads)",
+    "Landing from jumps, especially contested or uneven landings",
+    "Defensive slides and closeouts",
+    "Hard stops and pivots"
+   ],
+   "sided": [
+    "{S}-to-{o} cuts (planting on the {s} ankle)"
+   ],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "foot|toe|metatars|midfoot|heel|plantar|lisfranc|jones|calcane|navicular|sesamoid",
+   "name": "Foot / toe",
+   "moves": [
+    "Push-off in sprinting and jumping (forefoot loading)",
+    "Repeated jump takeoffs and landings",
+    "Cutting and hard stops",
+    "Long running volume"
+   ],
+   "sided": [
+    "Push-off from the {s} foot when driving or cutting"
+   ],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "knee|menisc|\\bacl\\b|\\bmcl\\b|\\blcl\\b|\\bpcl\\b|cruciate|arthroscop",
+   "name": "Knee",
+   "moves": [
+    "Cutting and pivoting on a planted foot (twisting load)",
+    "Rapid deceleration",
+    "Landing from jumps (knee turning inward)",
+    "Deep squats and lunges"
+   ],
+   "sided": [
+    "{S}-to-{o} cuts (planting on the {s} leg)"
+   ],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "shin|tibi|fibul|lower leg|\\bleg\\b",
+   "name": "Lower leg / shin",
+   "moves": [
+    "Repetitive impact (running volume)",
+    "Jump landings",
+    "Sprint push-off"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "neck|cervical",
+   "name": "Neck",
+   "moves": [
+    "Contact and collisions",
+    "Rebounding with contact overhead",
+    "Hard falls"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "back|lumbar|spine|spinal|disc|thoracic|sacr",
+   "name": "Back / spine",
+   "moves": [
+    "Rotation and twisting (pivots, contact)",
+    "Repeated jump landings (spinal impact)",
+    "Boxing out and rebounding under load",
+    "Bending forward and lifting"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "shoulder|rotator|labr|clavic|acromio|scapul|humer|bicep|tricep|pectoral|\\bpec\\b|elbow",
+   "name": "Shoulder / arm",
+   "moves": [
+    "Overhead shooting and rebounding",
+    "Contact when driving or screening",
+    "Hard falls onto the arm",
+    "Reaching to contest shots and passes"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "wrist|hand|finger|thumb|metacarp|pinky|\\bmcp\\b|forearm",
+   "name": "Wrist / hand / finger",
+   "moves": [
+    "Shooting follow-through and ball handling",
+    "Catching hard passes",
+    "Rebounding grip and strips (contact on the hand)",
+    "Contact when fouling or being fouled"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "rib|chest|oblique|abdom|\\bcore\\b|sternum|trunk|flank",
+   "name": "Torso / core",
+   "moves": [
+    "Rotation and twisting",
+    "Contact to the torso (screens, drives)",
+    "Explosive reaching and rebounding",
+    "Hard falls"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "head|concuss|face|facial|nose|nasal|eye|orbital|jaw|cheek|sinus",
+   "name": "Head / face",
+   "moves": [
+    "Contact near the head or face (rebounds, elbows, screens)",
+    "Collisions and hard falls"
+   ],
+   "sided": [],
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+  }
+ ],
+ "sources": [
+  {
+   "use": "Patellar tendon",
+   "cite": "Van der Worp H, de Poel HJ, Diercks RL, van den Akker-Scheek I, Zwerver J. Jumper's knee or lander's knee? A systematic review of the relation between jump biomechanics and patellar tendinopathy. Int J Sports Med 2014;35(8):714-22.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/24577862/"
+  },
+  {
+   "use": "Hamstring",
+   "cite": "Late swing or early stance? A narrative review of hamstring injury mechanisms during high-speed running. Scand J Med Sci Sports 2019;29(8):1083-1091.",
+   "url": "https://doi.org/10.1111/sms.13437"
+  },
+  {
+   "use": "Achilles",
+   "cite": "Habets B, van den Broek AG, Huisstede BMA, Backx FJG, van Cingel REH. Return to sport in athletes with midportion Achilles tendinopathy: a qualitative systematic review regarding definitions and criteria. Sports Med 2018;48(3):705-723.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5808052"
+  }
+ ]
+}

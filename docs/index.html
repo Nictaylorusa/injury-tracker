@@ -41,7 +41,7 @@ tr:last-child td{border-bottom:0}
 .n{text-align:right}
 .empty{padding:16px;color:var(--muted)}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--muted)}
-.pace{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}.pace.pos{color:var(--good)}.pace.neg{color:var(--bad)}.tl{white-space:nowrap;color:var(--muted)}
+.pace{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}.pace.pos{color:var(--good)}.pace.neg{color:var(--bad)}.tl{white-space:nowrap;color:var(--muted)}.mv{white-space:pre-line;font-size:12.5px;line-height:1.4;min-width:250px}
 .dot.out{background:var(--bad)}.dot.unsure{background:var(--warn)}
 .chart{position:relative;min-height:40px}
 .tip{position:absolute;pointer-events:none;background:var(--tip);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:6px;padding:5px 8px;font-size:12.5px;white-space:nowrap;z-index:2}
@@ -79,7 +79,7 @@ section[hidden]{display:none}
 <details class="dd" id="dd_spurs"><summary id="spurs_sum">Spurs: next opponent</summary><div>
 <p id="spurs_note"></p>
 <h3>Listed in the latest NBA report</h3>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
 <h3>Recent history (last 14 days)</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
 </div></details>
@@ -87,8 +87,8 @@ section[hidden]{display:none}
 <label>Team <select id="cteam"></select></label>
 <label>Status <select id="cstatus"></select></label>
 </div>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="now_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="now_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. Movements to watch lists activities that tend to load, or be limited by, that kind of injury (general guidance for planning, not clinical clearance); where the injury names a side, the cutting direction is for that side.</p>
 <h2>Players listed by team</h2>
 <div class="chart" id="now_chart"></div>
 <p class="note" id="now_note"></p>
@@ -109,8 +109,8 @@ section[hidden]{display:none}
 <div><h2>Games missed by team</h2><div class="chart" id="search_team_chart"></div></div>
 </div>
 <h2>Every matching stay</h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="search_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="search_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. Movements to watch lists activities that tend to load, or be limited by, that kind of injury (general guidance for planning, not clinical clearance); where the injury names a side, the cutting direction is for that side.</p>
 <p class="note">Separate words with + or a space and every one must match, so calf+2022 means calf injuries in 2022-23. Words are matched against the injury text, player, team and type (illness, injury-management rest). A 4-digit year means the season that starts that year (2022 is 2022-23); you can also type 2022-23. Click the buttons to add or remove a word.</p>
 </section>
 
@@ -124,8 +124,8 @@ section[hidden]{display:none}
 <h2>Longest stays out (games)</h2>
 <div class="chart" id="team_top"></div>
 <h2>Every stay</h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="team_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="team_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. Movements to watch lists activities that tend to load, or be limited by, that kind of injury (general guidance for planning, not clinical clearance); where the injury names a side, the cutting direction is for that side.</p>
 </section>
 
 <section id="league" hidden>
@@ -143,8 +143,8 @@ section[hidden]{display:none}
 <section id="players" hidden>
 <div class="bar"><input id="q" type="search" placeholder="Search a player (e.g. Haliburton)" aria-label="Search a player"></div>
 <h2 id="player_title"></h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="player_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="player_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. Movements to watch lists activities that tend to load, or be limited by, that kind of injury (general guidance for planning, not clinical clearance); where the injury names a side, the cutting direction is for that side.</p>
 </section>
 
 <details><summary>What these numbers are</summary>
@@ -152,7 +152,7 @@ section[hidden]{display:none}
 <p><b>Checks:</b> Haliburton in 2025-26 comes to 82 games and Lillard to 88, matching HoopsMatic's counts. Full-season league totals run about 3–5% above HoopsMatic's, which counts only confirmed roster players.</p>
 <p><b>Limits:</b> "listed Out" is what the team filed, not a medical diagnosis. Games a player missed without being listed are not here. <b>Right now</b> shows each team's report for its next game; the archive can run up to a day behind the NBA's own site.</p>
 </details>
-<details class="dd" id="dd_sources"><summary>Where the recovery timelines come from</summary><div>
+<details class="dd" id="dd_sources"><summary>Where the recovery timelines and movement notes come from</summary><div>
 <p>The "Typical recovery" ranges are approximate return-to-play ranges for each kind of injury, matched automatically from the NBA's wording. They are general reference ranges, not a medical opinion and not a prediction for any one player. The team's medical staff should review them before anyone relies on them.</p>
 <h3>Numbers checked against published studies</h3>
 <ul>
@@ -165,6 +165,13 @@ section[hidden]{display:none}
 <li><a href="https://wtop.com/news/2018/06/when-can-i-return-to-play-after-an-orthopedic-sports-injury" target="_blank" rel="noopener">WTOP, When can I return to play after an orthopedic sports injury?</a> (2018; collarbone, calf strain, ankle sprain, finger fracture).</li>
 </ul>
 <p>These two pages describe ranges in words, not exact numbers. Every other range in the table is a general estimate made for this tracker, and hovering over a range shows which kind it is. The full list of ranges is in the file <code>recovery_timelines.json</code>, which can be edited.</p>
+<h3>Movements to watch</h3>
+<p>The "Movements to watch" column lists basketball movements that tend to load, or be limited by, each kind of injury, such as rapid deceleration for patellar tendon problems or repeated jump attempts for Achilles and soleus problems. When the injury names a side, the first item gives the cutting direction for that side (a right knee or ankle lists right-to-left cuts, planting on the right leg). This is general guidance for planning, not a clinical clearance. Three of the groups are supported by published reviews, and the rest are general sports-science reasoning by this tracker. Hovering over a cell shows which.</p>
+<ul>
+<li><b>Patellar tendon:</b> Van der Worp H, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/24577862/" target="_blank" rel="noopener">Jumper's knee or lander's knee? A systematic review of the relation between jump biomechanics and patellar tendinopathy</a>. International Journal of Sports Medicine, 2014. Concludes that horizontal landing after forward acceleration carries the greatest risk, and that stiff landing patterns are linked to onset.</li>
+<li><b>Hamstring:</b> <a href="https://doi.org/10.1111/sms.13437" target="_blank" rel="noopener">Late swing or early stance? A narrative review of hamstring injury mechanisms during high-speed running</a>. Scandinavian Journal of Medicine and Science in Sports, 2019. Concludes that late swing is the most likely injury phase, though direct evidence is limited.</li>
+<li><b>Achilles:</b> Habets B, et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5808052" target="_blank" rel="noopener">Return to sport in athletes with midportion Achilles tendinopathy</a>. Sports Medicine, 2018. Describes running and jumping as the activities resumed once symptoms settle. It does not cover calf or soleus injuries specifically.</li>
+</ul>
 <p>Pace is the middle of the range minus days out so far, counted from the first missed game. Players whose injury is described only as "injury management" or "injury recovery" show a dash, because those words don't say what the injury is.</p>
 </div></details>
 <p class="note" id="built"></p>
@@ -180,7 +187,7 @@ const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
-let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {}, RULES = [], ONG = new Map();
+let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {}, RULES = [], MRULES = [], ONG = new Map();
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
@@ -260,7 +267,7 @@ function ageLabel() {
 const dayDiff = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
 function recov(inj) { const t = inj || ''; for (const r of RULES) if (r.re.test(t)) return r; return null; }
 const fmtRange = (lo, hi) => hi <= 21 ? `${lo}–${hi} days` : hi <= 140 ? `${Math.max(1, Math.round(lo / 7))}–${Math.round(hi / 7)} wks` : `${Math.round(lo / 30.4)}–${Math.round(hi / 30.4)} mo`;
-function recCells(inj, days) {
+function recCells0(inj, days) {
   const r = recov(inj);
   if (!r) return [{ t: '—', cls: 'tl', title: 'No standard timeline for this description' }, { t: '—', n: true }];
   if (r.nopace) return [{ t: 'Varies', cls: 'tl', title: `${r.name}: recovery depends on the procedure, so no pace is shown.` }, { t: '—', n: true }];
@@ -268,6 +275,18 @@ function recCells(inj, days) {
   if (days == null) return [c1, { t: '—', n: true, title: 'Days out not known yet (new today, or not in the history yet)' }];
   const typ = Math.round((r.min + r.max) / 2), p = typ - days;
   return [c1, { t: (p >= 0 ? '+' : '−') + Math.abs(p), n: true, cls: 'pace ' + (p >= 0 ? 'pos' : 'neg'), title: `Day ${days} out. Typical for ${r.name.toLowerCase()}: about ${typ} days (range ${r.min}–${r.max}).` }];
+}
+const recCells = (inj, days) => [...recCells0(inj, days), moveCell(inj)];
+function moveCell(inj) {
+  const t = inj || '', r = MRULES.find((x) => x.re.test(t));
+  if (!r) return { t: '—', cls: 'mv' };
+  const sm = /\b(left|right)\b/i.exec(t), items = [];
+  if (sm && !/bilateral|both/i.test(t)) {
+    const S = sm[1][0].toUpperCase() + sm[1].slice(1).toLowerCase(), O = S === 'Left' ? 'Right' : 'Left';
+    (r.sided || []).forEach((x) => items.push(x.replace(/\{S\}/g, S).replace(/\{s\}/g, S.toLowerCase()).replace(/\{O\}/g, O).replace(/\{o\}/g, O.toLowerCase())));
+  }
+  items.push(...r.moves);
+  return { t: items.slice(0, 3).map((x) => '• ' + x).join('\n'), cls: 'mv', title: `${r.name}\n${items.map((x) => '• ' + x).join('\n')}\n${r.basis}\nGeneral guidance for planning, not clinical clearance.` };
 }
 function buildOngoing() {
   ONG = new Map();
@@ -298,7 +317,7 @@ function drawSpurs() {
   if (!g) {
     $('spurs_sum').textContent = 'Spurs: next opponent';
     $('spurs_note').textContent = 'No upcoming game found in the schedule.';
-    emptyRow(nowBody, 5, '—'); emptyRow(hist, 4, '—'); return;
+    emptyRow(nowBody, 6, '—'); emptyRow(hist, 4, '—'); return;
   }
   const oppAb = g.opp, opp = ABBR[oppAb] || oppAb;
   const when = `${g.date === today ? 'today' : showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
@@ -306,7 +325,7 @@ function drawSpurs() {
   const miss = (NOW.teams_not_submitted || []).includes(opp);
   $('spurs_note').textContent = `${g.home ? 'vs' : 'at'} ${opp}, ${when}. From the season schedule.` + (miss ? ` The ${opp} haven't filed their report for this game yet.` : '');
   const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
-  if (!cur.length) emptyRow(nowBody, 5, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
+  if (!cur.length) emptyRow(nowBody, 6, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
   cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, ...recCells(r.Injury, daysOut(opp, r.Player))]));
   const cut = new Date(Date.now() - 14 * 864e5).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   const listed = new Set(cur.map((r) => r.Player));
@@ -325,7 +344,7 @@ const R = {
     const rs = CUR.filter((r) => (!state.cteam || r.Team === state.cteam) && (!state.cstatus || r.Status === state.cstatus))
       .sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Team.localeCompare(b.Team) || a.Player.localeCompare(b.Player));
     const tb = $('now_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 7, 'Nobody matches that filter.');
+    if (!rs.length) emptyRow(tb, 8, 'Nobody matches that filter.');
     rs.forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, `${r.Matchup} ${showD(r.Game_Date)}`, ...recCells(r.Injury, daysOut(r.Team, r.Player))]));
     hbar($('now_chart'), teams.map(([t, v]) => ({ label: t, value: v.n, show: String(v.n), tip: `${t}: ${v.out} out, ${v.un} doubtful/questionable, ${v.n} listed` })), 'Players listed by team');
     const miss = (NOW.teams_not_submitted || META.teams_not_filed || []);
@@ -351,7 +370,7 @@ const R = {
     const tBy = roll((r) => r.Team).sort((a, b) => b[1].g - a[1].g).slice(0, 15);
     hbar($('search_team_chart'), tBy.map(([t, v]) => ({ label: t, value: v.g, show: fmtN(v.g), tip: `${t}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by team (top 15)');
     const tb = $('search_rows'); tb.replaceChildren();
-    if (!m.length) { emptyRow(tb, 9, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
+    if (!m.length) { emptyRow(tb, 10, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
     const rs = m.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out) || b.Start_Date.localeCompare(a.Start_Date));
     rs.slice(0, 300).forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(Math.round(num(r.Games_Out))), n: true }, ...recCells(r.Injury, stayDays(r))]));
     if (rs.length > 300) addRow(tb, ['Showing the 300 longest of ' + rs.length + '. Add a word to narrow it.', '', '', '', '', '', '']);
@@ -370,7 +389,7 @@ const R = {
     const top = rs.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 10);
     hbar($('team_top'), top.map((r) => ({ label: r.Player, value: num(r.Games_Out), show: String(num(r.Games_Out)), tip: `${r.Player}: ${num(r.Games_Out)} games, ${r.Injury}` })), 'Longest stays out');
     const tb = $('team_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 9, 'No stays logged for this team and season.');
+    if (!rs.length) emptyRow(tb, 10, 'No stays logged for this team and season.');
     rs.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date)).forEach((r) => addRow(tb, [r.Player, r.Injury || '—', r.Category, showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, r.Status, ...recCells(r.Injury, stayDays(r))]));
   },
   league() {
@@ -387,7 +406,7 @@ const R = {
                : STAYS.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 25);
     const total = rs.length; rs = rs.slice(0, 150);
     const tb = $('player_rows'); tb.replaceChildren();
-    if (!rs.length) { emptyRow(tb, 9, 'No player matches that name.'); return; }
+    if (!rs.length) { emptyRow(tb, 10, 'No player matches that name.'); return; }
     rs.forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, ...recCells(r.Injury, stayDays(r))]));
     if (total > rs.length) addRow(tb, ['Showing the first 150 of ' + total + '. Type more of the name to narrow it.', '', '', '', '', '', '']);
   }
@@ -413,9 +432,10 @@ document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', ()
   state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
 }));
 
-Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({})), d3.json('recovery_timelines.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc, rj]) => {
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({})), d3.json('recovery_timelines.json').catch(() => ({})), d3.json('movement_demands.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc, rj, mj]) => {
   STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || []; SCHED = sc || {};
   RULES = ((rj && rj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
+  MRULES = ((mj && mj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
   buildOngoing();
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
