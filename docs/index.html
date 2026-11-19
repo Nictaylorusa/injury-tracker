@@ -57,7 +57,15 @@ section[hidden]{display:none}
 .tlhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}.tlhead h2{margin:0}
 .tlbox{position:relative;margin:6px 0 4px}.tlbox svg{display:block;width:100%;overflow:visible}
 .tlkey{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:var(--muted)}.tlkey i{width:11px;height:11px;border-radius:3px;display:inline-block}
-@media print{.tabs,.bar,#headline,.sub,details,#built,#tl_print,#player_pick,.note{display:none!important}body{background:#fff;color:#000}}
+#spurs_g{width:auto;margin-right:4px}.sheet{display:none}
+@media print{body.printing-sheet>*:not(#sheet){display:none!important}body.printing-sheet #sheet{display:block}
+@page{size:letter;margin:.4in}
+.sheet{font:10.5px/1.35 system-ui,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sh-head h1{font:600 18px Georgia,serif;margin:0}.sh-sub{color:#555;margin:2px 0 8px;font-size:10px}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sh-card{border:1px solid #999;border-radius:4px;padding:7px 9px;break-inside:avoid;height:2.8in;overflow:hidden}
+.sh-card h2{font:600 14px Georgia,serif;margin:0}.sh-meta{color:#555;margin-bottom:4px}.sh-row{margin:2px 0}.sh-bars{width:100%;height:46px;display:block;margin-top:3px}.sh-cap{font-size:9px;color:#555}
+.sh-foot{margin-top:6px;font-size:9px;color:#555}.tabs,.bar,#headline,.sub,details,#built,#tl_print,#player_pick,.note{display:none!important}body{background:#fff;color:#000}}
+
 </style>
 </head>
 <body>
@@ -84,9 +92,10 @@ section[hidden]{display:none}
 <p id="spurs_note"></p>
 <h3>Listed in the latest NBA report</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Movements that tend to load, or be limited by, this kind of injury. General guidance, not clinical clearance.">Movements to watch</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
-<h3 id="spurs_fw_h">Their forwards: injury history</h3>
+<h3 id="spurs_fw_h">Likely matchups by chance of starting</h3>
 <p class="note" id="spurs_fw_note"></p>
-<div class="wrapt"><table><thead><tr><th>Player</th><th class="n" title="Minutes per game this season">Min</th><th>Now</th><th class="n" title="Stays out this season, and games missed">This season</th><th class="n" title="Stays out over the last five seasons, and games missed">Five seasons</th><th title="Body area with the most stays, and how many">Most common area</th><th>Latest stay</th></tr></thead><tbody id="spurs_fw"></tbody></table></div>
+<div class="bar"><label><input type="checkbox" id="spurs_g"> Include guards</label><button class="chip" id="fw_export" type="button" disabled>Export PDF summary</button><span class="note" id="fw_hint"></span></div>
+<div class="wrapt"><table><thead><tr><th title="Tick up to 5 for the PDF">PDF</th><th>Player</th><th>Pos</th><th>Start chance</th><th class="n" title="Starts this season, and in the team's last five games">Starts</th><th class="n" title="Minutes per game this season">Min</th><th>Now</th><th class="n" title="Stays out this season, and games missed">This season</th><th class="n" title="Stays out over the last five seasons, and games missed">Five seasons</th><th title="Body area with the most stays, and how many">Most common area</th><th>Latest stay</th></tr></thead><tbody id="spurs_fw"></tbody></table></div>
 <h3>Recent history (last 14 days)</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
 </div></details>
@@ -191,6 +200,7 @@ section[hidden]{display:none}
 </div></details>
 <p class="note" id="built"></p>
 </div>
+<div id="sheet" class="sheet"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
@@ -321,30 +331,87 @@ function drawYesterday() {
     .forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, r.Matchup]));
   if (!PREV.length) emptyRow(tb, 5, 'Nothing saved yet.');
 }
-function drawForwards(ab, opp, cur) {
+const SEL = new Map(); let LASTFW = null, WITHG = false;
+function startChance(p, c) {
+  const rate = p.gp ? p.starts / p.gp : 0, rec = p.l5n ? p.l5 / p.l5n : rate;
+  let sc = p.gp ? 0.6 * rate + 0.4 * rec : 0;
+  const st = c ? c.Status : '';
+  if (st === 'Out') sc = -1; else if (st === 'Doubtful') sc *= 0.4; else if (st === 'Questionable') sc *= 0.8;
+  const lab = st === 'Out' ? 'Out' : !p.gp ? 'No games yet' : sc >= 0.7 ? 'Likely starter' : sc >= 0.3 ? 'Could start' : 'Bench';
+  return { sc, lab };
+}
+function fwInfo(opp, p) {
+  const name = p.stay_name, mine = STAYS.filter((r) => r.Player === name), ses = mine.filter((r) => r.Season === META.season);
+  const g = (rs) => Math.round(d3.sum(rs, (r) => num(r.Games_Out)));
+  const fam = Array.from(d3.rollup(mine, (v) => v.length, (r) => famOf(r.Injury)[0])).filter((x) => x[0] !== OTHERFAM[0]).sort((a, b) => b[1] - a[1])[0];
+  const c = CUR.find((r) => r.Team === opp && r.Player === name);
+  const sorted = mine.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date));
+  return { name, mine, ses, gS: g(ses), gA: g(mine), fam, c, last: sorted[0], recent: sorted.slice(0, 3), ...startChance(p, c) };
+}
+function drawForwards(ab, opp) {
   const tb = $('spurs_fw'); tb.replaceChildren();
-  const list = POS[ab] || [];
-  $('spurs_fw_h').textContent = `${opp} forwards: injury history`;
+  LASTFW = { ab, opp };
+  $('spurs_fw_h').textContent = `${opp}: likely matchups by chance of starting`;
+  const list = (POS[ab] || []).filter((p) => p.pos !== 'G' || WITHG).map((p) => ({ p, i: fwInfo(opp, p) }));
+  list.sort((x, y) => y.i.sc - x.i.sc || (y.p.mpg || 0) - (x.p.mpg || 0));
   $('spurs_fw_note').textContent = list.length
-    ? "Everyone the feed lists as a forward on this roster. The feed only says forward (F), so small and power forwards are not split, and wings it lists as guards are not here. Click a name for the full timeline."
+    ? "Ordered by how often each player has started this season, weighted toward the last five team games. Out players go last; doubtful and questionable players are marked down. This is a start history, not a lineup announcement. The data only says forward (F) or guard (G), so wings can be in either group: tick the box to include guards."
     : "No roster positions are loaded yet. They come with the daily update.";
-  if (!list.length) return;
-  const today = etToday();
-  list.forEach((p) => {
-    const name = p.stay_name, mine = STAYS.filter((r) => r.Player === name);
-    const ses = mine.filter((r) => r.Season === META.season);
-    const g = (rs) => Math.round(d3.sum(rs, (r) => num(r.Games_Out)));
-    const fam = Array.from(d3.rollup(mine, (v) => v.length, (r) => famOf(r.Injury)[0])).filter((x) => x[0] !== OTHERFAM[0]).sort((a, b) => b[1] - a[1])[0];
-    const last = mine.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date))[0];
-    const c = CUR.find((r) => r.Team === opp && r.Player === name);
-    const stat = c ? `${c.Status}: ${c.Injury}` : (ses.some((r) => r.Status === 'Ongoing') ? 'Out in recent games' : '—');
-    addRow(tb, [name, { t: p.mpg == null ? '—' : p.mpg.toFixed(1), n: 1 }, { t: stat, dot: c ? (c.Status === 'Out' ? 'out' : (UNSURE.includes(c.Status) ? 'unsure' : '')) : '' },
-      { t: ses.length ? `${ses.length} · ${g(ses)} g` : '0', n: 1 }, { t: mine.length ? `${mine.length} · ${g(mine)} g` : '0', n: 1 },
-      fam ? `${fam[0]} (${fam[1]})` : '—', last ? `${last.Injury || 'Unspecified'}, ${showD(last.Start_Date)}${last.Status === 'Ongoing' ? ' (ongoing)' : ''}` : 'None on record']);
-    const a = el('button', 'chip', name); a.type = 'button'; a.title = 'Open the full injury timeline';
-    a.addEventListener('click', () => { $('q').value = name; state.q = name; show('players'); redraw(); });
-    const td = tb.lastChild.firstChild; td.replaceChildren(a);
+  $('spurs_g').checked = WITHG;
+  if (!list.length) { updateExport(); return; }
+  list.forEach(({ p, i }) => {
+    const key = opp + '|' + i.name, last5 = p.l5n ? `, last ${p.l5n}: ${p.l5}` : '';
+    addRow(tb, ['', i.name, p.pos === 'G' ? 'G' : 'F', { t: i.lab, cls: i.lab === 'Likely starter' ? 'good' : '' }, { t: p.gp ? `${p.starts} of ${p.gp}${last5}` : '—', n: 1 }, { t: p.mpg == null ? '—' : p.mpg.toFixed(1), n: 1 },
+      { t: i.c ? `${i.c.Status}: ${i.c.Injury}` : (i.ses.some((r) => r.Status === 'Ongoing') ? 'Out in recent games' : '—'), dot: i.c ? (i.c.Status === 'Out' ? 'out' : (UNSURE.includes(i.c.Status) ? 'unsure' : '')) : '' },
+      { t: i.ses.length ? `${i.ses.length} · ${i.gS} g` : '0', n: 1 }, { t: i.mine.length ? `${i.mine.length} · ${i.gA} g` : '0', n: 1 },
+      i.fam ? `${i.fam[0]} (${i.fam[1]})` : '—', i.last ? `${i.last.Injury || 'Unspecified'}, ${showD(i.last.Start_Date)}${i.last.Status === 'Ongoing' ? ' (ongoing)' : ''}` : 'None on record']);
+    const tr = tb.lastChild, cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = SEL.has(key); cb.setAttribute('aria-label', `Add ${i.name} to the PDF`);
+    cb.addEventListener('change', () => { if (cb.checked) SEL.set(key, { p, i, opp }); else SEL.delete(key); updateExport(); });
+    cb.dataset.key = key; tr.firstChild.replaceChildren(cb);
+    const a = el('button', 'chip', i.name); a.type = 'button'; a.title = 'Open the full injury timeline';
+    a.addEventListener('click', () => { $('q').value = i.name; state.q = i.name; show('players'); redraw(); });
+    tr.children[1].replaceChildren(a);
   });
+  updateExport();
+}
+function updateExport() {
+  const n = SEL.size;
+  $('fw_export').disabled = n === 0; $('fw_export').textContent = n ? `Export PDF summary (${n} of 5)` : 'Export PDF summary';
+  document.querySelectorAll('#spurs_fw input[type=checkbox]').forEach((cb) => { cb.disabled = !cb.checked && n >= 5; });
+  $('fw_hint').textContent = n >= 5 ? 'Five selected, the most one sheet holds.' : 'Tick up to 5 players for one sheet.';
+}
+function buildSheet() {
+  const sh = $('sheet'); sh.replaceChildren();
+  const items = Array.from(SEL.values()).slice(0, 5);
+  const first = items[0]; if (!first) return false;
+  const head = el('div', 'sh-head'); head.append(el('h1', '', `Spurs matchup sheet: ${Array.from(new Set(items.map((x) => x.opp))).join(', ')}`), el('div', 'sh-sub', `${showD(etToday())} · The Collective Analytics · ${NOW.report_time_et ? 'NBA report ' + NOW.report_time_et : ''}`));
+  sh.append(head);
+  const grid = el('div', 'sh-grid'); sh.append(grid);
+  const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort();
+  items.forEach(({ p, i, opp }) => {
+    const c = el('div', 'sh-card');
+    c.append(el('h2', '', i.name), el('div', 'sh-meta', `${opp} · ${p.pos === 'G' ? 'Guard' : 'Forward'} · ${i.lab}`));
+    const kv = (k, v) => { const r = el('div', 'sh-row'); r.append(el('b', '', k), document.createTextNode(' ' + v)); c.append(r); };
+    kv('Starts', p.gp ? `${p.starts} of ${p.gp} games${p.l5n ? `, last ${p.l5n} team games: ${p.l5}` : ''}, ${p.mpg == null ? '—' : p.mpg.toFixed(1)} min` : 'none this season');
+    kv('Now', i.c ? `${i.c.Status}, ${i.c.Injury}` : 'Not on the latest report');
+    if (i.c) { const [rc, pc] = recCells0(i.c.Injury, daysOut(opp, i.name)); if (rc && rc.t && rc.t !== '—') kv('Typical recovery', rc.t + (pc && pc.t && pc.t !== '—' ? `, pace ${pc.t}` : '')); const mv = moveCell(i.c.Injury); if (mv && mv.t) kv('Movements to watch', mv.t.split('\n').slice(0, 2).join(' ').replace(/•/g, '·')); }
+    kv('This season', i.ses.length ? `${i.ses.length} ${i.ses.length === 1 ? 'stay' : 'stays'}, ${i.gS} ${i.gS === 1 ? 'game' : 'games'} missed` : 'no stays');
+    kv('Five seasons', `${i.mine.length} stays, ${i.gA} games missed${i.fam ? `; most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}`);
+    const per = seasons.map((se) => Math.round(d3.sum(i.mine.filter((r) => r.Season === se), (r) => num(r.Games_Out)))), mx = Math.max(10, d3.max(per));
+    const svg = d3.select(c).append('svg').attr('class', 'sh-bars').attr('viewBox', '0 0 250 46');
+    per.forEach((v, k) => { const h = (v / mx) * 20, x = 6 + k * 49; svg.append('rect').attr('x', x).attr('y', 28 - h).attr('width', 34).attr('height', Math.max(h, 1)).attr('fill', '#555'); svg.append('text').attr('x', x + 17).attr('y', 25 - h).attr('text-anchor', 'middle').attr('font-size', 9).text(String(v)); svg.append('text').attr('x', x + 17).attr('y', 41).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', '#555').text(seasons[k]); });
+    c.append(el('div', 'sh-cap', 'Games missed to injury by season'));
+    if (i.recent.length) { const ul = el('div', 'sh-row'); ul.append(el('b', '', 'Latest stays'), document.createTextNode(' ' + i.recent.map((r) => `${r.Injury || 'Unspecified'} (${showD(r.Start_Date)}, ${Math.round(num(r.Games_Out))} g${r.Status === 'Ongoing' ? ', ongoing' : ''})`).join('; '))); c.append(ul); }
+    grid.append(c);
+  });
+  sh.append(el('div', 'sh-foot', "Starts come from this season's box scores and are not a lineup announcement. Injury history is from the NBA's published injury reports (games listed out) and may lag by a day. Movement notes are general guidance for planning, not clinical clearance."));
+  return true;
+}
+function exportSheet() {
+  if (!buildSheet()) return;
+  document.body.classList.add('printing-sheet');
+  const done = () => { document.body.classList.remove('printing-sheet'); window.removeEventListener('afterprint', done); };
+  window.addEventListener('afterprint', done); setTimeout(() => window.print(), 50);
 }
 function drawSpurs() {
   const today = etToday();
@@ -367,7 +434,7 @@ function drawSpurs() {
   const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
   if (!cur.length) emptyRow(nowBody, 6, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
   cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, ...recCells(r.Injury, daysOut(opp, r.Player))]));
-  drawForwards(oppAb, opp, cur);
+  drawForwards(oppAb, opp);
   const cut = new Date(Date.now() - 14 * 864e5).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   const listed = new Set(cur.map((r) => r.Player));
   const rec = STAYS.filter((r) => r.Team === opp && r.Season === META.season && !listed.has(r.Player) && (r.Status === 'Ongoing' || r.End_Date >= cut))
@@ -541,6 +608,8 @@ document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () 
 window.addEventListener('resize', d3.debounce ? redraw : redraw);
 let sqT = null, qT = null;
 $('sqi').addEventListener('input', () => { clearTimeout(sqT); sqT = setTimeout(() => { state.sq = $('sqi').value.trim(); redraw(); }, 200); });
+$('spurs_g').addEventListener('change', (e) => { WITHG = e.target.checked; if (LASTFW) drawForwards(LASTFW.ab, LASTFW.opp); });
+$('fw_export').addEventListener('click', exportSheet);
 $('q').addEventListener('input', () => { clearTimeout(qT); qT = setTimeout(() => { state.q = $('q').value; redraw(); }, 200); });
 document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => {
   const toks = state.sq.split(/[+,\s]+/).filter(Boolean), t = c.dataset.term, i = toks.findIndex((x) => x.toLowerCase() === t);

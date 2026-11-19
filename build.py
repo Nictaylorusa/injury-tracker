@@ -129,16 +129,19 @@ def build_positions(S):
     short2ab = {v: k for k, v in ab2short.items()}
     out, seen = {}, set()
     stay_names = {norm(n): n for n in S.Player.unique()}
-    def add(ab, name, pos, gp, mpg, source):
+    def add(ab, name, pos, gp, mpg, source, starts=0, l5=0, l5n=0):
         key = (ab, norm(name))
-        if key in seen or pos not in ("SF", "PF", "F"): return
+        if key in seen or pos not in ("SF", "PF", "F", "G"): return
         seen.add(key)
-        out.setdefault(ab, []).append(dict(name=name, stay_name=stay_names.get(norm(name), name), pos=pos, gp=int(gp), mpg=round(float(mpg), 1) if mpg == mpg else None, src=source))
+        out.setdefault(ab, []).append(dict(name=name, stay_name=stay_names.get(norm(name), name), pos=pos, gp=int(gp), mpg=round(float(mpg), 1) if mpg == mpg else None, src=source, starts=int(starts), l5=int(l5), l5n=int(l5n)))
     if len(cur):
-        c = cur.sort_values("game_date")
+        c = cur.sort_values(["game_date", "game_id"])
+        last5 = {ab: set(gd.drop_duplicates("game_id").tail(5).game_id) for ab, gd in c.groupby("ab")}
         for aid, g in c.groupby("athlete_id"):
             last = g.iloc[-1]; played = g[g.did]
-            add(last.ab, last.athlete_display_name, last.athlete_position_abbreviation, len(played), played["min"].mean() if len(played) else float("nan"), "season")
+            st = played.starter.astype(bool); l5 = last5.get(last.ab, set())
+            add(last.ab, last.athlete_display_name, last.athlete_position_abbreviation, len(played), played["min"].mean() if len(played) else float("nan"), "season",
+                st.sum(), played[played.game_id.isin(l5)].starter.astype(bool).sum(), len(l5))
     covered = {norm(r["name"]) for v in out.values() for r in v}
     if len(prev):
         pv = prev.sort_values("game_date").groupby("athlete_id").tail(1).set_index(prev.sort_values("game_date").groupby("athlete_id").tail(1).athlete_display_name.map(norm))
