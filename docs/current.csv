@@ -1,75 +1,67 @@
-Team,Player,Status,Category,Injury,Game_Date,Matchup,Report_Time
-76ers,Ariel Hukporti,Out,Injury,Right Achilles Tendon Rupture / Tear,2026-11-18,PHI@ORL,2026-11-18 00:00
-76ers,Adem Bona,Out,Injury,Cervical Spine Sprain,2026-11-18,PHI@ORL,2026-11-18 00:00
-76ers,Dominick Barlow,Out,Injury,Low Back Stress Reaction,2026-11-18,PHI@ORL,2026-11-18 00:00
-76ers,Jaylen Brown,Out,Injury,Left Hamstring Strain,2026-11-18,PHI@ORL,2026-11-18 00:00
-Bucks,Ousmane Dieng,Out,Injury,Left Finger Fracture,2026-11-18,MIL@MIA,2026-11-18 00:00
-Bulls,Tobe Awaka,Out,Injury,Disc Irritation,2026-11-18,CHI@BKN,2026-11-18 00:00
-Bulls,Caleb Wilson,Out,Injury,Right Metacarpal Fracture,2026-11-18,CHI@BKN,2026-11-18 00:00
-Bulls,Patrick Williams,Probable,Injury,Right Finger Dislocation,2026-11-18,CHI@BKN,2026-11-18 00:00
-Cavaliers,Peyton Watson,Questionable,Injury,Low Back Contusion,2026-11-18,MEM@CLE,2026-11-18 00:00
-Cavaliers,Jaylon Tyson,Doubtful,Injury,Right Ankle Injury Management,2026-11-18,MEM@CLE,2026-11-18 00:00
-Cavaliers,Evan Mobley,Out,Injury,Left Great Toe Sprain,2026-11-18,MEM@CLE,2026-11-18 00:00
-Cavaliers,Sam Merrill,Questionable,Injury,Right Elbow Injury Management,2026-11-18,MEM@CLE,2026-11-18 00:00
-Cavaliers,Nae'Qwan Tomlin,Out,Injury,Low Back Stress Reaction,2026-11-18,MEM@CLE,2026-11-18 00:00
-Grizzlies,Isaiah Stewart,Out,Illness,Illness,2026-11-18,MEM@CLE,2026-11-18 00:00
-Grizzlies,Richie Saunders,Out,Injury,Right Knee Surgery,2026-11-18,MEM@CLE,2026-11-18 00:00
-Grizzlies,Scotty Pippen Jr.,Out,Injury,Lumbar Disc Herniation,2026-11-18,MEM@CLE,2026-11-18 00:00
-Grizzlies,Ty Jerome,Out,Injury,Right Hip Impingement,2026-11-18,MEM@CLE,2026-11-18 00:00
-Grizzlies,GG Jackson,Out,Injury,Left 5th Metatarsal Fracture,2026-11-18,MEM@CLE,2026-11-18 00:00
-Hawks,Henri Veesaar,Out,Injury,Right ACL Tear,2026-11-18,ATL@OKC,2026-11-18 00:00
-Hawks,Asa Newell,Out,Injury,Left Great Toe Surgery,2026-11-18,ATL@OKC,2026-11-18 00:00
-Hawks,CJ McCollum,Out,Injury,Left Calf Strain,2026-11-18,ATL@OKC,2026-11-18 00:00
-Hawks,Jock Landale,Out,Injury,Right Hip Inflammation,2026-11-18,ATL@OKC,2026-11-18 00:00
-Hawks,Mouhamed Gueye,Out,Injury,Left Foot Fracture,2026-11-18,ATL@OKC,2026-11-18 00:00
-Hawks,Kingston Flemings,Out,Injury,Lumbar Strain,2026-11-18,ATL@OKC,2026-11-18 00:00
-Heat,Myron Gardner,Questionable,Injury,Right Hamstring Tightness / Soreness,2026-11-18,MIL@MIA,2026-11-18 00:00
-Heat,Bam Adebayo,Probable,Injury,Right Hip Impingement,2026-11-18,MIL@MIA,2026-11-18 00:00
-Heat,Nikola Jovic,Probable,Illness,Illness,2026-11-18,MIL@MIA,2026-11-18 00:00
-Heat,Pelle Larsson,Available,Illness,Illness,2026-11-18,MIL@MIA,2026-11-18 00:00
-Heat,Klay Thompson,Available,Injury,Left Ankle Sprain,2026-11-18,MIL@MIA,2026-11-18 00:00
-Kings,Ben Simmons,Out,Injury,Right Achilles Tendon Repair / Surgery,2026-11-18,PHX@SAC,2026-11-18 00:00
-Kings,Maxime Raynaud,Out,Injury,Right Patella Subluxation,2026-11-18,PHX@SAC,2026-11-18 00:00
-Kings,De'Andre Hunter,Questionable,Injury,Left Hip Soreness / Tightness,2026-11-18,PHX@SAC,2026-11-18 00:00
-Kings,Precious Achiuwa,Questionable,Injury,Left Lower Leg Contusion,2026-11-18,PHX@SAC,2026-11-18 00:00
-Magic,Noah Penda,Out,Injury,Right Partially Torn Hamstring,2026-11-18,PHI@ORL,2026-11-18 00:00
-Magic,Izaiyah Nelson,Out,Injury,Left Ankle Injury Recovery,2026-11-18,PHI@ORL,2026-11-18 00:00
-Magic,Jonathan Isaac,Out,Injury,Left Knee Injury Management,2026-11-18,PHI@ORL,2026-11-18 00:00
-Magic,Paolo Banchero,Out,Injury,Right High Ankle Sprain,2026-11-18,PHI@ORL,2026-11-18 00:00
-Mavericks,Sergio de Larrea,Out,Injury,Right Knee Sprain,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Caleb Martin,Available,Injury,Right Thumb Splint,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Dereck Lively II,Out,Injury,Right Foot Surgery,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Tobi Lawal,Doubtful,Injury,Right Groin Tightness,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Walter Clayton Jr.,Probable,Injury,Right Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Max Christie,Questionable,Injury,Left Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Tarik Biberovic,Out,Injury,Right Heel Bursitis,2026-11-18,GSW@DAL,2026-11-18 00:00
-Mavericks,Santi Aldama,Probable,Injury,Left Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 00:00
-Nuggets,Julian Strawther,Out,Injury,Left Knee Sprain,2026-11-18,BOS@DEN,2026-11-18 00:00
-Pacers,Andrew Nembhard,Questionable,Injury,Left Hip Soreness / Tightness,2026-11-18,HOU@IND,2026-11-18 00:00
-Pacers,Ben Sheppard,Out,Injury,Left Meniscus Surgery,2026-11-18,HOU@IND,2026-11-18 00:00
-Pacers,T.J. McConnell,Probable,Injury,Right Hamstring Strain,2026-11-18,HOU@IND,2026-11-18 00:00
-Pacers,Tyrese Haliburton,Out,Injury,Left Hamstring Strain,2026-11-18,HOU@IND,2026-11-18 00:00
-Pacers,Johnny Furphy,Out,Injury,Right ACL Repair / Surgery,2026-11-18,HOU@IND,2026-11-18 00:00
-Pelicans,Trendon Watford,Out,Injury,Right Ankle Sprain,2026-11-18,DET@NOP,2026-11-18 00:00
-Pelicans,Dejounte Murray,Out,Injury,Left Ankle Sprain,2026-11-18,DET@NOP,2026-11-18 00:00
-Pelicans,Trey Murphy III,Out,Injury,Bilateral Patellar Tendinopathy,2026-11-18,DET@NOP,2026-11-18 00:00
-Pelicans,Bryce McGowens,Out,Injury,Left Elbow Infection,2026-11-18,DET@NOP,2026-11-18 00:00
-Pelicans,Bennedict Mathurin,Out,Injury,Left Plantar Fasciitis,2026-11-18,DET@NOP,2026-11-18 00:00
-Rockets,Amen Thompson,Questionable,Injury,Left Knee Soreness,2026-11-18,HOU@IND,2026-11-18 00:00
-Rockets,Clint Capela,Out,Injury,Right Ankle Sprain,2026-11-18,HOU@IND,2026-11-18 00:00
-Suns,Mark Williams,Out,Injury,Left Shoulder Surgery,2026-11-18,PHX@SAC,2026-11-18 00:00
-Thunder,Jaylin Williams,Questionable,Injury,Low Back Spasms,2026-11-18,ATL@OKC,2026-11-18 00:00
-Thunder,Cason Wallace,Out,Injury,Left Shoulder Surgery,2026-11-18,ATL@OKC,2026-11-18 00:00
-Thunder,Thomas Sorber,Out,Injury,Right Knee Surgery,2026-11-18,ATL@OKC,2026-11-18 00:00
-Thunder,Chet Holmgren,Out,Injury,Right Knee/ Injury Recovery,2026-11-18,ATL@OKC,2026-11-18 00:00
-Thunder,Jalen Williams,Out,Injury,Left Ankle Surgery,2026-11-18,ATL@OKC,2026-11-18 00:00
-Warriors,Brandon Williams,Out,Injury,Left Hamstring Strain,2026-11-18,GSW@DAL,2026-11-18 00:00
-Warriors,Moses Moody,Out,Injury,Left Patellar Tendon Repair / Surgery,2026-11-18,GSW@DAL,2026-11-18 00:00
-Warriors,Al Horford,Questionable,Injury,Bilateral Low Back Injury Management,2026-11-18,GSW@DAL,2026-11-18 00:00
-Warriors,Draymond Green,Questionable,Injury,Right Elbow Inflammation / Soreness,2026-11-18,GSW@DAL,2026-11-18 00:00
-Warriors,Stephen Curry,Out,Injury,Right Oblique Tear,2026-11-18,GSW@DAL,2026-11-18 00:00
-Warriors,Jimmy Butler III,Out,Injury,Right ACL Repair / Surgery,2026-11-18,GSW@DAL,2026-11-18 00:00
-Wizards,Justin Champagnie,Out,Injury,Right Foot Surgery,2026-11-18,WAS@TOR,2026-11-18 00:00
-Wizards,Reece Beekman,Out,Injury,Right AC Joint Injury,2026-11-18,WAS@TOR,2026-11-18 00:00
-Wizards,Tristan Vukcevic,Out,Injury,Left Hip Impingement,2026-11-18,WAS@TOR,2026-11-18 00:00
-Wizards,Jamir Watkins,Out,Injury,Left ACL Repair / Surgery,2026-11-18,WAS@TOR,2026-11-18 00:00
+Team,Player,Status,Category,Injury,Game_Date,Matchup,Report_Time,Game_Time
+76ers,Adem Bona,Out,Injury,Cervical Spine Sprain,2026-11-18,PHI@ORL,2026-11-18 23:45,07:00
+76ers,Jaylen Brown,Out,Injury,Left Hamstring Strain Injury/Illness - Right Achilles Tendon,2026-11-18,PHI@ORL,2026-11-18 23:45,07:00
+76ers,Tyrese Maxey,Out,Injury,Right Foot Soreness Injury/Illness - Left Hamstring,2026-11-18,PHI@ORL,2026-11-18 23:45,07:00
+Blazers,Branden Carlson,Available,Injury,Face Mask,2026-11-19,POR@MIL,2026-11-18 23:45,08:00
+Blazers,Ja Morant,Out,Injury,Left Hamstring Strain Injury/Illness - Right Meniscus,2026-11-19,POR@MIL,2026-11-18 23:45,08:00
+Blazers,Toumani Camara,Questionable,Injury,Abdominal Soreness,2026-11-19,POR@MIL,2026-11-18 23:45,08:00
+Blazers,Vit Krejci,Out,Injury,Left Ankle Fracture,2026-11-19,POR@MIL,2026-11-18 23:45,08:00
+Bucks,Ousmane Dieng,Out,Injury,Left Finger Fracture,2026-11-18,MIL@MIA,2026-11-18 23:45,07:00
+Bucks,Ryan Rollins,Out,Illness,Illness,2026-11-18,MIL@MIA,2026-11-18 23:45,07:00
+Bulls,Tobe Awaka,Out,Injury,Disc Irritation,2026-11-18,CHI@BKN,2026-11-18 23:45,07:30
+Cavaliers,Evan Mobley,Out,Injury,Left Great Toe Sprain Injury/Illness - Low Back Stress,2026-11-18,MEM@CLE,2026-11-18 23:45,07:00
+Cavaliers,Peyton Watson,Out,Injury,Low Back Contusion,2026-11-18,MEM@CLE,2026-11-18 23:45,07:00
+Clippers,Brandon Ingram,Out,Injury,Right Heel Surgery,2026-11-19,LAC@SAS,2026-11-18 23:45,08:00
+Grizzlies,Isaiah Stewart,Out,Injury,Illness Injury/Illness - Right Elbow Injury,2026-11-18,MEM@CLE,2026-11-18 23:45,07:00
+Grizzlies,Richie Saunders,Out,Injury,Right Knee Surgery,2026-11-18,MEM@CLE,2026-11-18 23:45,07:00
+Hawks,Asa Newell,Out,Injury,Left Great Toe Surgery,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Hawks,CJ McCollum,Out,Injury,Left Calf Strain,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Hawks,Henri Veesaar,Out,Injury,Right ACL Tear Injury/Illness - Right Knee/ Injury,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Hawks,Kingston Flemings,Out,Injury,Lumbar Strain,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Hawks,Mouhamed Gueye,Out,Injury,Left Foot Fracture Injury/Illness - Right Hip,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Heat,Klay Thompson,Available,Injury,Left Ankle Sprain Injury/Illness - Low Back Stress,2026-11-18,MIL@MIA,2026-11-18 23:45,07:00
+Heat,Nikola Jovic,Available,Illness,Illness,2026-11-18,MIL@MIA,2026-11-18 23:45,07:00
+Heat,Pelle Larsson,Available,Illness,Illness,2026-11-18,MIL@MIA,2026-11-18 23:45,07:00
+Jazz,Jaren Jackson Jr.,Out,Injury,Right MCL Tear,2026-11-18,UTA@LAL,2026-11-18 23:45,10:00
+Jazz,Jaxson Hayes,Available,Injury,Left Knee Strain,2026-11-18,UTA@LAL,2026-11-18 23:45,10:00
+Jazz,Lauri Markkanen,Out,Injury,Right Hand Fracture Injury/Illness - Right Foot 2nd,2026-11-18,UTA@LAL,2026-11-18 23:45,10:00
+Lakers,Quentin Grimes,Available,Injury,Right Finger Splint Injury/Illness - Left Heel Contusion /,2026-11-18,UTA@LAL,2026-11-18 23:45,10:00
+Mavericks,Caleb Martin,Available,Injury,Right Thumb Splint,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Dereck Lively II,Out,Injury,Right Foot Surgery,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Max Christie,Available,Injury,Left Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Santi Aldama,Available,Injury,Left Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Sergio de Larrea,Out,Injury,Right Knee Sprain,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Tarik Biberovic,Out,Injury,Right Heel Bursitis,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Tobi Lawal,Out,Injury,Right Groin Tightness,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Mavericks,Walter Clayton Jr.,Available,Injury,Right Ankle Sprain,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Nuggets,Julian Strawther,Out,Injury,Left Knee Sprain,2026-11-18,BOS@DEN,2026-11-18 23:45,09:30
+Pacers,Ben Sheppard,Out,Injury,Left Meniscus Surgery Injury/Illness - Left 5th Metatarsal,2026-11-18,HOU@IND,2026-11-18 23:45,07:00
+Pacers,T.J. McConnell,Available,Injury,Right Hamstring Strain Injury/Illness - Left Hip Soreness /,2026-11-18,HOU@IND,2026-11-18 23:45,07:00
+Pacers,Tyrese Haliburton,Out,Injury,Left Hamstring Strain,2026-11-18,HOU@IND,2026-11-18 23:45,07:00
+Pelicans,Bennedict Mathurin,Out,Injury,Left Plantar Fasciitis,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pelicans,Bryce McGowens,Out,Injury,Left Elbow Infection Injury/Illness - Bilateral Patellar,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pelicans,Dejounte Murray,Out,Injury,Left Ankle Sprain,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pelicans,Trendon Watford,Out,Injury,Right Ankle Sprain Injury/Illness - Right ACL Repair /,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pistons,Cade Cunningham,Out,Injury,Right Knee Soreness,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pistons,Duncan Robinson,Out,Injury,Left Quadriceps Strain,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pistons,Isaiah Joe,Available,Injury,Right Hip Contusion,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pistons,Jalen Duren,Out,Injury,Right Hamstring Strain Injury/Illness - Left Knee Contusion /,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Pistons,Taurean Prince,Out,Injury,Right Knee Soreness,2026-11-18,DET@NOP,2026-11-18 23:45,08:00
+Rockets,Amen Thompson,Available,Injury,Left Knee Soreness Injury/Illness - Right ACL Repair /,2026-11-18,HOU@IND,2026-11-18 23:45,07:00
+Rockets,Clint Capela,Out,Injury,Right Ankle Sprain,2026-11-18,HOU@IND,2026-11-18 23:45,07:00
+Spurs,Dylan Harper,Out,Injury,Left Hip Soreness,2026-11-19,LAC@SAS,2026-11-18 23:45,08:00
+Spurs,Jayden Quaintance,Out,Injury,Right Knee Surgery,2026-11-19,LAC@SAS,2026-11-18 23:45,08:00
+Spurs,Tobias Harris,Out,Injury,Left Calf Strain,2026-11-19,LAC@SAS,2026-11-18 23:45,08:00
+Suns,Mark Williams,Out,Injury,Left Shoulder Surgery Injury/Illness - Left Lower Leg,2026-11-18,PHX@SAC,2026-11-18 23:45,10:00
+Thunder,Cason Wallace,Out,Injury,Left Shoulder Surgery,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Thunder,Jalen Williams,Out,Injury,Left Ankle Surgery,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Thunder,Jaylin Williams,Available,Injury,Low Back Spasms,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Thunder,Thomas Sorber,Out,Injury,Right Knee Surgery,2026-11-18,ATL@OKC,2026-11-18 23:45,08:00
+Timberwolves,Jaylen Clark,Out,Injury,Right Hamstring Strain Injury/Illness - Right Achilles Tendon,2026-11-19,NYK@MIN,2026-11-18 23:45,08:00
+Timberwolves,Joan Beringer,Available,Injury,Face Mask,2026-11-19,NYK@MIN,2026-11-18 23:45,08:00
+Warriors,Brandon Williams,Out,Injury,Left Hamstring Strain,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Warriors,Moses Moody,Out,Injury,Left Patellar Tendon Repair / Surgery,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Warriors,Stephen Curry,Out,Injury,Right Oblique Tear Injury/Illness - Right Elbow,2026-11-18,GSW@DAL,2026-11-18 23:45,08:00
+Wizards,Justin Champagnie,Out,Injury,Right Foot Surgery,2026-11-18,WAS@TOR,2026-11-18 23:45,07:30
+Wizards,Reece Beekman,Out,Injury,Right AC Joint Injury,2026-11-18,WAS@TOR,2026-11-18 23:45,07:30
+Wizards,Tristan Vukcevic,Out,Injury,Left Hip Impingement Injury/Illness - Left ACL Repair /,2026-11-18,WAS@TOR,2026-11-18 23:45,07:30

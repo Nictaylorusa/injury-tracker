@@ -1,0 +1,13 @@
+{
+ "status": "ok",
+ "detail": "Read 2026-11-18_11_45PM: 154 player rows, 66 kept for Right now.",
+ "report_file": "2026-11-18_11_45PM",
+ "report_time_utc": "2026-11-19T04:45Z",
+ "report_time_et": "2026-11-18 23:45",
+ "rows": 66,
+ "teams_not_submitted": [
+  "Warriors",
+  "Grizzlies",
+  "Bucks"
+ ]
+}
