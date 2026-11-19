@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_06_30AM: 23 player rows, 19 kept for Right now.",
- "report_file": "2026-11-19_06_30AM",
- "report_time_utc": "2026-11-19T11:30Z",
- "report_time_et": "2026-11-19 06:30",
+ "detail": "Read 2026-11-19_07_30AM: 23 player rows, 19 kept for Right now.",
+ "report_file": "2026-11-19_07_30AM",
+ "report_time_utc": "2026-11-19T12:30Z",
+ "report_time_et": "2026-11-19 07:30",
  "rows": 19,
  "teams_not_submitted": [
   "Warriors",
@@ -28,5 +28,72 @@
   "Kings",
   "Lakers"
  ],
- "parser": 2
+ "parser": 2,
+ "games": [
+  {
+   "date": "2026-11-19",
+   "time": "08:00",
+   "matchup": "GSW@MEM"
+  },
+  {
+   "date": "2026-11-19",
+   "time": "08:00",
+   "matchup": "LAC@SAS"
+  },
+  {
+   "date": "2026-11-19",
+   "time": "08:00",
+   "matchup": "NYK@MIN"
+  },
+  {
+   "date": "2026-11-19",
+   "time": "08:00",
+   "matchup": "POR@MIL"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "07:00",
+   "matchup": "CHA@ATL"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "07:30",
+   "matchup": "IND@CLE"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "07:30",
+   "matchup": "ORL@BKN"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "07:30",
+   "matchup": "TOR@DET"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "08:00",
+   "matchup": "NOP@OKC"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "08:00",
+   "matchup": "WAS@CHI"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "09:30",
+   "matchup": "PHX@UTA"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "10:00",
+   "matchup": "HOU@DEN"
+  },
+  {
+   "date": "2026-11-20",
+   "time": "10:00",
+   "matchup": "SAC@LAL"
+  }
+ ]
 }
