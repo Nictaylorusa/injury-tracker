@@ -1,15 +1,13 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_05_30PM: 103 player rows, 77 kept for Right now.",
- "report_file": "2026-11-19_05_30PM",
- "report_time_utc": "2026-11-19T22:30Z",
- "report_time_et": "2026-11-19 17:30",
- "rows": 77,
+ "detail": "Read 2026-11-19_06_15PM: 115 player rows, 86 kept for Right now.",
+ "report_file": "2026-11-19_06_15PM",
+ "report_time_utc": "2026-11-19T23:15Z",
+ "report_time_et": "2026-11-19 18:15",
+ "rows": 86,
  "teams_not_submitted": [
-  "Thunder",
   "Suns",
   "Jazz",
-  "Rockets",
   "Nuggets",
   "Kings",
   "Lakers"
