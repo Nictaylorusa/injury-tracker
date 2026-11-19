@@ -27,6 +27,9 @@ NICK = {"Hawks": "Hawks", "Celtics": "Celtics", "Nets": "Nets", "Hornets": "Horn
 NICK_KEYS = sorted(NICK, key=len, reverse=True)       # longest first so "Hornets" wins over "Nets"
 
 
+PARSER = 2                                               # bump when the reading logic changes, so the same report is re-read
+
+
 def get(url, tries=2, timeout=30):
     """Returns (status, bytes). status is an int HTTP code, or 0 for a network failure."""
     last = (0, b"")
@@ -98,6 +101,74 @@ def dump_layout(body, path="data/last_report_words.tsv"):
             for w in sorted(page.extract_words(x_tolerance=2, y_tolerance=3), key=lambda w: (round(w["top"], 1), w["x0"]))[:700]:
                 out.append(f"{w['top']:.1f}\t{w['x0']:.1f}\t{w['x1']:.1f}\t{w['text']}")
     open(path, "w").write("\n".join(out))
+
+
+def read_pages(body):
+    """Pulls words and table border lines for each page, in a plain form the table reader uses."""
+    import pdfplumber
+    pages = []
+    with pdfplumber.open(io.BytesIO(body)) as pdf:
+        for page in pdf.pages:
+            words = [dict(cy=(w["top"] + w["bottom"]) / 2, x0=w["x0"], text=w["text"], top=w["top"])
+                     for w in page.extract_words(x_tolerance=2, y_tolerance=3)]
+            hl = [dict(y=l["top"], x0=l["x0"], x1=l["x1"]) for l in page.lines if abs(l["bottom"] - l["top"]) < 1.5]
+            pages.append(dict(words=words, hlines=hl))
+    return pages
+
+
+DEFAULT_COLS = dict(date=19, time=116, match=196, team=260, player=421, status=582, reason=662)
+
+
+def parse_table(pages):
+    """Reads the report as a bordered table: each row sits between two horizontal lines in the Player column,
+    so a reason that wraps onto two lines stays with its own player. Returns (rows, teams_not_submitted) or None
+    if the page has no such table structure."""
+    cols = dict(DEFAULT_COLS)
+    rows, not_sub = [], []
+    date = time_ = match = team = None
+    found_any = False
+    for pg in pages:
+        words = pg["words"]
+        hdr = {w["text"]: w for w in words if w["text"] in ("Matchup", "Team", "Player", "Current", "Reason") and w["top"] < 125}
+        if len(hdr) == 5:                                   # header row present: take column positions from it
+            for k, h in (("match", "Matchup"), ("team", "Team"), ("player", "Player"), ("status", "Current"), ("reason", "Reason")):
+                cols[k] = hdr[h]["x0"] - 4
+            tops = [w["top"] for w in words if w["text"] == "Game" and w["top"] < 125]
+            top_edge = (min(tops) if tops else hdr["Player"]["top"]) + 14
+        else:
+            top_edge = 60
+        ys = sorted({round(l["y"], 1) for l in pg["hlines"] if abs(l["x0"] - cols["player"]) < 4 and l["x1"] - l["x0"] > 50})
+        edges = [top_edge] + [y for y in ys if y > top_edge + 3]
+        if len(edges) < 2:
+            continue
+        found_any = True
+        for a, b in zip(edges, edges[1:]):
+            band = [w for w in words if a <= w["cy"] < b]
+            if not band:
+                continue
+            col = lambda lo, hi: sorted((w for w in band if lo - 3 <= w["x0"] < hi - 3), key=lambda w: (round(w["cy"]), w["x0"]))
+            txt = lambda ws: " ".join(w["text"] for w in ws)
+            d, t, m, tm = col(cols["date"], cols["time"]), col(cols["time"], cols["match"]), col(cols["match"], cols["team"]), col(cols["team"], cols["player"])
+            pl, st, rs = col(cols["player"], cols["status"]), col(cols["status"], cols["reason"]), col(cols["reason"], 9999)
+            if d and DATE.match(d[0]["text"]):
+                date = datetime.strptime(d[0]["text"], "%m/%d/%Y").strftime("%Y-%m-%d")
+            if t and TIME.match(t[0]["text"]):
+                time_ = t[0]["text"]
+            if m and MATCH.match(m[0]["text"]):
+                match = m[0]["text"]
+            if tm:
+                nm, used = team_of(txt(tm).split())
+                if nm:
+                    team = nm
+            reason = txt(rs).strip()
+            if not pl:
+                if "NOT YET SUBMITTED" in reason.upper() and team and team not in not_sub:
+                    not_sub.append(team)
+                continue
+            status = txt(st).strip()
+            if status in STATUSES and "," in txt(pl):
+                rows.append(dict(Team=team, Player=flip(txt(pl)), Status=status, reason=reason, Game_Date=date, Matchup=match, Game_Time=time_))
+    return (rows, not_sub) if found_any else None
 
 
 def team_of(tokens):
@@ -204,15 +275,20 @@ def main():
     s, body, problem = find_latest(now_et)
     if not s:
         save_status("unreachable", problem); return
-    if prev.get("status") == "ok" and prev.get("report_file") == s:
+    if prev.get("status") == "ok" and prev.get("report_file") == s and prev.get("parser") == PARSER:
         print("Already up to date:", s); return
     try:
         lines = pdf_lines(body)
+        res = None
         try:
-            dump_layout(body)
+            res = parse_table(read_pages(body))
         except Exception as e:
-            print("layout dump failed:", e)
-        rows, not_sub = parse(lines)
+            print("table reader failed:", e)
+        if not res or len([r for r in res[0] if r["Team"]]) < 5:
+            res = parse(lines)                             # older, layout-free reader as a fallback
+        rows, not_sub = res
+        if os.environ.get("DUMP_LAYOUT"):
+            dump_layout(body)
     except Exception as e:
         rows, not_sub, lines = [], [], []
         problem = f"Could not open the report file ({type(e).__name__}: {e})."
@@ -249,7 +325,7 @@ def main():
     with open(cur_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=CUR_COLS); w.writeheader(); w.writerows(allrows)
     save_status("ok", f"Read {s}: {len(good)} player rows, {len(new)} kept for Right now.",
-                dict(report_file=s, report_time_utc=rtime.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
+                dict(parser=PARSER, report_file=s, report_time_utc=rtime.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
                      report_time_et=report_et, rows=len(allrows), teams_not_submitted=not_sub))
 
 
