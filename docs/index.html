@@ -160,7 +160,7 @@ const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
-let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [];
+let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {};
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
@@ -251,20 +251,22 @@ function drawYesterday() {
 }
 function drawSpurs() {
   const today = etToday();
-  const games = (NOW.games || []).filter((g) => g.matchup.split('@').includes('SAS') && g.date >= today).sort((a, b) => a.date.localeCompare(b.date));
-  let g = games[0];
-  if (!g) { const r = CUR.find((x) => x.Team === 'Spurs' && x.Matchup); if (r) g = { date: r.Game_Date, time: r.Game_Time, matchup: r.Matchup }; }
   const nowBody = $('spurs_now'), hist = $('spurs_hist'); nowBody.replaceChildren(); hist.replaceChildren();
+  let g = (SCHED.games || []).find((x) => x.date >= today);
+  // the report can know about a game the schedule doesn't (e.g. an NBA Cup knockout game); use it if it comes first
+  const rg = (NOW.games || []).filter((x) => x.matchup.split('@').includes('SAS') && x.date >= today).sort((a, b) => a.date.localeCompare(b.date))[0];
+  if (rg && (!g || rg.date < g.date)) { const [aw, hm] = rg.matchup.split('@'); g = { date: rg.date, opp: aw === 'SAS' ? hm : aw, home: hm === 'SAS', time: rg.time }; }
+  else if (g && rg && rg.date === g.date) g = { ...g, time: rg.time };
   if (!g) {
     $('spurs_sum').textContent = 'Spurs: next opponent';
-    $('spurs_note').textContent = "The Spurs' next game isn't in the NBA's latest report yet. This fills in once it is posted.";
+    $('spurs_note').textContent = 'No upcoming game found in the schedule.';
     emptyRow(nowBody, 3, '—'); emptyRow(hist, 4, '—'); return;
   }
-  const [away, home] = g.matchup.split('@'), oppAb = away === 'SAS' ? home : away, opp = ABBR[oppAb] || oppAb;
-  const when = `${showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
-  $('spurs_sum').textContent = `Spurs: next opponent is the ${opp} (${home === 'SAS' ? 'at home' : 'on the road'}), ${when}`;
+  const oppAb = g.opp, opp = ABBR[oppAb] || oppAb;
+  const when = `${g.date === today ? 'today' : showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
+  $('spurs_sum').textContent = `Spurs: next opponent is the ${opp} (${g.home ? 'at home' : 'on the road'}), ${when}`;
   const miss = (NOW.teams_not_submitted || []).includes(opp);
-  $('spurs_note').textContent = `${g.matchup}, ${when}.` + (miss ? ` The ${opp} haven't filed their report for this game yet.` : '');
+  $('spurs_note').textContent = `${g.home ? 'vs' : 'at'} ${opp}, ${when}. From the season schedule.` + (miss ? ` The ${opp} haven't filed their report for this game yet.` : '');
   const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
   if (!cur.length) emptyRow(nowBody, 3, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
   cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury]));
@@ -373,8 +375,8 @@ document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', ()
   state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
 }));
 
-Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => [])]).then(([s, c, m, nw, pv]) => {
-  STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || [];
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc]) => {
+  STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || []; SCHED = sc || {};
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
   fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });

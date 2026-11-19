@@ -1,0 +1,407 @@
+{
+"team": "SAS",
+"season": "2026-27",
+"source": "landofbasketball.com and sportsbrackets.net (80 of 82 games; two NBA Cup knockout games are not scheduled yet)",
+"games": [
+{
+"date": "2026-10-20",
+"opp": "OKC",
+"home": true
+},
+{
+"date": "2026-10-23",
+"opp": "HOU",
+"home": true
+},
+{
+"date": "2026-10-24",
+"opp": "DAL",
+"home": false
+},
+{
+"date": "2026-10-27",
+"opp": "SAC",
+"home": true
+},
+{
+"date": "2026-10-28",
+"opp": "UTA",
+"home": false
+},
+{
+"date": "2026-10-31",
+"opp": "MIN",
+"home": true
+},
+{
+"date": "2026-11-02",
+"opp": "UTA",
+"home": true
+},
+{
+"date": "2026-11-04",
+"opp": "DAL",
+"home": true
+},
+{
+"date": "2026-11-06",
+"opp": "SAC",
+"home": false
+},
+{
+"date": "2026-11-07",
+"opp": "POR",
+"home": false
+},
+{
+"date": "2026-11-09",
+"opp": "PHX",
+"home": false
+},
+{
+"date": "2026-11-11",
+"opp": "CHI",
+"home": false
+},
+{
+"date": "2026-11-13",
+"opp": "GSW",
+"home": true
+},
+{
+"date": "2026-11-15",
+"opp": "UTA",
+"home": false
+},
+{
+"date": "2026-11-17",
+"opp": "DET",
+"home": true
+},
+{
+"date": "2026-11-19",
+"opp": "LAC",
+"home": true
+},
+{
+"date": "2026-11-21",
+"opp": "NOP",
+"home": true
+},
+{
+"date": "2026-11-23",
+"opp": "SAC",
+"home": false
+},
+{
+"date": "2026-11-25",
+"opp": "POR",
+"home": false
+},
+{
+"date": "2026-11-27",
+"opp": "LAL",
+"home": true
+},
+{
+"date": "2026-11-29",
+"opp": "BOS",
+"home": true
+},
+{
+"date": "2026-11-30",
+"opp": "MIL",
+"home": false
+},
+{
+"date": "2026-12-03",
+"opp": "TOR",
+"home": true
+},
+{
+"date": "2026-12-13",
+"opp": "LAC",
+"home": true
+},
+{
+"date": "2026-12-15",
+"opp": "CLE",
+"home": false
+},
+{
+"date": "2026-12-16",
+"opp": "TOR",
+"home": false
+},
+{
+"date": "2026-12-18",
+"opp": "CHI",
+"home": true
+},
+{
+"date": "2026-12-20",
+"opp": "NOP",
+"home": false
+},
+{
+"date": "2026-12-21",
+"opp": "MIL",
+"home": true
+},
+{
+"date": "2026-12-23",
+"opp": "BKN",
+"home": false
+},
+{
+"date": "2026-12-25",
+"opp": "NYK",
+"home": false
+},
+{
+"date": "2026-12-27",
+"opp": "ATL",
+"home": true
+},
+{
+"date": "2026-12-29",
+"opp": "MEM",
+"home": false
+},
+{
+"date": "2026-12-31",
+"opp": "CHA",
+"home": false
+},
+{
+"date": "2027-01-01",
+"opp": "WAS",
+"home": false
+},
+{
+"date": "2027-01-03",
+"opp": "MIN",
+"home": false
+},
+{
+"date": "2027-01-06",
+"opp": "IND",
+"home": true
+},
+{
+"date": "2027-01-08",
+"opp": "MEM",
+"home": true
+},
+{
+"date": "2027-01-10",
+"opp": "ATL",
+"home": false
+},
+{
+"date": "2027-01-14",
+"opp": "NOP",
+"home": true
+},
+{
+"date": "2027-01-17",
+"opp": "NOP",
+"home": false
+},
+{
+"date": "2027-01-20",
+"opp": "MIA",
+"home": true
+},
+{
+"date": "2027-01-22",
+"opp": "MIN",
+"home": true
+},
+{
+"date": "2027-01-24",
+"opp": "POR",
+"home": true
+},
+{
+"date": "2027-01-26",
+"opp": "HOU",
+"home": true
+},
+{
+"date": "2027-01-27",
+"opp": "CHA",
+"home": true
+},
+{
+"date": "2027-01-30",
+"opp": "GSW",
+"home": false
+},
+{
+"date": "2027-02-01",
+"opp": "GSW",
+"home": false
+},
+{
+"date": "2027-02-02",
+"opp": "LAC",
+"home": false
+},
+{
+"date": "2027-02-04",
+"opp": "ORL",
+"home": true
+},
+{
+"date": "2027-02-06",
+"opp": "LAL",
+"home": true
+},
+{
+"date": "2027-02-09",
+"opp": "DAL",
+"home": false
+},
+{
+"date": "2027-02-11",
+"opp": "OKC",
+"home": false
+},
+{
+"date": "2027-02-13",
+"opp": "ORL",
+"home": false
+},
+{
+"date": "2027-02-15",
+"opp": "MIA",
+"home": false
+},
+{
+"date": "2027-02-17",
+"opp": "MEM",
+"home": false
+},
+{
+"date": "2027-02-18",
+"opp": "MIN",
+"home": false
+},
+{
+"date": "2027-02-26",
+"opp": "MEM",
+"home": true
+},
+{
+"date": "2027-02-28",
+"opp": "DEN",
+"home": true
+},
+{
+"date": "2027-03-03",
+"opp": "DEN",
+"home": false
+},
+{
+"date": "2027-03-05",
+"opp": "HOU",
+"home": false
+},
+{
+"date": "2027-03-07",
+"opp": "NYK",
+"home": true
+},
+{
+"date": "2027-03-09",
+"opp": "WAS",
+"home": true
+},
+{
+"date": "2027-03-11",
+"opp": "PHI",
+"home": true
+},
+{
+"date": "2027-03-14",
+"opp": "OKC",
+"home": false
+},
+{
+"date": "2027-03-16",
+"opp": "HOU",
+"home": false
+},
+{
+"date": "2027-03-18",
+"opp": "BKN",
+"home": true
+},
+{
+"date": "2027-03-19",
+"opp": "DAL",
+"home": true
+},
+{
+"date": "2027-03-21",
+"opp": "PHI",
+"home": false
+},
+{
+"date": "2027-03-24",
+"opp": "BOS",
+"home": false
+},
+{
+"date": "2027-03-25",
+"opp": "IND",
+"home": false
+},
+{
+"date": "2027-03-27",
+"opp": "DET",
+"home": false
+},
+{
+"date": "2027-03-29",
+"opp": "PHX",
+"home": true
+},
+{
+"date": "2027-03-31",
+"opp": "PHX",
+"home": true
+},
+{
+"date": "2027-04-02",
+"opp": "LAC",
+"home": false
+},
+{
+"date": "2027-04-04",
+"opp": "LAL",
+"home": false
+},
+{
+"date": "2027-04-06",
+"opp": "SAC",
+"home": true
+},
+{
+"date": "2027-04-07",
+"opp": "CLE",
+"home": true
+},
+{
+"date": "2027-04-09",
+"opp": "DEN",
+"home": true
+},
+{
+"date": "2027-04-11",
+"opp": "POR",
+"home": true
+}
+]
+}
