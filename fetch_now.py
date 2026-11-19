@@ -126,6 +126,7 @@ def parse_table(pages):
     cols = dict(DEFAULT_COLS)
     rows, not_sub = [], []
     date = time_ = match = team = None
+    games = {}
     found_any = False
     for pg in pages:
         words = pg["words"]
@@ -156,6 +157,8 @@ def parse_table(pages):
                 time_ = t[0]["text"]
             if m and MATCH.match(m[0]["text"]):
                 match = m[0]["text"]
+            if date and match:
+                games[(date, time_ or "", match)] = 1
             if tm:
                 nm, used = team_of(txt(tm).split())
                 if nm:
@@ -168,7 +171,7 @@ def parse_table(pages):
             status = txt(st).strip()
             if status in STATUSES and "," in txt(pl):
                 rows.append(dict(Team=team, Player=flip(txt(pl)), Status=status, reason=reason, Game_Date=date, Matchup=match, Game_Time=time_))
-    return (rows, not_sub) if found_any else None
+    return (rows, not_sub, sorted(games)) if found_any else None
 
 
 def team_of(tokens):
@@ -215,7 +218,7 @@ MATCH = re.compile(r"^[A-Z]{2,3}@[A-Z]{2,3}$")
 
 def parse(lines):
     """Returns (rows, teams_not_submitted). Each row is a dict with raw reason; carries date/time/matchup/team down the page."""
-    rows, not_sub = [], []
+    rows, not_sub, games = [], [], {}
     date = time_ = match = team = None
     for toks in lines:
         text = " ".join(toks)
@@ -230,6 +233,8 @@ def parse(lines):
                 i += 1
         if i < len(toks) and MATCH.match(toks[i]):
             match = toks[i]; i += 1
+        if date and match:
+            games[(date, time_ or "", match)] = 1
         t, used = team_of(toks[i:])
         if t:
             team = t; i += used
@@ -246,7 +251,7 @@ def parse(lines):
                              Game_Date=date, Matchup=match, Game_Time=time_))
         elif rows and not t and not DATE.match(toks[0]) and not any("," in x for x in rest):
             rows[-1]["reason"] = (rows[-1]["reason"] + " " + " ".join(rest)).strip()   # a reason that wrapped onto a second line
-    return rows, not_sub
+    return rows, not_sub, sorted(games)
 
 
 def read_prev(path):
@@ -286,11 +291,11 @@ def main():
             print("table reader failed:", e)
         if not res or len([r for r in res[0] if r["Team"]]) < 5:
             res = parse(lines)                             # older, layout-free reader as a fallback
-        rows, not_sub = res
+        rows, not_sub, games = res
         if os.environ.get("DUMP_LAYOUT"):
             dump_layout(body)
     except Exception as e:
-        rows, not_sub, lines = [], [], []
+        rows, not_sub, games, lines = [], [], [], []
         problem = f"Could not open the report file ({type(e).__name__}: {e})."
     good = [r for r in rows if r["Team"] and r["Game_Date"]]
     if len(good) < 5:                                     # a real report always has dozens of rows
@@ -322,10 +327,25 @@ def main():
     for r in keep:
         r.setdefault("Game_Time", "")
     allrows = sorted(new + keep, key=lambda r: (r["Team"], r["Player"]))
+    # remember yesterday's listings (current.csv forgets them at midnight) for the "listed yesterday" menu
+    yday = str((now_et - timedelta(days=1)).date())
+    mine = {}
+    for r in read_prev(cur_path) + read_prev("docs/previous.csv") + allrows:
+        if r.get("Game_Date") == yday:
+            mine[(r["Team"], r["Player"])] = r
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=CUR_COLS, extrasaction="ignore", restval="")
+    w.writeheader(); w.writerows(sorted(mine.values(), key=lambda r: (r["Team"], r["Player"])))
+    try:
+        same = open("docs/previous.csv").read() == buf.getvalue().replace("\r\n", "\n")
+    except Exception:
+        same = False
+    if not same:
+        open("docs/previous.csv", "w", newline="").write(buf.getvalue())
     with open(cur_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=CUR_COLS); w.writeheader(); w.writerows(allrows)
     save_status("ok", f"Read {s}: {len(good)} player rows, {len(new)} kept for Right now.",
-                dict(parser=PARSER, report_file=s, report_time_utc=rtime.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
+                dict(parser=PARSER, games=[dict(date=d, time=t, matchup=m) for d, t, m in games], report_file=s, report_time_utc=rtime.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
                      report_time_et=report_et, rows=len(allrows), teams_not_submitted=not_sub))
 
 

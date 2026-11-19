@@ -16,6 +16,11 @@ h2{font-size:16px;font-weight:600;margin:22px 0 8px}
 .sub{color:var(--muted);margin:0 0 12px;font-size:13px}
 .lede{margin:0 0 14px;color:var(--muted);max-width:70ch}
 .age{margin:0 0 10px;font-size:13.5px;font-weight:600;color:var(--fg)}.age.warn{border-left:3px solid var(--warn);padding-left:8px}.age small{font-weight:400;color:var(--muted)}
+.dd{border:1px solid var(--line);border-radius:10px;margin:0 0 10px;background:var(--panel)}
+.dd>summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style-position:inside}
+.dd>div{padding:0 14px 12px}
+.dd h3{font-size:13px;font-weight:600;margin:12px 0 6px;color:var(--muted)}
+.dd p{margin:8px 0;color:var(--muted);font-size:13px}
 .note{margin:6px 0 0;color:var(--muted);font-size:12.5px;max-width:78ch;line-height:1.4}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:12px 0 14px}
 .tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;font:inherit;color:var(--muted);cursor:pointer;margin-bottom:-1px}
@@ -66,6 +71,17 @@ section[hidden]{display:none}
 <section id="now">
 <p class="age" id="now_age" aria-live="polite"></p>
 <div class="cards" id="now_cards"></div>
+<details class="dd" id="dd_yday"><summary id="yday_sum">Listed yesterday</summary><div>
+<p id="yday_note"></p>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th></tr></thead><tbody id="yday_rows"></tbody></table></div>
+</div></details>
+<details class="dd" id="dd_spurs"><summary id="spurs_sum">Spurs: next opponent</summary><div>
+<p id="spurs_note"></p>
+<h3>Listed in the latest NBA report</h3>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
+<h3>Recent history (last 14 days)</h3>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
+</div></details>
 <div class="bar">
 <label>Team <select id="cteam"></select></label>
 <label>Status <select id="cstatus"></select></label>
@@ -144,7 +160,7 @@ const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
-let STAYS = [], CUR = [], META = {}, NOW = {};
+let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [];
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
@@ -221,6 +237,44 @@ function ageLabel() {
     : (mins > 180 ? ' · Older than usual; the NBA may not have posted a newer report.' : ' · Updates about every 15 minutes.');
   el.append(sm);
 }
+const ABBR = { ATL: 'Hawks', BOS: 'Celtics', BKN: 'Nets', CHA: 'Hornets', CHI: 'Bulls', CLE: 'Cavaliers', DAL: 'Mavericks', DEN: 'Nuggets', DET: 'Pistons', GSW: 'Warriors', HOU: 'Rockets', IND: 'Pacers', LAC: 'Clippers', LAL: 'Lakers', MEM: 'Grizzlies', MIA: 'Heat', MIL: 'Bucks', MIN: 'Timberwolves', NOP: 'Pelicans', NYK: 'Knicks', OKC: 'Thunder', ORL: 'Magic', PHI: '76ers', PHX: 'Suns', POR: 'Blazers', SAC: 'Kings', SAS: 'Spurs', TOR: 'Raptors', UTA: 'Jazz', WAS: 'Wizards' };
+const etToday = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+function drawYesterday() {
+  const tb = $('yday_rows'); tb.replaceChildren();
+  const d = PREV.length ? PREV[0].Game_Date : null;
+  const out = PREV.filter((r) => r.Status === 'Out').length, un = PREV.filter((r) => UNSURE.includes(r.Status)).length;
+  $('yday_sum').textContent = d ? `Listed yesterday (${showD(d)}): ${out} out, ${un} doubtful or questionable` : 'Listed yesterday';
+  $('yday_note').textContent = d ? "Everyone on the NBA's last report for yesterday's games, each team's game that day." : "Yesterday's list isn't saved yet. It fills in from the first overnight update.";
+  PREV.slice().sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Team.localeCompare(b.Team) || a.Player.localeCompare(b.Player))
+    .forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, r.Matchup]));
+  if (!PREV.length) emptyRow(tb, 5, 'Nothing saved yet.');
+}
+function drawSpurs() {
+  const today = etToday();
+  const games = (NOW.games || []).filter((g) => g.matchup.split('@').includes('SAS') && g.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+  let g = games[0];
+  if (!g) { const r = CUR.find((x) => x.Team === 'Spurs' && x.Matchup); if (r) g = { date: r.Game_Date, time: r.Game_Time, matchup: r.Matchup }; }
+  const nowBody = $('spurs_now'), hist = $('spurs_hist'); nowBody.replaceChildren(); hist.replaceChildren();
+  if (!g) {
+    $('spurs_sum').textContent = 'Spurs: next opponent';
+    $('spurs_note').textContent = "The Spurs' next game isn't in the NBA's latest report yet. This fills in once it is posted.";
+    emptyRow(nowBody, 3, '—'); emptyRow(hist, 4, '—'); return;
+  }
+  const [away, home] = g.matchup.split('@'), oppAb = away === 'SAS' ? home : away, opp = ABBR[oppAb] || oppAb;
+  const when = `${showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
+  $('spurs_sum').textContent = `Spurs: next opponent is the ${opp} (${home === 'SAS' ? 'at home' : 'on the road'}), ${when}`;
+  const miss = (NOW.teams_not_submitted || []).includes(opp);
+  $('spurs_note').textContent = `${g.matchup}, ${when}.` + (miss ? ` The ${opp} haven't filed their report for this game yet.` : '');
+  const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
+  if (!cur.length) emptyRow(nowBody, 3, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
+  cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury]));
+  const cut = new Date(Date.now() - 14 * 864e5).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  const listed = new Set(cur.map((r) => r.Player));
+  const rec = STAYS.filter((r) => r.Team === opp && r.Season === META.season && !listed.has(r.Player) && (r.Status === 'Ongoing' || r.End_Date >= cut))
+    .sort((a, b) => b.End_Date.localeCompare(a.End_Date));
+  if (!rec.length) emptyRow(hist, 4, 'No other stays in the last 14 days.');
+  rec.forEach((r) => addRow(hist, [r.Player, r.Injury, `${showD(r.Start_Date)} to ${stayEnd(r)}`, String(num(r.Games_Out))]));
+}
 const R = {
   now() {
     const out = CUR.filter((r) => r.Status === 'Out').length, un = CUR.filter((r) => UNSURE.includes(r.Status)).length;
@@ -237,6 +291,7 @@ const R = {
     const miss = (NOW.teams_not_submitted || META.teams_not_filed || []);
     $('now_note').textContent = "From the NBA's official injury reports, using each team's next game." +
       (miss.length ? ` Not filed yet: ${miss.join(', ')}.` : '') + ' Players on G League assignment, or out for personal reasons, are left out.';
+    drawYesterday(); drawSpurs();
     ageLabel();
   },
   search() {
@@ -318,8 +373,8 @@ document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', ()
   state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
 }));
 
-Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({}))]).then(([s, c, m, nw]) => {
-  STAYS = s; CUR = c; META = m || {}; NOW = nw || {};
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => [])]).then(([s, c, m, nw, pv]) => {
+  STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || [];
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
   fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });
@@ -336,9 +391,9 @@ Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d
   setInterval(() => {                                  // pick up newer numbers without the visitor reloading
     if (document.hidden) return;
     const q = '?t=' + Date.now();
-    Promise.all([d3.csv('current.csv' + q), d3.json('now.json' + q).catch(() => null)]).then(([c2, n2]) => {
+    Promise.all([d3.csv('current.csv' + q), d3.json('now.json' + q).catch(() => null), d3.csv('previous.csv' + q).catch(() => null)]).then(([c2, n2, p2]) => {
       if (!c2 || !n2 || n2.report_file === NOW.report_file) return;
-      CUR = c2; NOW = n2; redraw();
+      CUR = c2; NOW = n2; if (p2) PREV = p2; redraw();
     }).catch(() => {});
   }, 300000);
 }).catch((e) => { $('headline').textContent = 'The data files could not be loaded. If you opened this page straight from your computer, it needs to be on a web host.'; console.error(e); });
