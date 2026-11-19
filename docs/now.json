@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_02_30PM: 39 player rows, 34 kept for Right now.",
- "report_file": "2026-11-19_02_30PM",
- "report_time_utc": "2026-11-19T19:30Z",
- "report_time_et": "2026-11-19 14:30",
+ "detail": "Read 2026-11-19_03_30PM: 39 player rows, 34 kept for Right now.",
+ "report_file": "2026-11-19_03_30PM",
+ "report_time_utc": "2026-11-19T20:30Z",
+ "report_time_et": "2026-11-19 15:30",
  "rows": 34,
  "teams_not_submitted": [
   "Hornets",
