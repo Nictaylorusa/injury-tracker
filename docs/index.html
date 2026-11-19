@@ -16,6 +16,22 @@ h2{font-size:16px;font-weight:600;margin:22px 0 8px}
 .sub{color:var(--muted);margin:0 0 12px;font-size:13px}
 .lede{margin:0 0 14px;color:var(--muted);max-width:70ch}
 .age{margin:0 0 10px;font-size:13.5px;font-weight:600;color:var(--fg)}.age.warn{border-left:3px solid var(--warn);padding-left:8px}.age small{font-weight:400;color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+@media (max-width:760px){.board{grid-template-columns:minmax(0,1fr)}}
+.board h2{margin:6px 0 8px}
+.teams{display:grid;gap:8px}
+.tm{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.tm.quiet{background:transparent}
+.tmh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.tmh b{font-weight:600;font-size:14.5px}
+.tmh .gm{color:var(--muted);font-size:12px}
+.tmh .cnt{margin-left:auto;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.pls{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
+.pls li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:13.5px;line-height:1.3}
+.pls .nm{min-width:0;overflow-wrap:anywhere}
+.pls .st{font-size:12px;color:var(--muted);white-space:nowrap}
+.pls .inj{grid-column:1/-1;color:var(--muted);font-size:12.5px;padding-left:14px}
+.tm .none{margin:5px 0 0;color:var(--muted);font-size:12.5px}
 .note{margin:6px 0 0;color:var(--muted);font-size:12.5px;max-width:78ch;line-height:1.4}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:12px 0 14px}
 .tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;font:inherit;color:var(--muted);cursor:pointer;margin-bottom:-1px}
@@ -67,12 +83,12 @@ section[hidden]{display:none}
 <p class="age" id="now_age" aria-live="polite"></p>
 <div class="cards" id="now_cards"></div>
 <div class="bar">
-<label>Team <select id="cteam"></select></label>
-<label>Status <select id="cstatus"></select></label>
+<label>Show players <select id="cstatus"></select></label>
 </div>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th></tr></thead><tbody id="now_rows"></tbody></table></div>
-<h2>Players listed by team</h2>
-<div class="chart" id="now_chart"></div>
+<div class="board">
+<div class="conf"><h2>Eastern Conference</h2><div class="teams" id="board_east"></div></div>
+<div class="conf"><h2>Western Conference</h2><div class="teams" id="board_west"></div></div>
+</div>
 <p class="note" id="now_note"></p>
 </section>
 
@@ -141,6 +157,8 @@ const fmtN = d3.format(',');
 const parseD = d3.utcParse('%Y-%m-%d'), fmtD = d3.utcFormat('%b %-d, %Y');
 const showD = (s) => { const d = s ? parseD(s) : null; return d ? fmtD(d) : '—'; };
 const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
+const TEAMS = { Hawks: ['Atlanta Hawks', 'E'], Celtics: ['Boston Celtics', 'E'], Nets: ['Brooklyn Nets', 'E'], Hornets: ['Charlotte Hornets', 'E'], Bulls: ['Chicago Bulls', 'E'], Cavaliers: ['Cleveland Cavaliers', 'E'], Pistons: ['Detroit Pistons', 'E'], Pacers: ['Indiana Pacers', 'E'], Heat: ['Miami Heat', 'E'], Bucks: ['Milwaukee Bucks', 'E'], Knicks: ['New York Knicks', 'E'], Magic: ['Orlando Magic', 'E'], '76ers': ['Philadelphia 76ers', 'E'], Raptors: ['Toronto Raptors', 'E'], Wizards: ['Washington Wizards', 'E'],
+  Mavericks: ['Dallas Mavericks', 'W'], Nuggets: ['Denver Nuggets', 'W'], Warriors: ['Golden State Warriors', 'W'], Rockets: ['Houston Rockets', 'W'], Clippers: ['LA Clippers', 'W'], Lakers: ['Los Angeles Lakers', 'W'], Grizzlies: ['Memphis Grizzlies', 'W'], Timberwolves: ['Minnesota Timberwolves', 'W'], Pelicans: ['New Orleans Pelicans', 'W'], Thunder: ['Oklahoma City Thunder', 'W'], Suns: ['Phoenix Suns', 'W'], Blazers: ['Portland Trail Blazers', 'W'], Kings: ['Sacramento Kings', 'W'], Spurs: ['San Antonio Spurs', 'W'], Jazz: ['Utah Jazz', 'W'] };
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
@@ -228,15 +246,38 @@ const R = {
     const c = $('now_cards'); c.replaceChildren();
     card(c, out, 'players out'); card(c, un, 'doubtful or questionable'); card(c, teams.length, 'teams with someone listed');
     if (teams.length) card(c, teams[0][1].n, 'most on one team: ' + teams[0][0]);
-    const rs = CUR.filter((r) => (!state.cteam || r.Team === state.cteam) && (!state.cstatus || r.Status === state.cstatus))
-      .sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Team.localeCompare(b.Team) || a.Player.localeCompare(b.Player));
-    const tb = $('now_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 5, 'Nobody matches that filter.');
-    rs.forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, `${r.Matchup} ${showD(r.Game_Date)}`]));
-    hbar($('now_chart'), teams.map(([t, v]) => ({ label: t, value: v.n, show: String(v.n), tip: `${t}: ${v.out} out, ${v.un} doubtful/questionable, ${v.n} listed` })), 'Players listed by team');
     const miss = (NOW.teams_not_submitted || META.teams_not_filed || []);
+    const keep = (r) => !state.cstatus || (state.cstatus === 'ONLYOUT' ? r.Status === 'Out' : state.cstatus === 'UNSURE' ? r.Status === 'Out' || UNSURE.includes(r.Status) : r.Status === state.cstatus);
+    for (const [box, conf] of [['board_east', 'E'], ['board_west', 'W']]) {
+      const root = $(box); root.replaceChildren();
+      Object.keys(TEAMS).filter((t) => TEAMS[t][1] === conf).sort((a, b) => TEAMS[a][0].localeCompare(TEAMS[b][0])).forEach((t) => {
+        const all = CUR.filter((r) => r.Team === t).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
+        const shown = all.filter(keep);
+        const nOut = all.filter((r) => r.Status === 'Out').length, nUn = all.filter((r) => UNSURE.includes(r.Status)).length;
+        const tm = el('div', 'tm' + (all.length ? '' : ' quiet')), h = el('div', 'tmh');
+        h.append(el('b', '', TEAMS[t][0]));
+        if (all.length) h.append(el('span', 'gm', `${all[0].Matchup || ''} · ${showD(all[0].Game_Date)}`));
+        const parts = [];
+        if (nOut) parts.push(`${nOut} out`);
+        if (nUn) parts.push(`${nUn} doubtful/questionable`);
+        if (parts.length) h.append(el('span', 'cnt', parts.join(' · ')));
+        tm.append(h);
+        if (shown.length) {
+          const ul = el('ul', 'pls');
+          shown.forEach((r) => {
+            const li = el('li'), nm = el('span', 'nm'), st = el('span', 'st', r.Status);
+            nm.append(el('i', 'dot ' + (r.Status === 'Out' ? 'out' : UNSURE.includes(r.Status) ? 'unsure' : '')), document.createTextNode(r.Player));
+            li.append(nm, st, el('span', 'inj', r.Injury)); ul.append(li);
+          });
+          tm.append(ul);
+        } else {
+          tm.append(el('p', 'none', all.length ? 'Nobody matches that filter.' : miss.includes(t) ? 'Not filed yet for its next game.' : 'Nobody listed in the latest report.'));
+        }
+        root.append(tm);
+      });
+    }
     $('now_note').textContent = "From the NBA's official injury reports, using each team's next game." +
-      (miss.length ? ` Not filed yet: ${miss.join(', ')}.` : '') + ' Players on G League assignment, or out for personal reasons, are left out.';
+      ' Teams show their next game with a filed report. Players on G League assignment, or out for personal reasons, are left out.';
     ageLabel();
   },
   search() {
@@ -322,8 +363,7 @@ Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d
   STAYS = s; CUR = c; META = m || {}; NOW = nw || {};
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
-  fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });
-  fillSelect($('cstatus'), [['', 'All statuses'], ['Out', 'Out'], ['Doubtful', 'Doubtful'], ['Questionable', 'Questionable'], ['Probable', 'Probable'], ['Available', 'Available']], '', (v) => { state.cstatus = v; redraw(); });
+  fillSelect($('cstatus'), [['', 'Everyone listed'], ['ONLYOUT', 'Only players out'], ['UNSURE', 'Out, doubtful or questionable'], ['Available', 'Available']], '', (v) => { state.cstatus = v; redraw(); });
   fillSelect($('season'), seasons.map((x) => [x, x]), state.season, (v) => { state.season = v; redraw(); });
   fillSelect($('team'), teams.map((x) => [x, x]), state.team, (v) => { state.team = v; redraw(); });
   fillSelect($('lseason'), seasons.map((x) => [x, x]), state.lseason, (v) => { state.lseason = v; redraw(); });
