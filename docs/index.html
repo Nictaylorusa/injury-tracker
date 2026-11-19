@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Collective Analytics</title>
 <style>
-:root{--bg:#fbfaf8;--fg:#1d1d1b;--muted:#6b6a65;--panel:#f1efea;--line:#dcd9d1;--bad:#c4402f;--warn:#d38a00;--accent:#2a78d6;--tip:#fff;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}
+:root{--good:#1f7a3d;--bg:#fbfaf8;--fg:#1d1d1b;--muted:#6b6a65;--panel:#f1efea;--line:#dcd9d1;--bad:#c4402f;--warn:#d38a00;--accent:#2a78d6;--tip:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--good:#5fcf86;--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}}
+:root[data-theme="dark"]{--good:#5fcf86;--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
 .wrap{max-width:1100px;margin:0 auto}
@@ -41,6 +41,7 @@ tr:last-child td{border-bottom:0}
 .n{text-align:right}
 .empty{padding:16px;color:var(--muted)}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--muted)}
+.pace{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}.pace.pos{color:var(--good)}.pace.neg{color:var(--bad)}.tl{white-space:nowrap;color:var(--muted)}
 .dot.out{background:var(--bad)}.dot.unsure{background:var(--warn)}
 .chart{position:relative;min-height:40px}
 .tip{position:absolute;pointer-events:none;background:var(--tip);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:6px;padding:5px 8px;font-size:12.5px;white-space:nowrap;z-index:2}
@@ -78,7 +79,7 @@ section[hidden]{display:none}
 <details class="dd" id="dd_spurs"><summary id="spurs_sum">Spurs: next opponent</summary><div>
 <p id="spurs_note"></p>
 <h3>Listed in the latest NBA report</h3>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Status</th><th>Injury</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="spurs_now"></tbody></table></div>
 <h3>Recent history (last 14 days)</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
 </div></details>
@@ -86,7 +87,8 @@ section[hidden]{display:none}
 <label>Team <select id="cteam"></select></label>
 <label>Status <select id="cstatus"></select></label>
 </div>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th></tr></thead><tbody id="now_rows"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="now_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
 <h2>Players listed by team</h2>
 <div class="chart" id="now_chart"></div>
 <p class="note" id="now_note"></p>
@@ -107,7 +109,8 @@ section[hidden]{display:none}
 <div><h2>Games missed by team</h2><div class="chart" id="search_team_chart"></div></div>
 </div>
 <h2>Every matching stay</h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th></tr></thead><tbody id="search_rows"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="search_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
 <p class="note">Separate words with + or a space and every one must match, so calf+2022 means calf injuries in 2022-23. Words are matched against the injury text, player, team and type (illness, injury-management rest). A 4-digit year means the season that starts that year (2022 is 2022-23); you can also type 2022-23. Click the buttons to add or remove a word.</p>
 </section>
 
@@ -121,7 +124,8 @@ section[hidden]{display:none}
 <h2>Longest stays out (games)</h2>
 <div class="chart" id="team_top"></div>
 <h2>Every stay</h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th></tr></thead><tbody id="team_rows"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="team_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
 </section>
 
 <section id="league" hidden>
@@ -139,7 +143,8 @@ section[hidden]{display:none}
 <section id="players" hidden>
 <div class="bar"><input id="q" type="search" placeholder="Search a player (e.g. Haliburton)" aria-label="Search a player"></div>
 <h2 id="player_title"></h2>
-<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th></tr></thead><tbody id="player_rows"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th></tr></thead><tbody id="player_rows"></tbody></table></div>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet.</p>
 </section>
 
 <details><summary>What these numbers are</summary>
@@ -147,6 +152,21 @@ section[hidden]{display:none}
 <p><b>Checks:</b> Haliburton in 2025-26 comes to 82 games and Lillard to 88, matching HoopsMatic's counts. Full-season league totals run about 3–5% above HoopsMatic's, which counts only confirmed roster players.</p>
 <p><b>Limits:</b> "listed Out" is what the team filed, not a medical diagnosis. Games a player missed without being listed are not here. <b>Right now</b> shows each team's report for its next game; the archive can run up to a day behind the NBA's own site.</p>
 </details>
+<details class="dd" id="dd_sources"><summary>Where the recovery timelines come from</summary><div>
+<p>The "Typical recovery" ranges are approximate return-to-play ranges for each kind of injury, matched automatically from the NBA's wording. They are general reference ranges, not a medical opinion and not a prediction for any one player. The team's medical staff should review them before anyone relies on them.</p>
+<h3>Numbers checked against published studies</h3>
+<ul>
+<li><b>Hamstring:</b> Reurink G, Whiteley R, Tol JL. <a href="https://journal.aspetar.com/en/journals/volume-4-issue-2/return-to-play-after-acute-hamstring-injuries" target="_blank" rel="noopener">Return to play after acute hamstring injuries</a>. Aspetar Sports Medicine Journal, 2015. Reports mean times of 18, 24 and 60 days for MRI grades I, II and III in professional footballers, and a mean of 44 days in a cohort of 90 professional athletes.</li>
+<li><b>ACL reconstruction:</b> D'Ambrosi R, et al. <a href="https://iris.univpm.it/retrieve/9cd467c0-ea77-474c-8076-773e8ed0f870/Knee%20surg%20%20sports%20traumatol%20%20arthrosc%20-%202025%20-%20D_Ambrosi%20-%20The%20majority%20of%20elite%20and%20professional%20athletes%20return%20to%20the.pdf" target="_blank" rel="noopener">The majority of elite and professional athletes return to the preinjury level of activity after ACL reconstruction</a>. Knee Surgery, Sports Traumatology, Arthroscopy, 2025. Pooled mean return of 292 days (95% CI 268 to 316).</li>
+</ul>
+<h3>General references used to sense-check the rest</h3>
+<ul>
+<li><a href="https://www.bassmedicalgroup.com/blog-post/nba-injuries-recovery-timeline" target="_blank" rel="noopener">Bass Medical Group, Common NBA Injuries and Recovery Times</a> (ankle sprain grades, Achilles rupture, hamstring, MCL, meniscus, labrum, fractures).</li>
+<li><a href="https://wtop.com/news/2018/06/when-can-i-return-to-play-after-an-orthopedic-sports-injury" target="_blank" rel="noopener">WTOP, When can I return to play after an orthopedic sports injury?</a> (2018; collarbone, calf strain, ankle sprain, finger fracture).</li>
+</ul>
+<p>These two pages describe ranges in words, not exact numbers. Every other range in the table is a general estimate made for this tracker, and hovering over a range shows which kind it is. The full list of ranges is in the file <code>recovery_timelines.json</code>, which can be edited.</p>
+<p>Pace is the middle of the range minus days out so far, counted from the first missed game. Players whose injury is described only as "injury management" or "injury recovery" show a dash, because those words don't say what the injury is.</p>
+</div></details>
 <p class="note" id="built"></p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -160,7 +180,7 @@ const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
 const UNSURE = ['Doubtful', 'Questionable'];
 const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
 const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
-let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {};
+let STAYS = [], CUR = [], META = {}, NOW = {}, PREV = [], SCHED = {}, RULES = [], ONG = new Map();
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
@@ -169,7 +189,7 @@ function addRow(tb, cells) {
   const tr = el('tr');
   cells.forEach((c) => {
     const td = el('td');
-    if (c && typeof c === 'object') { if (c.n) td.className = 'n'; if (c.dot) td.append(el('i', 'dot ' + c.dot)); td.append(document.createTextNode(c.t)); }
+    if (c && typeof c === 'object') { td.className = [c.n ? 'n' : '', c.cls || ''].join(' ').trim(); if (c.title) td.title = c.title; if (c.dot) td.append(el('i', 'dot ' + c.dot)); td.append(document.createTextNode(c.t)); }
     else td.textContent = c;
     tr.append(td);
   });
@@ -237,6 +257,24 @@ function ageLabel() {
     : (mins > 180 ? ' · Older than usual; the NBA may not have posted a newer report.' : ' · Updates about every 15 minutes.');
   el.append(sm);
 }
+const dayDiff = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+function recov(inj) { const t = inj || ''; for (const r of RULES) if (r.re.test(t)) return r; return null; }
+const fmtRange = (lo, hi) => hi <= 21 ? `${lo}–${hi} days` : hi <= 140 ? `${Math.max(1, Math.round(lo / 7))}–${Math.round(hi / 7)} wks` : `${Math.round(lo / 30.4)}–${Math.round(hi / 30.4)} mo`;
+function recCells(inj, days) {
+  const r = recov(inj);
+  if (!r) return [{ t: '—', cls: 'tl', title: 'No standard timeline for this description' }, { t: '—', n: true }];
+  if (r.nopace) return [{ t: 'Varies', cls: 'tl', title: `${r.name}: recovery depends on the procedure, so no pace is shown.` }, { t: '—', n: true }];
+  const c1 = { t: fmtRange(r.min, r.max), cls: 'tl', title: `${r.name}. ${r.basis || ''}` };
+  if (days == null) return [c1, { t: '—', n: true, title: 'Days out not known yet (new today, or not in the history yet)' }];
+  const typ = Math.round((r.min + r.max) / 2), p = typ - days;
+  return [c1, { t: (p >= 0 ? '+' : '−') + Math.abs(p), n: true, cls: 'pace ' + (p >= 0 ? 'pos' : 'neg'), title: `Day ${days} out. Typical for ${r.name.toLowerCase()}: about ${typ} days (range ${r.min}–${r.max}).` }];
+}
+function buildOngoing() {
+  ONG = new Map();
+  STAYS.filter((r) => r.Status === 'Ongoing' && r.Season === META.season).forEach((r) => { const k = r.Team + '|' + r.Player; if (!ONG.has(k) || r.Start_Date > ONG.get(k)) ONG.set(k, r.Start_Date); });
+}
+const daysOut = (team, player) => { const s0 = ONG.get(team + '|' + player); return s0 ? dayDiff(s0, etToday()) + 1 : null; };
+const stayDays = (r) => (r.Status === 'Ongoing' ? dayDiff(r.Start_Date, etToday()) + 1 : (num(r.Days_Span) || null));
 const ABBR = { ATL: 'Hawks', BOS: 'Celtics', BKN: 'Nets', CHA: 'Hornets', CHI: 'Bulls', CLE: 'Cavaliers', DAL: 'Mavericks', DEN: 'Nuggets', DET: 'Pistons', GSW: 'Warriors', HOU: 'Rockets', IND: 'Pacers', LAC: 'Clippers', LAL: 'Lakers', MEM: 'Grizzlies', MIA: 'Heat', MIL: 'Bucks', MIN: 'Timberwolves', NOP: 'Pelicans', NYK: 'Knicks', OKC: 'Thunder', ORL: 'Magic', PHI: '76ers', PHX: 'Suns', POR: 'Blazers', SAC: 'Kings', SAS: 'Spurs', TOR: 'Raptors', UTA: 'Jazz', WAS: 'Wizards' };
 const etToday = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 function drawYesterday() {
@@ -260,7 +298,7 @@ function drawSpurs() {
   if (!g) {
     $('spurs_sum').textContent = 'Spurs: next opponent';
     $('spurs_note').textContent = 'No upcoming game found in the schedule.';
-    emptyRow(nowBody, 3, '—'); emptyRow(hist, 4, '—'); return;
+    emptyRow(nowBody, 5, '—'); emptyRow(hist, 4, '—'); return;
   }
   const oppAb = g.opp, opp = ABBR[oppAb] || oppAb;
   const when = `${g.date === today ? 'today' : showD(g.date)}${g.time ? ', ' + g.time.replace(/^0/, '') + ' ET' : ''}`;
@@ -268,8 +306,8 @@ function drawSpurs() {
   const miss = (NOW.teams_not_submitted || []).includes(opp);
   $('spurs_note').textContent = `${g.home ? 'vs' : 'at'} ${opp}, ${when}. From the season schedule.` + (miss ? ` The ${opp} haven't filed their report for this game yet.` : '');
   const cur = CUR.filter((r) => r.Team === opp).sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Player.localeCompare(b.Player));
-  if (!cur.length) emptyRow(nowBody, 3, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
-  cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury]));
+  if (!cur.length) emptyRow(nowBody, 5, miss ? 'Not filed yet.' : 'Nobody listed in the latest report.');
+  cur.forEach((r) => addRow(nowBody, [r.Player, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, ...recCells(r.Injury, daysOut(opp, r.Player))]));
   const cut = new Date(Date.now() - 14 * 864e5).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   const listed = new Set(cur.map((r) => r.Player));
   const rec = STAYS.filter((r) => r.Team === opp && r.Season === META.season && !listed.has(r.Player) && (r.Status === 'Ongoing' || r.End_Date >= cut))
@@ -287,8 +325,8 @@ const R = {
     const rs = CUR.filter((r) => (!state.cteam || r.Team === state.cteam) && (!state.cstatus || r.Status === state.cstatus))
       .sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Team.localeCompare(b.Team) || a.Player.localeCompare(b.Player));
     const tb = $('now_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 5, 'Nobody matches that filter.');
-    rs.forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, `${r.Matchup} ${showD(r.Game_Date)}`]));
+    if (!rs.length) emptyRow(tb, 7, 'Nobody matches that filter.');
+    rs.forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, `${r.Matchup} ${showD(r.Game_Date)}`, ...recCells(r.Injury, daysOut(r.Team, r.Player))]));
     hbar($('now_chart'), teams.map(([t, v]) => ({ label: t, value: v.n, show: String(v.n), tip: `${t}: ${v.out} out, ${v.un} doubtful/questionable, ${v.n} listed` })), 'Players listed by team');
     const miss = (NOW.teams_not_submitted || META.teams_not_filed || []);
     $('now_note').textContent = "From the NBA's official injury reports, using each team's next game." +
@@ -313,9 +351,9 @@ const R = {
     const tBy = roll((r) => r.Team).sort((a, b) => b[1].g - a[1].g).slice(0, 15);
     hbar($('search_team_chart'), tBy.map(([t, v]) => ({ label: t, value: v.g, show: fmtN(v.g), tip: `${t}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by team (top 15)');
     const tb = $('search_rows'); tb.replaceChildren();
-    if (!m.length) { emptyRow(tb, 7, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
+    if (!m.length) { emptyRow(tb, 9, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
     const rs = m.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out) || b.Start_Date.localeCompare(a.Start_Date));
-    rs.slice(0, 300).forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(Math.round(num(r.Games_Out))), n: true }]));
+    rs.slice(0, 300).forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(Math.round(num(r.Games_Out))), n: true }, ...recCells(r.Injury, stayDays(r))]));
     if (rs.length > 300) addRow(tb, ['Showing the 300 longest of ' + rs.length + '. Add a word to narrow it.', '', '', '', '', '', '']);
   },
   teams() {
@@ -332,8 +370,8 @@ const R = {
     const top = rs.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 10);
     hbar($('team_top'), top.map((r) => ({ label: r.Player, value: num(r.Games_Out), show: String(num(r.Games_Out)), tip: `${r.Player}: ${num(r.Games_Out)} games, ${r.Injury}` })), 'Longest stays out');
     const tb = $('team_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 7, 'No stays logged for this team and season.');
-    rs.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date)).forEach((r) => addRow(tb, [r.Player, r.Injury || '—', r.Category, showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, r.Status]));
+    if (!rs.length) emptyRow(tb, 9, 'No stays logged for this team and season.');
+    rs.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date)).forEach((r) => addRow(tb, [r.Player, r.Injury || '—', r.Category, showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, r.Status, ...recCells(r.Injury, stayDays(r))]));
   },
   league() {
     const ts = teamSeason(), s = state.lseason, games = state.metric === 'games';
@@ -349,8 +387,8 @@ const R = {
                : STAYS.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 25);
     const total = rs.length; rs = rs.slice(0, 150);
     const tb = $('player_rows'); tb.replaceChildren();
-    if (!rs.length) { emptyRow(tb, 7, 'No player matches that name.'); return; }
-    rs.forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }]));
+    if (!rs.length) { emptyRow(tb, 9, 'No player matches that name.'); return; }
+    rs.forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, ...recCells(r.Injury, stayDays(r))]));
     if (total > rs.length) addRow(tb, ['Showing the first 150 of ' + total + '. Type more of the name to narrow it.', '', '', '', '', '', '']);
   }
 };
@@ -375,8 +413,10 @@ document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', ()
   state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
 }));
 
-Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc]) => {
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({})), d3.csv('previous.csv').catch(() => []), d3.json('spurs_schedule.json').catch(() => ({})), d3.json('recovery_timelines.json').catch(() => ({}))]).then(([s, c, m, nw, pv, sc, rj]) => {
   STAYS = s; CUR = c; META = m || {}; NOW = nw || {}; PREV = pv || []; SCHED = sc || {};
+  RULES = ((rj && rj.rules) || []).map((r) => { try { return { ...r, re: new RegExp(r.match, 'i') }; } catch (e) { return null; } }).filter(Boolean);
+  buildOngoing();
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
   state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
   fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });

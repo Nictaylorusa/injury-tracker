@@ -1,0 +1,476 @@
+{
+ "note": "Typical return-to-play ranges in days for common basketball injuries. General reference ranges, not a prediction for any player. First matching rule wins; edit freely.",
+ "rules": [
+  {
+   "match": "\\bacl\\b|anterior cruciate",
+   "name": "ACL tear / reconstruction",
+   "min": 270,
+   "max": 330,
+   "basis": "Checked against D'Ambrosi et al. 2025 (meta-analysis): mean 292 days (95% CI 268-316) in elite/professional athletes."
+  },
+  {
+   "match": "achilles.*(rupture|tear|repair|surg)|(rupture|tear|repair|surg).*achilles",
+   "name": "Achilles rupture / repair",
+   "min": 270,
+   "max": 365,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "patellar tendon.*(rupture|tear|repair|surg)|quadriceps? tendon.*(rupture|tear|repair|surg)",
+   "name": "Patellar / quad tendon rupture or repair",
+   "min": 180,
+   "max": 270,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "pectoral.*(tear|rupture|repair|surg)|pec.*(tear|rupture)",
+   "name": "Pectoral tear / repair",
+   "min": 120,
+   "max": 180,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "\\bpcl\\b|posterior cruciate",
+   "name": "PCL sprain",
+   "min": 42,
+   "max": 90,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "menisc",
+   "name": "Meniscus tear / surgery",
+   "min": 42,
+   "max": 112,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "arthroscop",
+   "name": "Arthroscopic procedure",
+   "min": 28,
+   "max": 70,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "labr(um|al)",
+   "name": "Labral tear / repair",
+   "min": 120,
+   "max": 210,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "rotator cuff.*(surg|repair)",
+   "name": "Rotator cuff repair",
+   "min": 180,
+   "max": 270,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "rotator cuff",
+   "name": "Rotator cuff injury",
+   "min": 21,
+   "max": 84,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "stress (fracture|reaction)",
+   "name": "Stress fracture / reaction",
+   "min": 42,
+   "max": 112,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(finger|thumb|pinky|metacarp|hand|phalan))",
+   "name": "Hand / finger fracture",
+   "min": 28,
+   "max": 56,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(wrist|forearm|radius|ulna|scaphoid))",
+   "name": "Wrist / forearm fracture",
+   "min": 42,
+   "max": 112,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(nose|nasal|facial|orbital|cheek|jaw|eye socket|zygomatic|maxill))",
+   "name": "Facial fracture",
+   "min": 7,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(rib|sternum))",
+   "name": "Rib fracture",
+   "min": 28,
+   "max": 56,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(clavicle|collarbone))",
+   "name": "Collarbone fracture",
+   "min": 35,
+   "max": 84,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(tibia|fibula|leg|femur))",
+   "name": "Lower-leg / femur fracture",
+   "min": 90,
+   "max": 210,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(ankle|malleol))",
+   "name": "Ankle fracture",
+   "min": 70,
+   "max": 140,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(metatars|jones|foot|toe|calcane|navicular))",
+   "name": "Foot / toe fracture",
+   "min": 42,
+   "max": 112,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(vertebra|spine|spinal|back|transverse process))",
+   "name": "Spine / back fracture",
+   "min": 42,
+   "max": 120,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(fractur|\\bfx\\b|broken))(?=.*(scapula|shoulder|humerus))",
+   "name": "Shoulder / upper-arm fracture",
+   "min": 42,
+   "max": 112,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "fractur|\\bfx\\b|broken",
+   "name": "Fracture (location not specified)",
+   "min": 42,
+   "max": 84,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "dislocat.*(finger|thumb|toe)|(finger|thumb|toe).*dislocat",
+   "name": "Finger / toe dislocation",
+   "min": 7,
+   "max": 28,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "dislocat|subluxat",
+   "name": "Dislocation / subluxation",
+   "min": 28,
+   "max": 84,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "concuss",
+   "name": "Concussion protocol",
+   "min": 7,
+   "max": 21,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "hernia",
+   "name": "Hernia surgery",
+   "min": 28,
+   "max": 70,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "herniated|disc herniation",
+   "name": "Disc herniation (non-surgical)",
+   "min": 28,
+   "max": 120,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "\\bdiscs?\\b|\\bdisk\\b|bulg",
+   "name": "Disc irritation",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(high ankle|syndesmo)",
+   "name": "High-ankle sprain",
+   "min": 28,
+   "max": 84,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "ankle.*sprain|sprain.*ankle",
+   "name": "Ankle sprain",
+   "min": 7,
+   "max": 28,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "lisfranc",
+   "name": "Lisfranc injury",
+   "min": 56,
+   "max": 120,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "\\bmcl\\b|medial collateral",
+   "name": "MCL sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "\\blcl\\b|lateral collateral",
+   "name": "LCL sprain",
+   "min": 28,
+   "max": 70,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "knee.*sprain|sprain.*knee",
+   "name": "Knee sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(ac joint|acromioclav|shoulder).*sprain|sprain.*(shoulder|ac joint)",
+   "name": "Shoulder / AC sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "wrist.*sprain|sprain.*wrist",
+   "name": "Wrist sprain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(thumb|finger).*sprain|sprain.*(thumb|finger)",
+   "name": "Thumb / finger sprain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(toe|turf).*sprain|sprain.*toe",
+   "name": "Toe sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(foot|midfoot).*sprain|sprain.*foot",
+   "name": "Foot sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "(neck|cervical|spine|back|lumbar|thoracic).*sprain|sprain.*(neck|back|spine)",
+   "name": "Neck / back sprain",
+   "min": 7,
+   "max": 28,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "elbow.*sprain|sprain.*elbow",
+   "name": "Elbow sprain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "sprain",
+   "name": "Sprain",
+   "min": 7,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "hamstring.*(tear|rupture|avuls)",
+   "name": "Hamstring tear",
+   "min": 28,
+   "max": 84,
+   "basis": "Partly checked against Reurink et al. 2015 (grade III mean 60 days, 95% range wide)."
+  },
+  {
+   "match": "bone (bruise|contusion)",
+   "name": "Bone bruise",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "pointer",
+   "name": "Hip pointer (contusion)",
+   "min": 7,
+   "max": 21,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "contusion|bruise",
+   "name": "Contusion",
+   "min": 3,
+   "max": 14,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "laceration|\\bcut\\b",
+   "name": "Laceration",
+   "min": 3,
+   "max": 10,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "soreness|tightness|stiffness|spasm|cramp|swelling|effusion|inflammation|irritation|discomfort|\\bpain\\b",
+   "name": "Soreness / tightness",
+   "min": 3,
+   "max": 14,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(hamstring))",
+   "name": "Hamstring strain",
+   "min": 14,
+   "max": 42,
+   "basis": "Checked against Reurink et al. 2015 (Aspetar Sports Medicine Journal): mean 18-60 days by MRI grade in professional footballers."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(calf|gastroc|soleus))",
+   "name": "Calf strain",
+   "min": 21,
+   "max": 56,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(quad))",
+   "name": "Quadriceps strain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(groin|adductor))",
+   "name": "Groin / adductor strain",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(hip.*flexor|flexor.*hip|psoas))",
+   "name": "Hip flexor strain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(glute))",
+   "name": "Glute strain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(oblique|abdominal|\\bcore\\b))",
+   "name": "Core / oblique strain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "^(?=.*(strain|tear|pull|rupture|avuls))(?=.*(shoulder))",
+   "name": "Shoulder strain",
+   "min": 14,
+   "max": 35,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "plantar.*(fasciitis|fasciopathy)",
+   "name": "Plantar fasciitis",
+   "min": 28,
+   "max": 84,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "tendin|tendon.*(irritat|inflam)",
+   "name": "Tendinopathy",
+   "min": 14,
+   "max": 42,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "bursitis",
+   "name": "Bursitis",
+   "min": 7,
+   "max": 28,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "impingement",
+   "name": "Impingement",
+   "min": 14,
+   "max": 56,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "hyperextens|hyperextend",
+   "name": "Hyperextension",
+   "min": 7,
+   "max": 28,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "strain",
+   "name": "Muscle strain",
+   "min": 14,
+   "max": 42,
+   "basis": "General sports-medicine references (qualitative), plus this tracker's estimate."
+  },
+  {
+   "match": "illness|\\bflu\\b|virus|infection|covid|gastro|stomach|sick|food poison",
+   "name": "Illness",
+   "min": 2,
+   "max": 7,
+   "basis": "General estimate by this tracker; not checked against a specific study."
+  },
+  {
+   "match": "surg|repair|reconstruct|resection",
+   "name": "Surgery (type not specified)",
+   "min": 60,
+   "max": 180,
+   "basis": "General estimate by this tracker; not checked against a specific study.",
+   "nopace": true
+  }
+ ],
+ "sources": [
+  {
+   "use": "Hamstring",
+   "cite": "Reurink G, Whiteley R, Tol JL. Return to play after acute hamstring injuries. Aspetar Sports Medicine Journal 2015;4(2).",
+   "url": "https://journal.aspetar.com/en/journals/volume-4-issue-2/return-to-play-after-acute-hamstring-injuries"
+  },
+  {
+   "use": "ACL reconstruction",
+   "cite": "D'Ambrosi R, et al. The majority of elite and professional athletes return to the preinjury level of activity after ACL reconstruction: a systematic review and meta-analysis. Knee Surg Sports Traumatol Arthrosc 2025.",
+   "url": "https://iris.univpm.it/retrieve/9cd467c0-ea77-474c-8076-773e8ed0f870/Knee%20surg%20%20sports%20traumatol%20%20arthrosc%20-%202025%20-%20D_Ambrosi%20-%20The%20majority%20of%20elite%20and%20professional%20athletes%20return%20to%20the.pdf"
+  },
+  {
+   "use": "General (qualitative)",
+   "cite": "Bass Medical Group. Common NBA Injuries and Recovery Times.",
+   "url": "https://www.bassmedicalgroup.com/blog-post/nba-injuries-recovery-timeline"
+  },
+  {
+   "use": "General (qualitative)",
+   "cite": "WTOP. When can I return to play after an orthopedic sports injury? (2018)",
+   "url": "https://wtop.com/news/2018/06/when-can-i-return-to-play-after-an-orthopedic-sports-injury"
+  }
+ ]
+}
