@@ -85,6 +85,21 @@ def pdf_lines(body):
     return lines
 
 
+def dump_layout(body, path="data/last_report_words.tsv"):
+    """TEMPORARY debugging aid: saves where every word sits on the page, so the reader can be matched to the real layout."""
+    import pdfplumber
+    os.makedirs("data", exist_ok=True)
+    out = []
+    with pdfplumber.open(io.BytesIO(body)) as pdf:
+        for n, page in enumerate(pdf.pages[:3], 1):
+            out.append(f"#page {n} size {page.width:.0f}x{page.height:.0f} lines {len(page.lines)} rects {len(page.rects)}")
+            out += [f"#hline y={l['top']:.1f} x0={l['x0']:.0f} x1={l['x1']:.0f}" for l in page.lines[:60]]
+            out += [f"#rect y={r['top']:.1f} h={r['height']:.1f} x0={r['x0']:.0f} x1={r['x1']:.0f}" for r in page.rects[:60]]
+            for w in sorted(page.extract_words(x_tolerance=2, y_tolerance=3), key=lambda w: (round(w["top"], 1), w["x0"]))[:700]:
+                out.append(f"{w['top']:.1f}\t{w['x0']:.1f}\t{w['x1']:.1f}\t{w['text']}")
+    open(path, "w").write("\n".join(out))
+
+
 def team_of(tokens):
     """If the tokens start with a team name (before any 'Last, First' player), returns (short name, tokens used)."""
     acc = ""
@@ -193,6 +208,10 @@ def main():
         print("Already up to date:", s); return
     try:
         lines = pdf_lines(body)
+        try:
+            dump_layout(body)
+        except Exception as e:
+            print("layout dump failed:", e)
         rows, not_sub = parse(lines)
     except Exception as e:
         rows, not_sub, lines = [], [], []
