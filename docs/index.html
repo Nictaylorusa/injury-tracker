@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Collective Analytics</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1d1d1b;--muted:#6b6a65;--panel:#f1efea;--line:#dcd9d1;--bad:#c4402f;--warn:#d38a00;--accent:#2a78d6;--tip:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a09e96;--panel:#21211f;--line:#3a3935;--bad:#ef6a58;--warn:#f0b13a;--accent:#5b9df0;--tip:#2a2a27;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1100px;margin:0 auto}
+h1{font:400 30px/1.15 Georgia,"Times New Roman",serif;margin:0 0 2px}
+h2{font-size:16px;font-weight:600;margin:22px 0 8px}
+.sub{color:var(--muted);margin:0 0 12px;font-size:13px}
+.lede{margin:0 0 14px;color:var(--muted);max-width:70ch}
+.age{margin:0 0 10px;font-size:13.5px;font-weight:600;color:var(--fg)}.age.warn{border-left:3px solid var(--warn);padding-left:8px}.age small{font-weight:400;color:var(--muted)}
+.note{margin:6px 0 0;color:var(--muted);font-size:12.5px;max-width:78ch;line-height:1.4}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:12px 0 14px}
+.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;font:inherit;color:var(--muted);cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--fg);font-weight:600}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.bar label{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:13px}
+select,input[type=search]{font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+input[type=search]{min-width:min(380px,100%)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:0 0 14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.card b{display:block;font:400 28px/1.1 Georgia,serif;font-variant-numeric:tabular-nums}
+.card span{color:var(--muted);font-size:12.5px}
+.wrapt{overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:520px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th{text-align:left;font-weight:600;color:var(--muted);font-size:12.5px;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--panel);position:sticky;top:0}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.n{text-align:right}
+.empty{padding:16px;color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:var(--muted)}
+.dot.out{background:var(--bad)}.dot.unsure{background:var(--warn)}
+.chart{position:relative;min-height:40px}
+.tip{position:absolute;pointer-events:none;background:var(--tip);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:6px;padding:5px 8px;font-size:12.5px;white-space:nowrap;z-index:2}
+svg text{fill:var(--muted);font-size:11px;font-family:inherit}
+svg rect.bar{fill:var(--accent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 8px}
+.chiplabel{color:var(--muted);font-size:12.5px;min-width:64px}
+.chip{appearance:none;font:inherit;font-size:12.5px;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}.two>div{min-width:0}
+details{margin-top:22px;color:var(--muted);font-size:12.5px}details p{max-width:78ch}
+section[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>The Collective Analytics</h1>
+<p class="sub">NBA injury tracker</p>
+<p class="lede" id="headline">Loading…</p>
+<nav class="tabs" aria-label="Sections">
+<button class="tab" data-tab="now" aria-selected="true">Right now</button>
+<button class="tab" data-tab="search" aria-selected="false">Search</button>
+<button class="tab" data-tab="teams" aria-selected="false">By team</button>
+<button class="tab" data-tab="league" aria-selected="false">League view</button>
+<button class="tab" data-tab="players" aria-selected="false">Players</button>
+</nav>
+
+<section id="now">
+<p class="age" id="now_age" aria-live="polite"></p>
+<div class="cards" id="now_cards"></div>
+<div class="bar">
+<label>Team <select id="cteam"></select></label>
+<label>Status <select id="cstatus"></select></label>
+</div>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th></tr></thead><tbody id="now_rows"></tbody></table></div>
+<h2>Players listed by team</h2>
+<div class="chart" id="now_chart"></div>
+<p class="note" id="now_note"></p>
+</section>
+
+<section id="search" hidden>
+<div class="bar"><input id="sqi" type="search" placeholder="Try: calf+2022   or   hamstring   or   Haliburton+knee" aria-label="Search stays"></div>
+<div class="chips"><span class="chiplabel">Body part</span>
+<button class="chip" data-term="ankle">Ankle</button><button class="chip" data-term="knee">Knee</button><button class="chip" data-term="calf">Calf</button><button class="chip" data-term="hamstring">Hamstring</button><button class="chip" data-term="achilles">Achilles</button><button class="chip" data-term="back">Back</button><button class="chip" data-term="foot">Foot</button><button class="chip" data-term="hip">Hip</button><button class="chip" data-term="groin">Groin</button><button class="chip" data-term="shoulder">Shoulder</button><button class="chip" data-term="wrist">Wrist</button><button class="chip" data-term="concussion">Concussion</button></div>
+<div class="chips"><span class="chiplabel">Kind</span>
+<button class="chip" data-term="sprain">Sprain</button><button class="chip" data-term="strain">Strain</button><button class="chip" data-term="fracture">Fracture</button><button class="chip" data-term="surgery">Surgery</button><button class="chip" data-term="soreness">Soreness</button><button class="chip" data-term="tendon">Tendon</button><button class="chip" data-term="management">Management</button><button class="chip" data-term="illness">Illness</button></div>
+<div class="chips"><span class="chiplabel">Season</span>
+<button class="chip" data-term="2022">2022-23</button><button class="chip" data-term="2023">2023-24</button><button class="chip" data-term="2024">2024-25</button><button class="chip" data-term="2025">2025-26</button><button class="chip" data-term="2026">2026-27</button></div>
+<p class="lede" style="margin-top:12px" id="search_sentence"></p>
+<div class="cards" id="search_cards"></div>
+<div class="two">
+<div><h2>Games missed by season</h2><div class="chart" id="search_season_chart"></div></div>
+<div><h2>Games missed by team</h2><div class="chart" id="search_team_chart"></div></div>
+</div>
+<h2>Every matching stay</h2>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th></tr></thead><tbody id="search_rows"></tbody></table></div>
+<p class="note">Separate words with + or a space and every one must match, so calf+2022 means calf injuries in 2022-23. Words are matched against the injury text, player, team and type (illness, injury-management rest). A 4-digit year means the season that starts that year (2022 is 2022-23); you can also type 2022-23. Click the buttons to add or remove a word.</p>
+</section>
+
+<section id="teams" hidden>
+<div class="bar">
+<label>Season <select id="season"></select></label>
+<label>Team <select id="team"></select></label>
+</div>
+<p class="lede" id="team_sentence"></p>
+<div class="cards" id="team_cards"></div>
+<h2>Longest stays out (games)</h2>
+<div class="chart" id="team_top"></div>
+<h2>Every stay</h2>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th></tr></thead><tbody id="team_rows"></tbody></table></div>
+</section>
+
+<section id="league" hidden>
+<div class="bar">
+<label>Season <select id="lseason"></select></label>
+<label>Measure <select id="metric"><option value="games">Player-games missed</option><option value="stays">Number of stays</option></select></label>
+</div>
+<p class="lede" id="league_sentence"></p>
+<div class="chart" id="league_chart"></div>
+<h2>Games missed, every season</h2>
+<div class="wrapt"><table><thead><tr><th>Team</th><th class="n">2022-23</th><th class="n">2023-24</th><th class="n">2024-25</th><th class="n">2025-26</th><th class="n">2026-27*</th></tr></thead><tbody id="league_rows"></tbody></table></div>
+<p class="note">Player-games missed: one player listed Out for one game counts once. *The current season runs through the most recent finished game day.</p>
+</section>
+
+<section id="players" hidden>
+<div class="bar"><input id="q" type="search" placeholder="Search a player (e.g. Haliburton)" aria-label="Search a player"></div>
+<h2 id="player_title"></h2>
+<div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th></tr></thead><tbody id="player_rows"></tbody></table></div>
+</section>
+
+<details><summary>What these numbers are</summary>
+<p><b>Stays and games missed</b> are built from the NBA's official injury reports, which teams file before every game, using the public archive in the sportsdataverse project (the hoopR "nba_stats_injury_report" release). For each game and player I take the last version of the report. A game counts as missed when the player is listed Out for an injury, illness, injury-related rest ("Rest – knee management") or return-to-competition reconditioning. G League assignments, personal reasons, suspensions, "not with team" and plain rest are not counted. A stay is a run of consecutive team games listed Out; if a player is listed Questionable or Probable in between, it starts a new stay. Regular season, play-in and playoff games are included. Preseason and summer league are not.</p>
+<p><b>Checks:</b> Haliburton in 2025-26 comes to 82 games and Lillard to 88, matching HoopsMatic's counts. Full-season league totals run about 3–5% above HoopsMatic's, which counts only confirmed roster players.</p>
+<p><b>Limits:</b> "listed Out" is what the team filed, not a medical diagnosis. Games a player missed without being listed are not here. <b>Right now</b> shows each team's report for its next game; the archive can run up to a day behind the NBA's own site.</p>
+</details>
+<p class="note" id="built"></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const num = (v) => { const n = parseFloat(v); return isFinite(n) ? n : 0; };
+const fmtN = d3.format(',');
+const parseD = d3.utcParse('%Y-%m-%d'), fmtD = d3.utcFormat('%b %-d, %Y');
+const showD = (s) => { const d = s ? parseD(s) : null; return d ? fmtD(d) : '—'; };
+const stayEnd = (r) => (r.Status === 'Ongoing' ? 'Ongoing' : showD(r.End_Date));
+const UNSURE = ['Doubtful', 'Questionable'];
+const RANK = { Out: 0, Doubtful: 1, Questionable: 2, Probable: 3, Available: 4 };
+const state = { cteam: '', cstatus: '', sq: '', season: '', team: '', lseason: '', metric: 'games', q: '' };
+let STAYS = [], CUR = [], META = {}, NOW = {};
+
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function card(parent, big, small) { const c = el('div', 'card'); c.append(el('b', '', big), el('span', '', small)); parent.append(c); }
+function emptyRow(tb, cols, msg) { const tr = el('tr'), td = el('td', 'empty', msg); td.colSpan = cols; tr.append(td); tb.replaceChildren(tr); }
+function addRow(tb, cells) {
+  const tr = el('tr');
+  cells.forEach((c) => {
+    const td = el('td');
+    if (c && typeof c === 'object') { if (c.n) td.className = 'n'; if (c.dot) td.append(el('i', 'dot ' + c.dot)); td.append(document.createTextNode(c.t)); }
+    else td.textContent = c;
+    tr.append(td);
+  });
+  tb.append(tr);
+}
+function fillSelect(sel, opts, value, onchange) {
+  sel.replaceChildren(...opts.map(([v, l]) => new Option(l, v)));
+  sel.value = value; sel.onchange = () => onchange(sel.value);
+}
+function hbar(box, rows, aria) {
+  box.replaceChildren();
+  if (!rows.length) { box.textContent = 'Nothing to show.'; return; }
+  const W = Math.max(280, box.clientWidth || 320), rh = 22, pad = 4, H = pad * 2 + rows.length * rh;
+  const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').style('display', 'block').attr('role', 'img').attr('aria-label', aria);
+  let lw = 0;
+  rows.forEach((r) => { const t = svg.append('text').text(r.label); lw = Math.max(lw, t.node().getComputedTextLength()); t.remove(); });
+  const left = Math.ceil(lw) + 10, right = 44;
+  const x = d3.scaleLinear().domain([0, d3.max(rows, (r) => r.value) || 1]).range([0, Math.max(10, W - left - right)]);
+  const tip = d3.select(box).append('div').attr('class', 'tip').style('display', 'none');
+  const g = svg.selectAll('g').data(rows).join('g').attr('transform', (d, i) => `translate(0,${pad + i * rh})`);
+  g.append('text').attr('x', left - 8).attr('y', rh / 2).attr('dy', '0.32em').attr('text-anchor', 'end').text((d) => d.label);
+  g.append('rect').attr('class', 'bar').attr('x', left).attr('y', 4).attr('height', rh - 8).attr('rx', 2).attr('width', (d) => Math.max(1, x(d.value)));
+  g.append('text').attr('x', (d) => left + Math.max(1, x(d.value)) + 5).attr('y', rh / 2).attr('dy', '0.32em').text((d) => d.show);
+  g.append('rect').attr('width', W).attr('height', rh).style('fill', 'transparent')
+    .on('pointermove', (ev, d) => {
+      const [px, py] = d3.pointer(ev, box);
+      tip.style('display', 'block').text(d.tip);
+      const tw = tip.node().offsetWidth;
+      tip.style('left', Math.max(0, Math.min(box.clientWidth - tw, px + 10)) + 'px').style('top', (py + 12) + 'px');
+    }).on('pointerleave', () => tip.style('display', 'none'));
+}
+
+/* data summaries */
+function teamSeason() {
+  const out = [];
+  d3.group(STAYS, (r) => r.Season, (r) => r.Team).forEach((teams, season) => teams.forEach((rs, team) => out.push({
+    Season: season, Team: team, Stays: rs.length, Players: new Set(rs.map((r) => r.Player)).size,
+    Games_Out: d3.sum(rs, (r) => num(r.Games_Out)), Longest: d3.max(rs, (r) => num(r.Games_Out)) })));
+  return out;
+}
+function searchMatches() {
+  const toks = state.sq.toLowerCase().split(/[+,\s]+/).filter(Boolean);
+  if (!toks.length) return [];
+  return STAYS.filter((r) => {
+    const hay = (r.Injury + ' ' + r.Player + ' ' + r.Team + ' ' + r.Category).toLowerCase();
+    return toks.every((t) => /^\d{4}$/.test(t) ? r.Season.slice(0, 4) === t : /^\d{4}-\d{2}$/.test(t) ? r.Season === t : hay.includes(t));
+  });
+}
+
+/* renderers */
+const etFmt = (d) => d.toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+function ageLabel() {
+  const el = $('now_age'); if (!el) return;
+  const n = NOW || {};
+  const t = n.report_time_utc ? new Date(n.report_time_utc) : null;
+  if (!t || isNaN(t)) { el.className = 'age warn'; el.textContent = `Live feed not started yet. Showing the archive's latest report: ${META.latest_report || '—'} ET.`; return; }
+  const mins = Math.max(0, Math.round((Date.now() - t.getTime()) / 60000));
+  const ago = mins < 2 ? 'just now' : mins < 90 ? `${mins} minutes ago` : mins < 2880 ? `${Math.round(mins / 60)} hours ago` : `${Math.round(mins / 1440)} days ago`;
+  const bad = n.status && n.status !== 'ok';
+  el.className = 'age' + (bad || mins > 180 ? ' warn' : '');
+  el.replaceChildren();
+  el.append(`NBA report from ${etFmt(t)} ET · ${ago}`);
+  const sm = document.createElement('small');
+  sm.textContent = bad ? ` · Live feed paused (${n.status === 'unreachable' ? "the NBA's site could not be reached" : 'the latest report could not be read'}); showing the last good report.`
+    : (mins > 180 ? ' · Older than usual; the NBA may not have posted a newer report.' : ' · Updates about every 15 minutes.');
+  el.append(sm);
+}
+const R = {
+  now() {
+    const out = CUR.filter((r) => r.Status === 'Out').length, un = CUR.filter((r) => UNSURE.includes(r.Status)).length;
+    const teams = d3.rollups(CUR, (v) => ({ out: v.filter((r) => r.Status === 'Out').length, un: v.filter((r) => UNSURE.includes(r.Status)).length, n: v.length }), (r) => r.Team).sort((a, b) => b[1].n - a[1].n);
+    const c = $('now_cards'); c.replaceChildren();
+    card(c, out, 'players out'); card(c, un, 'doubtful or questionable'); card(c, teams.length, 'teams with someone listed');
+    if (teams.length) card(c, teams[0][1].n, 'most on one team: ' + teams[0][0]);
+    const rs = CUR.filter((r) => (!state.cteam || r.Team === state.cteam) && (!state.cstatus || r.Status === state.cstatus))
+      .sort((a, b) => (RANK[a.Status] ?? 5) - (RANK[b.Status] ?? 5) || a.Team.localeCompare(b.Team) || a.Player.localeCompare(b.Player));
+    const tb = $('now_rows'); tb.replaceChildren();
+    if (!rs.length) emptyRow(tb, 5, 'Nobody matches that filter.');
+    rs.forEach((r) => addRow(tb, [r.Player, r.Team, { t: r.Status, dot: r.Status === 'Out' ? 'out' : (UNSURE.includes(r.Status) ? 'unsure' : '') }, r.Injury, `${r.Matchup} ${showD(r.Game_Date)}`]));
+    hbar($('now_chart'), teams.map(([t, v]) => ({ label: t, value: v.n, show: String(v.n), tip: `${t}: ${v.out} out, ${v.un} doubtful/questionable, ${v.n} listed` })), 'Players listed by team');
+    const miss = (NOW.teams_not_submitted || META.teams_not_filed || []);
+    $('now_note').textContent = "From the NBA's official injury reports, using each team's next game." +
+      (miss.length ? ` Not filed yet: ${miss.join(', ')}.` : '') + ' Players on G League assignment, or out for personal reasons, are left out.';
+    ageLabel();
+  },
+  search() {
+    const m = searchMatches(), toks = state.sq.split(/[+,\s]+/).filter(Boolean);
+    const sen = $('search_sentence'), cards = $('search_cards'); cards.replaceChildren();
+    document.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(toks.map((t) => t.toLowerCase()).includes(c.dataset.term))));
+    if (!toks.length) sen.textContent = 'Type a body part, an injury word, a player, a team or a year, or tap the buttons.';
+    else if (!m.length) sen.textContent = `Nothing matches "${toks.join('+')}". Try fewer or shorter words (for example "hamstring" rather than "hamstring strain").`;
+    else {
+      const games = d3.sum(m, (r) => num(r.Games_Out)), pl = new Set(m.map((r) => r.Player)).size;
+      sen.textContent = `"${toks.join('+')}": ${m.length} stays by ${pl} players, ${fmtN(games)} games missed in all.`;
+      card(cards, fmtN(games), 'games missed'); card(cards, m.length, 'stays'); card(cards, pl, 'players'); card(cards, d3.max(m, (r) => num(r.Games_Out)), 'longest stay, games');
+    }
+    const roll = (key) => d3.rollups(m, (v) => ({ g: d3.sum(v, (r) => num(r.Games_Out)), n: v.length }), key);
+    const sBy = roll((r) => r.Season).sort((a, b) => b[0].localeCompare(a[0]));
+    hbar($('search_season_chart'), sBy.map(([s, v]) => ({ label: s, value: v.g, show: fmtN(v.g), tip: `${s}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by season');
+    const tBy = roll((r) => r.Team).sort((a, b) => b[1].g - a[1].g).slice(0, 15);
+    hbar($('search_team_chart'), tBy.map(([t, v]) => ({ label: t, value: v.g, show: fmtN(v.g), tip: `${t}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by team (top 15)');
+    const tb = $('search_rows'); tb.replaceChildren();
+    if (!m.length) { emptyRow(tb, 7, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
+    const rs = m.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out) || b.Start_Date.localeCompare(a.Start_Date));
+    rs.slice(0, 300).forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(Math.round(num(r.Games_Out))), n: true }]));
+    if (rs.length > 300) addRow(tb, ['Showing the 300 longest of ' + rs.length + '. Add a word to narrow it.', '', '', '', '', '', '']);
+  },
+  teams() {
+    const ts = teamSeason(), s = state.season, t = state.team;
+    const all = ts.filter((r) => r.Season === s).sort((a, b) => b.Games_Out - a.Games_Out), i = all.findIndex((r) => r.Team === t);
+    const cards = $('team_cards'); cards.replaceChildren();
+    if (i < 0) $('team_sentence').textContent = `No games missed are logged for the ${t} in ${s}.`;
+    else {
+      const r = all[i];
+      $('team_sentence').textContent = `The ${t} missed ${fmtN(r.Games_Out)} player-games across ${r.Stays} stays in ${s}, ranking ${i + 1} of ${all.length} teams.`;
+      card(cards, fmtN(r.Games_Out), 'player-games missed'); card(cards, r.Stays, 'stays out'); card(cards, r.Players, 'different players'); card(cards, r.Longest, 'longest stay, games');
+    }
+    const rs = STAYS.filter((r) => r.Season === s && r.Team === t);
+    const top = rs.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 10);
+    hbar($('team_top'), top.map((r) => ({ label: r.Player, value: num(r.Games_Out), show: String(num(r.Games_Out)), tip: `${r.Player}: ${num(r.Games_Out)} games, ${r.Injury}` })), 'Longest stays out');
+    const tb = $('team_rows'); tb.replaceChildren();
+    if (!rs.length) emptyRow(tb, 7, 'No stays logged for this team and season.');
+    rs.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date)).forEach((r) => addRow(tb, [r.Player, r.Injury || '—', r.Category, showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, r.Status]));
+  },
+  league() {
+    const ts = teamSeason(), s = state.lseason, games = state.metric === 'games';
+    const rs = ts.filter((r) => r.Season === s).sort((a, b) => (games ? b.Games_Out - a.Games_Out : b.Stays - a.Stays));
+    $('league_sentence').textContent = rs.length ? `In ${s}, ${fmtN(d3.sum(rs, (r) => r.Games_Out))} player-games were missed across the league. The ${rs[0].Team} lost the most (${fmtN(rs[0].Games_Out)}) and the ${rs[rs.length - 1].Team} the fewest (${fmtN(rs[rs.length - 1].Games_Out)}).` : '';
+    hbar($('league_chart'), rs.map((r) => ({ label: r.Team, value: games ? r.Games_Out : r.Stays, show: fmtN(games ? r.Games_Out : r.Stays), tip: `${r.Team}: ${fmtN(r.Games_Out)} games missed, ${r.Stays} stays, ${r.Players} players` })), 'Games missed by team');
+    const seasons = ['2022-23', '2023-24', '2024-25', '2025-26', '2026-27'], tb = $('league_rows'); tb.replaceChildren();
+    Array.from(new Set(STAYS.map((r) => r.Team))).sort().forEach((t) => addRow(tb, [t, ...seasons.map((x) => ({ t: fmtN(d3.sum(STAYS.filter((r) => r.Team === t && r.Season === x), (r) => num(r.Games_Out))), n: true }))]));
+  },
+  players() {
+    const q = state.q.trim().toLowerCase(); $('player_title').textContent = q ? `Stays matching "${state.q.trim()}"` : 'Longest stays out on record';
+    let rs = q ? STAYS.filter((r) => r.Player.toLowerCase().includes(q)).sort((a, b) => b.Start_Date.localeCompare(a.Start_Date))
+               : STAYS.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 25);
+    const total = rs.length; rs = rs.slice(0, 150);
+    const tb = $('player_rows'); tb.replaceChildren();
+    if (!rs.length) { emptyRow(tb, 7, 'No player matches that name.'); return; }
+    rs.forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }]));
+    if (total > rs.length) addRow(tb, ['Showing the first 150 of ' + total + '. Type more of the name to narrow it.', '', '', '', '', '', '']);
+  }
+};
+const TABS = Object.keys(R);
+let active = 'now';
+function show(id) {
+  active = TABS.includes(id) ? id : 'now';
+  document.querySelectorAll('section').forEach((s) => { s.hidden = s.id !== active; });
+  document.querySelectorAll('.tab').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === active)));
+  if (location.hash !== '#' + active) history.replaceState(null, '', '#' + active);
+  R[active]();
+}
+const redraw = () => R[active]();
+document.querySelectorAll('.tab').forEach((b) => b.addEventListener('click', () => show(b.dataset.tab)));
+window.addEventListener('resize', d3.debounce ? redraw : redraw);
+let sqT = null, qT = null;
+$('sqi').addEventListener('input', () => { clearTimeout(sqT); sqT = setTimeout(() => { state.sq = $('sqi').value.trim(); redraw(); }, 200); });
+$('q').addEventListener('input', () => { clearTimeout(qT); qT = setTimeout(() => { state.q = $('q').value; redraw(); }, 200); });
+document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => {
+  const toks = state.sq.split(/[+,\s]+/).filter(Boolean), t = c.dataset.term, i = toks.findIndex((x) => x.toLowerCase() === t);
+  if (i >= 0) toks.splice(i, 1); else toks.push(t);
+  state.sq = toks.join('+'); $('sqi').value = state.sq; redraw();
+}));
+
+Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d3.json('now.json').catch(() => ({}))]).then(([s, c, m, nw]) => {
+  STAYS = s; CUR = c; META = m || {}; NOW = nw || {};
+  const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort().reverse(), teams = Array.from(new Set(STAYS.map((r) => r.Team))).sort();
+  state.season = seasons[0]; state.lseason = seasons[1] || seasons[0]; state.team = teams.includes('Celtics') ? 'Celtics' : teams[0];
+  fillSelect($('cteam'), [['', 'All teams'], ...Array.from(new Set(CUR.map((r) => r.Team))).sort().map((t) => [t, t])], '', (v) => { state.cteam = v; redraw(); });
+  fillSelect($('cstatus'), [['', 'All statuses'], ['Out', 'Out'], ['Doubtful', 'Doubtful'], ['Questionable', 'Questionable'], ['Probable', 'Probable'], ['Available', 'Available']], '', (v) => { state.cstatus = v; redraw(); });
+  fillSelect($('season'), seasons.map((x) => [x, x]), state.season, (v) => { state.season = v; redraw(); });
+  fillSelect($('team'), teams.map((x) => [x, x]), state.team, (v) => { state.team = v; redraw(); });
+  fillSelect($('lseason'), seasons.map((x) => [x, x]), state.lseason, (v) => { state.lseason = v; redraw(); });
+  $('metric').onchange = () => { state.metric = $('metric').value; redraw(); };
+  const out = CUR.filter((r) => r.Status === 'Out').length, un = CUR.filter((r) => UNSURE.includes(r.Status)).length;
+  $('headline').textContent = `Right now the NBA's injury reports list ${out} players out and ${un} doubtful or questionable. Over the last five seasons they show ${fmtN(STAYS.length)} stays out and ${fmtN(d3.sum(STAYS, (r) => num(r.Games_Out)))} player-games missed.`;
+  $('built').textContent = `Data refreshed ${META.built_at_utc || '—'} UTC. Games counted through ${META.games_through || '—'}.`;
+  show((location.hash || '').slice(1));
+  setInterval(ageLabel, 60000);
+  setInterval(() => {                                  // pick up newer numbers without the visitor reloading
+    if (document.hidden) return;
+    const q = '?t=' + Date.now();
+    Promise.all([d3.csv('current.csv' + q), d3.json('now.json' + q).catch(() => null)]).then(([c2, n2]) => {
+      if (!c2 || !n2 || n2.report_file === NOW.report_file) return;
+      CUR = c2; NOW = n2; redraw();
+    }).catch(() => {});
+  }, 300000);
+}).catch((e) => { $('headline').textContent = 'The data files could not be loaded. If you opened this page straight from your computer, it needs to be on a web host.'; console.error(e); });
+</script>
+</body>
+</html>
