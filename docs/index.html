@@ -62,7 +62,7 @@ section[hidden]{display:none}
 @page{size:letter;margin:.4in}
 .sheet{font:9.5px/1.3 system-ui,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .sh-head h1{font:600 18px Georgia,serif;margin:0}.sh-sub{color:#555;margin:2px 0 8px;font-size:10px}
-.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sh-card{border:1px solid #999;border-radius:4px;padding:7px 9px;break-inside:avoid}.sh-li{margin-left:8px}
+.sh-grid{display:block}.sh-card{border-bottom:1px solid #bbb;padding:9px 2px 10px;break-inside:avoid}.sh-p{font-size:11.5px;line-height:1.5;margin:5px 0 0;text-align:left}.sh-li{margin-left:8px}
 .sh-card h2{font:600 14px Georgia,serif;margin:0}.sh-meta{color:#555;margin-bottom:4px}.sh-row{margin:2px 0}.sh-bars{width:100%;height:46px;display:block;margin-top:3px}.sh-cap{font-size:9px;color:#555}
 .sh-foot{margin-top:6px;font-size:9px;color:#555}.tabs,.bar,#headline,.sub,details,#built,#tl_print,#player_pick,.note{display:none!important}body{background:#fff;color:#000}}
 
@@ -380,6 +380,33 @@ function updateExport() {
   document.querySelectorAll('#spurs_fw input[type=checkbox]').forEach((cb) => { cb.disabled = !cb.checked && n >= 5; });
   $('fw_hint').textContent = n >= 5 ? 'Five selected, the most one sheet holds.' : 'Tick up to 5 players for one sheet.';
 }
+function narrative(p, i, opp) {
+  const clean = (t) => String(t || 'unspecified injury').replace(/;\s*/g, ' ').toLowerCase();
+  const lower = (t) => t.replace(/^([A-Z])([a-z])/, (m, x, y) => x.toLowerCase() + y);
+  const join = (a) => a.length < 2 ? (a[0] || '') : a.length === 2 ? a.join(' and ') : a.slice(0, -1).join(', ') + ', and ' + a[a.length - 1];
+  const nm = i.name, out = [];
+  out.push(p.gp ? `${nm} (${opp} ${p.pos === 'G' ? 'guard' : 'forward'}) has started ${p.starts} of ${p.gp} games this season${p.l5n ? `, ${p.l5} of the last ${p.l5n}` : ''}, averaging ${p.mpg == null ? 'limited' : p.mpg.toFixed(1)} minutes.` : `${nm} (${opp} ${p.pos === 'G' ? 'guard' : 'forward'}) has not played yet this season.`);
+  const c = i.c, days = c ? daysOut(opp, nm) : null;
+  if (c) {
+    const [rc, pc] = recCells0(c.Injury, days);
+    let t = `He is listed as ${c.Status.toLowerCase()} for the next game with a ${clean(c.Injury)}`;
+    if (days) t += ` (day ${days} out)`;
+    if (rc && rc.t && !['—', 'Varies'].includes(rc.t)) t += `; typical recovery is ${rc.t}`;
+    if (pc && pc.t && pc.t !== '—') { const n = pc.t.replace(/[^0-9]/g, ''), ahead = pc.t[0] === '+'; t += `, and he is running ${n} ${n === '1' ? 'day' : 'days'} ${ahead ? 'ahead of' : 'behind'} that pace`; }
+    out.push(t + '.');
+  } else out.push('He is not on the latest injury report.');
+  if (!i.mine.length) out.push('He has no known issues on record over the last five seasons.');
+  else {
+    const gm = (r) => { const g = Math.round(num(r.Games_Out)); return `${g} ${g === 1 ? 'game' : 'games'}`; };
+    const rec = i.recent.map((r) => `${clean(r.Injury)} (${showD(r.Start_Date)}, ${gm(r)}${r.Status === 'Ongoing' ? ', ongoing' : ''})`);
+    out.push(`Over the last five seasons he has ${i.mine.length} known ${i.mine.length === 1 ? 'issue' : 'issues'} and ${i.gA} games missed${i.fam ? `, most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}. Most recently: ${join(rec)}.`);
+  }
+  const lastI = i.last, recent = lastI && (lastI.Status === 'Ongoing' || (dayDiff(lastI.End_Date, etToday()) <= 45));
+  const inj = c ? c.Injury : (recent ? lastI.Injury : null), mv = inj ? moveCell(inj) : null;
+  if (mv && mv.all && mv.all.length) out.push(`N.i.C.E. Scouting: ${c ? `with the ${clean(inj)}` : `coming off the ${clean(inj)}`}, he may have trouble defending these actions. ${mv.all.map((x) => lower(x)).join('; ').replace(/^./, (m) => m.toUpperCase())}.`);
+  else out.push('N.i.C.E. Scouting: no current or recent injury to build a note from.');
+  return out.join(' ');
+}
 function buildSheet() {
   const sh = $('sheet'); sh.replaceChildren();
   const items = Array.from(SEL.values()).slice(0, 5);
@@ -387,21 +414,9 @@ function buildSheet() {
   const head = el('div', 'sh-head'); head.append(el('h1', '', `Spurs matchup sheet: ${Array.from(new Set(items.map((x) => x.opp))).join(', ')}`), el('div', 'sh-sub', `${showD(etToday())} · The Collective Analytics · ${NOW.report_time_et ? 'NBA report ' + NOW.report_time_et : ''}`));
   sh.append(head);
   const grid = el('div', 'sh-grid'); sh.append(grid);
-  const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort();
   items.forEach(({ p, i, opp }) => {
     const c = el('div', 'sh-card');
-    c.append(el('h2', '', i.name), el('div', 'sh-meta', `${opp} · ${p.pos === 'G' ? 'Guard' : 'Forward'} · ${i.lab}`));
-    const kv = (k, v) => { const r = el('div', 'sh-row'); r.append(el('b', '', k), document.createTextNode(' ' + v)); c.append(r); };
-    kv('Starts', p.gp ? `${p.starts} of ${p.gp} games${p.l5n ? `, last ${p.l5n} team games: ${p.l5}` : ''}, ${p.mpg == null ? '—' : p.mpg.toFixed(1)} min` : 'none this season');
-    kv('Now', i.c ? `${i.c.Status}, ${i.c.Injury}` : 'Not on the latest report');
-    if (i.c) { const [rc, pc] = recCells0(i.c.Injury, daysOut(opp, i.name)); if (rc && rc.t && rc.t !== '—') kv('Typical recovery', rc.t + (pc && pc.t && pc.t !== '—' ? `, pace ${pc.t}` : '')); const mv = moveCell(i.c.Injury); if (mv && mv.all && mv.all.length) { const bx = el('div', 'sh-row'); bx.append(el('b', '', 'N.i.C.E. Scouting')); mv.all.forEach((x) => bx.append(el('div', 'sh-li', '• ' + x))); c.append(bx); } }
-    kv('This season', i.ses.length ? `${i.ses.length} ${i.ses.length === 1 ? 'known issue' : 'known issues'}, ${i.gS} ${i.gS === 1 ? 'game' : 'games'} missed` : 'no known issues');
-    kv('Five seasons', `${i.mine.length} known issues, ${i.gA} games missed${i.fam ? `; most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}`);
-    const per = seasons.map((se) => Math.round(d3.sum(i.mine.filter((r) => r.Season === se), (r) => num(r.Games_Out)))), mx = Math.max(10, d3.max(per));
-    const svg = d3.select(c).append('svg').attr('class', 'sh-bars').attr('viewBox', '0 0 250 46');
-    per.forEach((v, k) => { const h = (v / mx) * 16, x = 6 + k * 49; svg.append('rect').attr('x', x).attr('y', 28 - h).attr('width', 34).attr('height', Math.max(h, 1)).attr('fill', '#555'); svg.append('text').attr('x', x + 17).attr('y', 25 - h).attr('text-anchor', 'middle').attr('font-size', 9).text(String(v)); svg.append('text').attr('x', x + 17).attr('y', 41).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', '#555').text(seasons[k]); });
-    c.append(el('div', 'sh-cap', 'Games missed to injury by season'));
-    if (i.recent.length) { const ul = el('div', 'sh-row'); ul.append(el('b', '', 'Latest known issues'), document.createTextNode(' ' + i.recent.map((r) => `${r.Injury || 'Unspecified'} (${showD(r.Start_Date)}, ${Math.round(num(r.Games_Out))} g${r.Status === 'Ongoing' ? ', ongoing' : ''})`).join('; '))); c.append(ul); }
+    c.append(el('h2', '', i.name), el('div', 'sh-meta', `${opp} · ${p.pos === 'G' ? 'Guard' : 'Forward'} · ${i.lab}`), el('p', 'sh-p', narrative(p, i, opp)));
     grid.append(c);
   });
   sh.append(el('div', 'sh-foot', "Starts come from this season's box scores and are not a lineup announcement. Injury history is from the NBA's published injury reports (games listed out) and may lag by a day. N.i.C.E. Scouting notes are general scouting reasoning, not a medical statement."));
