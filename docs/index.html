@@ -60,9 +60,9 @@ section[hidden]{display:none}
 #spurs_g{width:auto;margin-right:4px}.sheet{display:none}
 @media print{body.printing-sheet>*:not(#sheet){display:none!important}body.printing-sheet #sheet{display:block}
 @page{size:letter;margin:.4in}
-.sheet{font:10.5px/1.35 system-ui,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sheet{font:9.5px/1.3 system-ui,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .sh-head h1{font:600 18px Georgia,serif;margin:0}.sh-sub{color:#555;margin:2px 0 8px;font-size:10px}
-.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sh-card{border:1px solid #999;border-radius:4px;padding:7px 9px;break-inside:avoid;height:2.8in;overflow:hidden}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sh-card{border:1px solid #999;border-radius:4px;padding:7px 9px;break-inside:avoid}.sh-li{margin-left:8px}
 .sh-card h2{font:600 14px Georgia,serif;margin:0}.sh-meta{color:#555;margin-bottom:4px}.sh-row{margin:2px 0}.sh-bars{width:100%;height:46px;display:block;margin-top:3px}.sh-cap{font-size:9px;color:#555}
 .sh-foot{margin-top:6px;font-size:9px;color:#555}.tabs,.bar,#headline,.sub,details,#built,#tl_print,#player_pick,.note{display:none!important}body{background:#fff;color:#000}}
 
@@ -311,7 +311,7 @@ function moveCell(inj) {
     (r.attack_sided || []).forEach((x) => items.push(x.replace(/\{S\}/g, S).replace(/\{s\}/g, S.toLowerCase()).replace(/\{O\}/g, O).replace(/\{o\}/g, O.toLowerCase())));
   }
   items.push(...(r.attack || []));
-  return { t: items.slice(0, 3).map((x) => '• ' + x).join('\n'), cls: 'mv', title: `N.i.C.E. Scouting (${r.name})\n${items.map((x) => '• ' + x).join('\n')}\nBuilt by turning around the movements that load this kind of injury (${r.basis}). General reasoning for scouting, not a medical statement.` };
+  return { all: items, t: items.slice(0, 3).map((x) => '• ' + x).join('\n'), cls: 'mv', title: `N.i.C.E. Scouting (${r.name})\n${items.map((x) => '• ' + x).join('\n')}\nBuilt by turning around the movements that load this kind of injury (${r.basis}). General reasoning for scouting, not a medical statement.` };
 }
 function buildOngoing() {
   ONG = new Map();
@@ -394,12 +394,12 @@ function buildSheet() {
     const kv = (k, v) => { const r = el('div', 'sh-row'); r.append(el('b', '', k), document.createTextNode(' ' + v)); c.append(r); };
     kv('Starts', p.gp ? `${p.starts} of ${p.gp} games${p.l5n ? `, last ${p.l5n} team games: ${p.l5}` : ''}, ${p.mpg == null ? '—' : p.mpg.toFixed(1)} min` : 'none this season');
     kv('Now', i.c ? `${i.c.Status}, ${i.c.Injury}` : 'Not on the latest report');
-    if (i.c) { const [rc, pc] = recCells0(i.c.Injury, daysOut(opp, i.name)); if (rc && rc.t && rc.t !== '—') kv('Typical recovery', rc.t + (pc && pc.t && pc.t !== '—' ? `, pace ${pc.t}` : '')); const mv = moveCell(i.c.Injury); if (mv && mv.t) kv('N.i.C.E. Scouting', mv.t.split('\n').slice(0, 2).join(' ').replace(/•/g, '·')); }
+    if (i.c) { const [rc, pc] = recCells0(i.c.Injury, daysOut(opp, i.name)); if (rc && rc.t && rc.t !== '—') kv('Typical recovery', rc.t + (pc && pc.t && pc.t !== '—' ? `, pace ${pc.t}` : '')); const mv = moveCell(i.c.Injury); if (mv && mv.all && mv.all.length) { const bx = el('div', 'sh-row'); bx.append(el('b', '', 'N.i.C.E. Scouting')); mv.all.forEach((x) => bx.append(el('div', 'sh-li', '• ' + x))); c.append(bx); } }
     kv('This season', i.ses.length ? `${i.ses.length} ${i.ses.length === 1 ? 'known issue' : 'known issues'}, ${i.gS} ${i.gS === 1 ? 'game' : 'games'} missed` : 'no known issues');
     kv('Five seasons', `${i.mine.length} known issues, ${i.gA} games missed${i.fam ? `; most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}`);
     const per = seasons.map((se) => Math.round(d3.sum(i.mine.filter((r) => r.Season === se), (r) => num(r.Games_Out)))), mx = Math.max(10, d3.max(per));
     const svg = d3.select(c).append('svg').attr('class', 'sh-bars').attr('viewBox', '0 0 250 46');
-    per.forEach((v, k) => { const h = (v / mx) * 20, x = 6 + k * 49; svg.append('rect').attr('x', x).attr('y', 28 - h).attr('width', 34).attr('height', Math.max(h, 1)).attr('fill', '#555'); svg.append('text').attr('x', x + 17).attr('y', 25 - h).attr('text-anchor', 'middle').attr('font-size', 9).text(String(v)); svg.append('text').attr('x', x + 17).attr('y', 41).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', '#555').text(seasons[k]); });
+    per.forEach((v, k) => { const h = (v / mx) * 16, x = 6 + k * 49; svg.append('rect').attr('x', x).attr('y', 28 - h).attr('width', 34).attr('height', Math.max(h, 1)).attr('fill', '#555'); svg.append('text').attr('x', x + 17).attr('y', 25 - h).attr('text-anchor', 'middle').attr('font-size', 9).text(String(v)); svg.append('text').attr('x', x + 17).attr('y', 41).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', '#555').text(seasons[k]); });
     c.append(el('div', 'sh-cap', 'Games missed to injury by season'));
     if (i.recent.length) { const ul = el('div', 'sh-row'); ul.append(el('b', '', 'Latest known issues'), document.createTextNode(' ' + i.recent.map((r) => `${r.Injury || 'Unspecified'} (${showD(r.Start_Date)}, ${Math.round(num(r.Games_Out))} g${r.Status === 'Ongoing' ? ', ongoing' : ''})`).join('; '))); c.append(ul); }
     grid.append(c);
