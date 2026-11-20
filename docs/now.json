@@ -1,14 +1,11 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_07_15PM: 126 player rows, 91 kept for Right now.",
- "report_file": "2026-11-19_07_15PM",
- "report_time_utc": "2026-11-20T00:15Z",
- "report_time_et": "2026-11-19 19:15",
- "rows": 91,
- "teams_not_submitted": [
-  "Kings",
-  "Lakers"
- ],
+ "detail": "Read 2026-11-19_08_30PM: 134 player rows, 97 kept for Right now.",
+ "report_file": "2026-11-19_08_30PM",
+ "report_time_utc": "2026-11-20T01:30Z",
+ "report_time_et": "2026-11-19 20:30",
+ "rows": 97,
+ "teams_not_submitted": [],
  "parser": 2,
  "games": [
   {
