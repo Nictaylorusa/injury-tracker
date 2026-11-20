@@ -95,7 +95,7 @@ section[hidden]{display:none}
 <h3 id="spurs_fw_h">Likely matchups by chance of starting</h3>
 <p class="note" id="spurs_fw_note"></p>
 <div class="bar"><label><input type="checkbox" id="spurs_g"> Include guards</label><button class="chip" id="fw_export" type="button" disabled>Export PDF summary</button><span class="note" id="fw_hint"></span></div>
-<div class="wrapt"><table><thead><tr><th title="Tick up to 5 for the PDF">PDF</th><th>Player</th><th>Pos</th><th>Start chance</th><th class="n" title="Starts this season, and in the team's last five games">Starts</th><th class="n" title="Minutes per game this season">Min</th><th>Now</th><th class="n" title="Stays out this season, and games missed">This season</th><th class="n" title="Stays out over the last five seasons, and games missed">Five seasons</th><th title="Body area with the most stays, and how many">Most common area</th><th>Latest stay</th></tr></thead><tbody id="spurs_fw"></tbody></table></div>
+<div class="wrapt"><table><thead><tr><th title="Tick up to 5 for the PDF">PDF</th><th>Player</th><th>Pos</th><th>Start chance</th><th class="n" title="Starts this season, and in the team's last five games">Starts</th><th class="n" title="Minutes per game this season">Min</th><th>Now</th><th class="n" title="Known issues this season, and games missed">This season</th><th class="n" title="Known issues over the last five seasons, and games missed">Five seasons</th><th title="Body area with the most known issues, and how many">Most common area</th><th>Latest known issue</th></tr></thead><tbody id="spurs_fw"></tbody></table></div>
 <h3>Recent history (last 14 days)</h3>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Listed out</th><th>Games out</th></tr></thead><tbody id="spurs_hist"></tbody></table></div>
 </div></details>
@@ -104,14 +104,14 @@ section[hidden]{display:none}
 <label>Status <select id="cstatus"></select></label>
 </div>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Status</th><th>Injury</th><th>Game</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Ways to attack a player with this injury: actions he may have trouble defending. General scouting reasoning, not a medical statement.">N.i.C.E. Scouting</th></tr></thead><tbody id="now_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished known issues, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
 <h2>Players listed by team</h2>
 <div class="chart" id="now_chart"></div>
 <p class="note" id="now_note"></p>
 </section>
 
 <section id="search" hidden>
-<div class="bar"><input id="sqi" type="search" placeholder="Try: calf+2022   or   hamstring   or   Haliburton+knee" aria-label="Search stays"></div>
+<div class="bar"><input id="sqi" type="search" placeholder="Try: calf+2022   or   hamstring   or   Haliburton+knee" aria-label="Search known issues"></div>
 <div class="chips"><span class="chiplabel">Body part</span>
 <button class="chip" data-term="ankle">Ankle</button><button class="chip" data-term="knee">Knee</button><button class="chip" data-term="calf">Calf</button><button class="chip" data-term="hamstring">Hamstring</button><button class="chip" data-term="achilles">Achilles</button><button class="chip" data-term="back">Back</button><button class="chip" data-term="foot">Foot</button><button class="chip" data-term="hip">Hip</button><button class="chip" data-term="groin">Groin</button><button class="chip" data-term="shoulder">Shoulder</button><button class="chip" data-term="wrist">Wrist</button><button class="chip" data-term="concussion">Concussion</button></div>
 <div class="chips"><span class="chiplabel">Kind</span>
@@ -124,9 +124,9 @@ section[hidden]{display:none}
 <div><h2>Games missed by season</h2><div class="chart" id="search_season_chart"></div></div>
 <div><h2>Games missed by team</h2><div class="chart" id="search_team_chart"></div></div>
 </div>
-<h2>Every matching stay</h2>
+<h2>Every matching known issue</h2>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games missed</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Ways to attack a player with this injury: actions he may have trouble defending. General scouting reasoning, not a medical statement.">N.i.C.E. Scouting</th></tr></thead><tbody id="search_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished known issues, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
 <p class="note">Separate words with + or a space and every one must match, so calf+2022 means calf injuries in 2022-23. Words are matched against the injury text, player, team and type (illness, injury-management rest). A 4-digit year means the season that starts that year (2022 is 2022-23); you can also type 2022-23. Click the buttons to add or remove a word.</p>
 </section>
 
@@ -137,17 +137,17 @@ section[hidden]{display:none}
 </div>
 <p class="lede" id="team_sentence"></p>
 <div class="cards" id="team_cards"></div>
-<h2>Longest stays out (games)</h2>
+<h2>Longest known issues (games)</h2>
 <div class="chart" id="team_top"></div>
-<h2>Every stay</h2>
+<h2>Every known issue</h2>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Injury</th><th>Type</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Status</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Ways to attack a player with this injury: actions he may have trouble defending. General scouting reasoning, not a medical statement.">N.i.C.E. Scouting</th></tr></thead><tbody id="team_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished known issues, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
 </section>
 
 <section id="league" hidden>
 <div class="bar">
 <label>Season <select id="lseason"></select></label>
-<label>Measure <select id="metric"><option value="games">Player-games missed</option><option value="stays">Number of stays</option></select></label>
+<label>Measure <select id="metric"><option value="games">Player-games missed</option><option value="stays">Number of known issues</option></select></label>
 </div>
 <p class="lede" id="league_sentence"></p>
 <div class="chart" id="league_chart"></div>
@@ -168,11 +168,11 @@ section[hidden]{display:none}
 </div>
 <h2 id="player_title"></h2>
 <div class="wrapt"><table><thead><tr><th>Player</th><th>Team</th><th>Season</th><th>Injury</th><th>First game</th><th>Last game</th><th class="n">Games</th><th>Typical recovery</th><th class="n" title="Middle of the typical range minus days out. Green: still inside the typical window. Red: past it.">Pace (days)</th><th title="Ways to attack a player with this injury: actions he may have trouble defending. General scouting reasoning, not a medical statement.">N.i.C.E. Scouting</th></tr></thead><tbody id="player_rows"></tbody></table></div>
-<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished stays, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
+<p class="note">Typical recovery is a general return-to-play range for that kind of injury, not a prediction for any one player. Pace is the middle of that range minus days out so far (counted from the first missed game). Green (+) means still inside the typical window; the number is days left to the middle of the range. Red (−) means past it. On finished known issues, green means back sooner than typical. A dash means there is no standard timeline for that description (for example "injury management") or days out is not known yet. N.i.C.E. Scouting lists offensive actions that a defender with that kind of injury may have trouble guarding (general scouting reasoning, not a medical statement); where the injury names a side, the first item says which way to attack.</p>
 </section>
 
 <details><summary>What these numbers are</summary>
-<p><b>Stays and games missed</b> are built from the NBA's official injury reports, which teams file before every game, using the public archive in the sportsdataverse project (the hoopR "nba_stats_injury_report" release). For each game and player I take the last version of the report. A game counts as missed when the player is listed Out for an injury, illness, injury-related rest ("Rest – knee management") or return-to-competition reconditioning. G League assignments, personal reasons, suspensions, "not with team" and plain rest are not counted. A stay is a run of consecutive team games listed Out; if a player is listed Questionable or Probable in between, it starts a new stay. Regular season, play-in and playoff games are included. Preseason and summer league are not.</p>
+<p><b>Known issues and games missed</b> are built from the NBA's official injury reports, which teams file before every game, using the public archive in the sportsdataverse project (the hoopR "nba_stats_injury_report" release). For each game and player I take the last version of the report. A game counts as missed when the player is listed Out for an injury, illness, injury-related rest ("Rest – knee management") or return-to-competition reconditioning. G League assignments, personal reasons, suspensions, "not with team" and plain rest are not counted. A known issue is a run of consecutive team games listed Out; if a player is listed Questionable or Probable in between, it starts a new known issue. Regular season, play-in and playoff games are included. Preseason and summer league are not.</p>
 <p><b>Checks:</b> Haliburton in 2025-26 comes to 82 games and Lillard to 88, matching HoopsMatic's counts. Full-season league totals run about 3–5% above HoopsMatic's, which counts only confirmed roster players.</p>
 <p><b>Limits:</b> "listed Out" is what the team filed, not a medical diagnosis. Games a player missed without being listed are not here. <b>Right now</b> shows each team's report for its next game; the archive can run up to a day behind the NBA's own site.</p>
 </details>
@@ -395,13 +395,13 @@ function buildSheet() {
     kv('Starts', p.gp ? `${p.starts} of ${p.gp} games${p.l5n ? `, last ${p.l5n} team games: ${p.l5}` : ''}, ${p.mpg == null ? '—' : p.mpg.toFixed(1)} min` : 'none this season');
     kv('Now', i.c ? `${i.c.Status}, ${i.c.Injury}` : 'Not on the latest report');
     if (i.c) { const [rc, pc] = recCells0(i.c.Injury, daysOut(opp, i.name)); if (rc && rc.t && rc.t !== '—') kv('Typical recovery', rc.t + (pc && pc.t && pc.t !== '—' ? `, pace ${pc.t}` : '')); const mv = moveCell(i.c.Injury); if (mv && mv.t) kv('N.i.C.E. Scouting', mv.t.split('\n').slice(0, 2).join(' ').replace(/•/g, '·')); }
-    kv('This season', i.ses.length ? `${i.ses.length} ${i.ses.length === 1 ? 'stay' : 'stays'}, ${i.gS} ${i.gS === 1 ? 'game' : 'games'} missed` : 'no stays');
-    kv('Five seasons', `${i.mine.length} stays, ${i.gA} games missed${i.fam ? `; most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}`);
+    kv('This season', i.ses.length ? `${i.ses.length} ${i.ses.length === 1 ? 'known issue' : 'known issues'}, ${i.gS} ${i.gS === 1 ? 'game' : 'games'} missed` : 'no known issues');
+    kv('Five seasons', `${i.mine.length} known issues, ${i.gA} games missed${i.fam ? `; most often ${i.fam[0].toLowerCase()} (${i.fam[1]})` : ''}`);
     const per = seasons.map((se) => Math.round(d3.sum(i.mine.filter((r) => r.Season === se), (r) => num(r.Games_Out)))), mx = Math.max(10, d3.max(per));
     const svg = d3.select(c).append('svg').attr('class', 'sh-bars').attr('viewBox', '0 0 250 46');
     per.forEach((v, k) => { const h = (v / mx) * 20, x = 6 + k * 49; svg.append('rect').attr('x', x).attr('y', 28 - h).attr('width', 34).attr('height', Math.max(h, 1)).attr('fill', '#555'); svg.append('text').attr('x', x + 17).attr('y', 25 - h).attr('text-anchor', 'middle').attr('font-size', 9).text(String(v)); svg.append('text').attr('x', x + 17).attr('y', 41).attr('text-anchor', 'middle').attr('font-size', 8.5).attr('fill', '#555').text(seasons[k]); });
     c.append(el('div', 'sh-cap', 'Games missed to injury by season'));
-    if (i.recent.length) { const ul = el('div', 'sh-row'); ul.append(el('b', '', 'Latest stays'), document.createTextNode(' ' + i.recent.map((r) => `${r.Injury || 'Unspecified'} (${showD(r.Start_Date)}, ${Math.round(num(r.Games_Out))} g${r.Status === 'Ongoing' ? ', ongoing' : ''})`).join('; '))); c.append(ul); }
+    if (i.recent.length) { const ul = el('div', 'sh-row'); ul.append(el('b', '', 'Latest known issues'), document.createTextNode(' ' + i.recent.map((r) => `${r.Injury || 'Unspecified'} (${showD(r.Start_Date)}, ${Math.round(num(r.Games_Out))} g${r.Status === 'Ongoing' ? ', ongoing' : ''})`).join('; '))); c.append(ul); }
     grid.append(c);
   });
   sh.append(el('div', 'sh-foot', "Starts come from this season's box scores and are not a lineup announcement. Injury history is from the NBA's published injury reports (games listed out) and may lag by a day. N.i.C.E. Scouting notes are general scouting reasoning, not a medical statement."));
@@ -439,7 +439,7 @@ function drawSpurs() {
   const listed = new Set(cur.map((r) => r.Player));
   const rec = STAYS.filter((r) => r.Team === opp && r.Season === META.season && !listed.has(r.Player) && (r.Status === 'Ongoing' || r.End_Date >= cut))
     .sort((a, b) => b.End_Date.localeCompare(a.End_Date));
-  if (!rec.length) emptyRow(hist, 4, 'No other stays in the last 14 days.');
+  if (!rec.length) emptyRow(hist, 4, 'No other known issues in the last 14 days.');
   rec.forEach((r) => addRow(hist, [r.Player, r.Injury, `${showD(r.Start_Date)} to ${stayEnd(r)}`, String(num(r.Games_Out))]));
 }
 const FAM = [
@@ -471,9 +471,9 @@ function drawTimeline(name) {
   const cards = $('tl_cards'); cards.replaceChildren();
   const games = d3.sum(rows, (r) => num(r.Games_Out)), longest = rows.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out))[0];
   const fc = d3.rollup(rows, (v) => v.length, (r) => famOf(r.Injury)[0]), top = Array.from(fc).sort((a, b) => b[1] - a[1])[0];
-  card(cards, String(rows.length), rows.length === 1 ? 'stay out on record' : 'stays out on record');
+  card(cards, String(rows.length), rows.length === 1 ? 'known issue on record' : 'known issues on record');
   card(cards, fmtN(games), 'games missed in total');
-  card(cards, longest ? String(Math.round(num(longest.Games_Out))) : '0', longest ? `games, longest stay (${longest.Injury || 'unspecified'}, ${longest.Season})` : 'games, longest stay');
+  card(cards, longest ? String(Math.round(num(longest.Games_Out))) : '0', longest ? `games, longest known issue (${longest.Injury || 'unspecified'}, ${longest.Season})` : 'games, longest known issue');
   card(cards, top ? top[0] : '—', 'most common area');
   const lg = $('tl_legend'); lg.replaceChildren();
   const used = FAM.concat([OTHERFAM]).filter((f) => rows.some((r) => famOf(r.Injury)[0] === f[0]));
@@ -482,7 +482,7 @@ function drawTimeline(name) {
   const box = $('tl_box'); box.replaceChildren();
   const seasons = Array.from(new Set(STAYS.map((r) => r.Season))).sort();
   const W = Math.max(300, box.clientWidth || 640), L = 62, Rm = 8, T = 20, RH = 34, BH = 18, H = T + seasons.length * RH + 4;
-  const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', `Timeline of ${rows.length} stays for ${name}, one row per season`);
+  const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', `Timeline of ${rows.length} known issues for ${name}, one row per season`);
   const utc = (str) => Date.UTC(+str.slice(0, 4), +str.slice(5, 7) - 1, +str.slice(8, 10));
   const tip = d3.select(box).append('div').attr('class', 'tip').style('display', 'none');
   const today = etToday();
@@ -541,16 +541,16 @@ const R = {
     else if (!m.length) sen.textContent = `Nothing matches "${toks.join('+')}". Try fewer or shorter words (for example "hamstring" rather than "hamstring strain").`;
     else {
       const games = d3.sum(m, (r) => num(r.Games_Out)), pl = new Set(m.map((r) => r.Player)).size;
-      sen.textContent = `"${toks.join('+')}": ${m.length} stays by ${pl} players, ${fmtN(games)} games missed in all.`;
-      card(cards, fmtN(games), 'games missed'); card(cards, m.length, 'stays'); card(cards, pl, 'players'); card(cards, d3.max(m, (r) => num(r.Games_Out)), 'longest stay, games');
+      sen.textContent = `"${toks.join('+')}": ${m.length} known issues by ${pl} players, ${fmtN(games)} games missed in all.`;
+      card(cards, fmtN(games), 'games missed'); card(cards, m.length, 'known issues'); card(cards, pl, 'players'); card(cards, d3.max(m, (r) => num(r.Games_Out)), 'longest known issue, games');
     }
     const roll = (key) => d3.rollups(m, (v) => ({ g: d3.sum(v, (r) => num(r.Games_Out)), n: v.length }), key);
     const sBy = roll((r) => r.Season).sort((a, b) => b[0].localeCompare(a[0]));
-    hbar($('search_season_chart'), sBy.map(([s, v]) => ({ label: s, value: v.g, show: fmtN(v.g), tip: `${s}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by season');
+    hbar($('search_season_chart'), sBy.map(([s, v]) => ({ label: s, value: v.g, show: fmtN(v.g), tip: `${s}: ${fmtN(v.g)} games missed, ${v.n} known issues` })), 'Games missed by season');
     const tBy = roll((r) => r.Team).sort((a, b) => b[1].g - a[1].g).slice(0, 15);
-    hbar($('search_team_chart'), tBy.map(([t, v]) => ({ label: t, value: v.g, show: fmtN(v.g), tip: `${t}: ${fmtN(v.g)} games missed, ${v.n} stays` })), 'Games missed by team (top 15)');
+    hbar($('search_team_chart'), tBy.map(([t, v]) => ({ label: t, value: v.g, show: fmtN(v.g), tip: `${t}: ${fmtN(v.g)} games missed, ${v.n} known issues` })), 'Games missed by team (top 15)');
     const tb = $('search_rows'); tb.replaceChildren();
-    if (!m.length) { emptyRow(tb, 10, toks.length ? 'No stays match.' : 'Search above to see stays here.'); return; }
+    if (!m.length) { emptyRow(tb, 10, toks.length ? 'No known issues match.' : 'Search above to see known issues here.'); return; }
     const rs = m.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out) || b.Start_Date.localeCompare(a.Start_Date));
     rs.slice(0, 300).forEach((r) => addRow(tb, [r.Player, r.Team, r.Season, r.Injury || '—', showD(r.Start_Date), stayEnd(r), { t: String(Math.round(num(r.Games_Out))), n: true }, ...recCells(r.Injury, stayDays(r))]));
     if (rs.length > 300) addRow(tb, ['Showing the 300 longest of ' + rs.length + '. Add a word to narrow it.', '', '', '', '', '', '']);
@@ -562,26 +562,26 @@ const R = {
     if (i < 0) $('team_sentence').textContent = `No games missed are logged for the ${t} in ${s}.`;
     else {
       const r = all[i];
-      $('team_sentence').textContent = `The ${t} missed ${fmtN(r.Games_Out)} player-games across ${r.Stays} stays in ${s}, ranking ${i + 1} of ${all.length} teams.`;
-      card(cards, fmtN(r.Games_Out), 'player-games missed'); card(cards, r.Stays, 'stays out'); card(cards, r.Players, 'different players'); card(cards, r.Longest, 'longest stay, games');
+      $('team_sentence').textContent = `The ${t} missed ${fmtN(r.Games_Out)} player-games across ${r.Stays} known issues in ${s}, ranking ${i + 1} of ${all.length} teams.`;
+      card(cards, fmtN(r.Games_Out), 'player-games missed'); card(cards, r.Stays, 'known issues'); card(cards, r.Players, 'different players'); card(cards, r.Longest, 'longest known issue, games');
     }
     const rs = STAYS.filter((r) => r.Season === s && r.Team === t);
     const top = rs.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 10);
-    hbar($('team_top'), top.map((r) => ({ label: r.Player, value: num(r.Games_Out), show: String(num(r.Games_Out)), tip: `${r.Player}: ${num(r.Games_Out)} games, ${r.Injury}` })), 'Longest stays out');
+    hbar($('team_top'), top.map((r) => ({ label: r.Player, value: num(r.Games_Out), show: String(num(r.Games_Out)), tip: `${r.Player}: ${num(r.Games_Out)} games, ${r.Injury}` })), 'Longest known issues');
     const tb = $('team_rows'); tb.replaceChildren();
-    if (!rs.length) emptyRow(tb, 10, 'No stays logged for this team and season.');
+    if (!rs.length) emptyRow(tb, 10, 'No known issues logged for this team and season.');
     rs.slice().sort((a, b) => b.Start_Date.localeCompare(a.Start_Date)).forEach((r) => addRow(tb, [r.Player, r.Injury || '—', r.Category, showD(r.Start_Date), stayEnd(r), { t: String(num(r.Games_Out)), n: true }, r.Status, ...recCells(r.Injury, stayDays(r))]));
   },
   league() {
     const ts = teamSeason(), s = state.lseason, games = state.metric === 'games';
     const rs = ts.filter((r) => r.Season === s).sort((a, b) => (games ? b.Games_Out - a.Games_Out : b.Stays - a.Stays));
     $('league_sentence').textContent = rs.length ? `In ${s}, ${fmtN(d3.sum(rs, (r) => r.Games_Out))} player-games were missed across the league. The ${rs[0].Team} lost the most (${fmtN(rs[0].Games_Out)}) and the ${rs[rs.length - 1].Team} the fewest (${fmtN(rs[rs.length - 1].Games_Out)}).` : '';
-    hbar($('league_chart'), rs.map((r) => ({ label: r.Team, value: games ? r.Games_Out : r.Stays, show: fmtN(games ? r.Games_Out : r.Stays), tip: `${r.Team}: ${fmtN(r.Games_Out)} games missed, ${r.Stays} stays, ${r.Players} players` })), 'Games missed by team');
+    hbar($('league_chart'), rs.map((r) => ({ label: r.Team, value: games ? r.Games_Out : r.Stays, show: fmtN(games ? r.Games_Out : r.Stays), tip: `${r.Team}: ${fmtN(r.Games_Out)} games missed, ${r.Stays} known issues, ${r.Players} players` })), 'Games missed by team');
     const seasons = ['2022-23', '2023-24', '2024-25', '2025-26', '2026-27'], tb = $('league_rows'); tb.replaceChildren();
     Array.from(new Set(STAYS.map((r) => r.Team))).sort().forEach((t) => addRow(tb, [t, ...seasons.map((x) => ({ t: fmtN(d3.sum(STAYS.filter((r) => r.Team === t && r.Season === x), (r) => num(r.Games_Out))), n: true }))]));
   },
   players() {
-    const q = state.q.trim().toLowerCase(); $('player_title').textContent = q ? `Stays matching "${state.q.trim()}"` : 'Longest stays out on record';
+    const q = state.q.trim().toLowerCase(); $('player_title').textContent = q ? `Known issues matching "${state.q.trim()}"` : 'Longest known issues on record';
     let rs = q ? STAYS.filter((r) => r.Player.toLowerCase().includes(q)).sort((a, b) => b.Start_Date.localeCompare(a.Start_Date))
                : STAYS.slice().sort((a, b) => num(b.Games_Out) - num(a.Games_Out)).slice(0, 25);
     const names = q ? Array.from(new Set(rs.map((r) => r.Player))).sort() : [];
@@ -633,7 +633,7 @@ Promise.all([d3.csv('stays.csv'), d3.csv('current.csv'), d3.json('meta.json'), d
   fillSelect($('lseason'), seasons.map((x) => [x, x]), state.lseason, (v) => { state.lseason = v; redraw(); });
   $('metric').onchange = () => { state.metric = $('metric').value; redraw(); };
   const out = CUR.filter((r) => r.Status === 'Out').length, un = CUR.filter((r) => UNSURE.includes(r.Status)).length;
-  $('headline').textContent = `Right now the NBA's injury reports list ${out} players out and ${un} doubtful or questionable. Over the last five seasons they show ${fmtN(STAYS.length)} stays out and ${fmtN(d3.sum(STAYS, (r) => num(r.Games_Out)))} player-games missed.`;
+  $('headline').textContent = `Right now the NBA's injury reports list ${out} players out and ${un} doubtful or questionable. Over the last five seasons they show ${fmtN(STAYS.length)} known issues and ${fmtN(d3.sum(STAYS, (r) => num(r.Games_Out)))} player-games missed.`;
   $('built').textContent = `Data refreshed ${META.built_at_utc || '—'} UTC. Games counted through ${META.games_through || '—'}.`;
   show((location.hash || '').slice(1));
   setInterval(ageLabel, 60000);
