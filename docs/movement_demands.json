@@ -1,5 +1,5 @@
 {
- "note": "Movements that tend to load, or be limited by, each kind of injury. General guidance for planning, not clinical clearance. First matching rule wins. {S}/{s} is the injured side (Right/right) and {O}/{o} the opposite side. Edit freely.",
+ "note": "Movements that tend to load, or be limited by, each kind of injury. General guidance for planning, not clinical clearance. First matching rule wins. {S}/{s} is the injured side (Right/right) and {O}/{o} the opposite side. Edit freely. 'attack' and 'attack_sided' feed the Nice Scouting column: offensive actions a defender with this injury may have trouble guarding. They are the movements above turned around, general reasoning by this tracker and not checked against a study.",
  "rules": [
   {
    "match": "patell|jumper|quad.*tendon",
@@ -11,7 +11,14 @@
     "Deep knee bends and lunges"
    ],
    "sided": [],
-   "basis": "Van der Worp et al. 2014 (systematic review): horizontal landing after forward acceleration carries the greatest risk; stiff landing patterns linked to onset."
+   "basis": "Van der Worp et al. 2014 (systematic review): horizontal landing after forward acceleration carries the greatest risk; stiff landing patterns linked to onset.",
+   "attack": [
+    "Stop-and-go dribbles: sprint, hard stop, re-accelerate",
+    "Pump fakes to bait a jump, then drive",
+    "Offensive rebounds and putbacks (repeat jump contests)",
+    "Pace: push in transition so he has to sprint back and stop"
+   ],
+   "attack_sided": []
   },
   {
    "match": "achilles|soleus|gastroc|calf",
@@ -25,7 +32,16 @@
    "sided": [
     "Push-off from the {s} leg when driving or cutting"
    ],
-   "basis": "General reasoning; Habets et al. 2017 (review) describes running and jumping as the activities held back until Achilles symptoms settle."
+   "basis": "General reasoning; Habets et al. 2017 (review) describes running and jumping as the activities held back until Achilles symptoms settle.",
+   "attack": [
+    "Pump fakes and putbacks that force repeat jump attempts",
+    "Straight-line blow-bys and transition pace",
+    "Quick first step off a hesitation",
+    "Rim runs and lobs that need explosive toe-off"
+   ],
+   "attack_sided": [
+    "Drive to his {o} side so he has to push off the {s} leg to stay in front"
+   ]
   },
   {
    "match": "hamstring",
@@ -37,7 +53,14 @@
     "Explosive acceleration"
    ],
    "sided": [],
-   "basis": "Late-swing review (Scand J Med Sci Sports 2019): the most likely injury phase in high-speed running is late swing."
+   "basis": "Late-swing review (Scand J Med Sci Sports 2019): the most likely injury phase in high-speed running is late swing.",
+   "attack": [
+    "Transition and early offense: make him run and recover at speed",
+    "Backdoor cuts and straight-line blow-bys",
+    "Stop-and-go dribbles (slow, then burst)",
+    "Rim runs that force long recovery strides"
+   ],
+   "attack_sided": []
   },
   {
    "match": "groin|adductor",
@@ -49,7 +72,14 @@
     "Sprint acceleration"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Crossovers and between-the-legs moves that force wide lateral slides",
+    "Side-step and step-back threes",
+    "Ball screens that make him slide, then recover laterally",
+    "Isolations that go both directions in a row"
+   ],
+   "attack_sided": []
   },
   {
    "match": "quad|hip.*flexor|flexor.*hip|psoas",
@@ -61,7 +91,14 @@
     "High-knee or kicking-type leg swings"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Hesitation and stop-and-go dribbles",
+    "Transition pace and rim runs",
+    "Pump fakes to bait a jump",
+    "First-step bursts out of triple threat"
+   ],
+   "attack_sided": []
   },
   {
    "match": "\\bhip\\b|glute|pelvi|pointer",
@@ -73,7 +110,14 @@
     "Sprint acceleration"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Hard drives that make him hold a low stance",
+    "Crossovers that force deep lateral slides",
+    "Post seals and bump-and-turn finishes in the lane",
+    "Quick cuts off screens"
+   ],
+   "attack_sided": []
   },
   {
    "match": "ankle|syndesmo|malleol",
@@ -87,7 +131,16 @@
    "sided": [
     "{S}-to-{o} cuts (planting on the {s} ankle)"
    ],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Crossovers and hesitations that force sharp plants",
+    "Hard closeouts: shoot or drive off a late closeout",
+    "Pump fakes to draw him into awkward landings",
+    "Quick lateral screen-and-roll actions"
+   ],
+   "attack_sided": [
+    "Drive to his {o} side, or cross back toward his {s} side, so he plants on the {s} ankle"
+   ]
   },
   {
    "match": "foot|toe|metatars|midfoot|heel|plantar|lisfranc|jones|calcane|navicular|sesamoid",
@@ -101,7 +154,16 @@
    "sided": [
     "Push-off from the {s} foot when driving or cutting"
    ],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Blow-bys in a straight line",
+    "Putbacks that force repeat jump takeoffs",
+    "Quick cuts and hard stops",
+    "Transition pace and long possessions"
+   ],
+   "attack_sided": [
+    "Drive to his {o} side so he pushes off the {s} foot to stay in front"
+   ]
   },
   {
    "match": "knee|menisc|\\bacl\\b|\\bmcl\\b|\\blcl\\b|\\bpcl\\b|cruciate|arthroscop",
@@ -115,7 +177,16 @@
    "sided": [
     "{S}-to-{o} cuts (planting on the {s} leg)"
    ],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Hesitation and crossovers that force planted cuts",
+    "Ball screens that switch him onto a quicker player",
+    "Stop-and-go dribbles (decelerate, then cut)",
+    "Pump fakes and putbacks that force repeat jumps"
+   ],
+   "attack_sided": [
+    "Drive to his {o} side, or cross back toward his {s} side, so he plants on the {s} leg"
+   ]
   },
   {
    "match": "shin|tibi|fibul|lower leg|\\bleg\\b",
@@ -126,7 +197,13 @@
     "Sprint push-off"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Transition pace and long possessions",
+    "Putbacks that force repeat jumps",
+    "Straight-line blow-bys"
+   ],
+   "attack_sided": []
   },
   {
    "match": "neck|cervical",
@@ -137,7 +214,13 @@
     "Hard falls"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Quick ball and player movement that needs fast head turns",
+    "Pump fakes he has to track with his head",
+    "Off-ball cuts behind his sightline"
+   ],
+   "attack_sided": []
   },
   {
    "match": "back|lumbar|spine|spinal|disc|thoracic|sacr",
@@ -149,7 +232,13 @@
     "Bending forward and lifting"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Post seals and rim runs that need him to hold position",
+    "Fakes that make him rotate and recover",
+    "Offensive rebounds when he must box out under load"
+   ],
+   "attack_sided": []
   },
   {
    "match": "shoulder|rotator|labr|clavic|acromio|scapul|humer|bicep|tricep|pectoral|\\bpec\\b|elbow",
@@ -161,7 +250,13 @@
     "Reaching to contest shots and passes"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Shots and passes over his injured side",
+    "Quick passes through his reach",
+    "Drives that make him use that arm to contest"
+   ],
+   "attack_sided": []
   },
   {
    "match": "wrist|hand|finger|thumb|metacarp|pinky|\\bmcp\\b|forearm",
@@ -173,7 +268,13 @@
     "Contact when fouling or being fouled"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Quick passes and strips he may not secure",
+    "Shots over his injured hand",
+    "Rebounds he has to grip and control"
+   ],
+   "attack_sided": []
   },
   {
    "match": "rib|chest|oblique|abdom|\\bcore\\b|sternum|trunk|flank",
@@ -185,7 +286,13 @@
     "Hard falls"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Pump fakes and spins that make him rotate",
+    "Rim runs and transition pace",
+    "Offensive rebounds that need an explosive reach"
+   ],
+   "attack_sided": []
   },
   {
    "match": "head|concuss|face|facial|nose|nasal|eye|orbital|jaw|cheek|sinus",
@@ -195,7 +302,13 @@
     "Collisions and hard falls"
    ],
    "sided": [],
-   "basis": "General sports-science reasoning by this tracker; not checked against a specific study."
+   "basis": "General sports-science reasoning by this tracker; not checked against a specific study.",
+   "attack": [
+    "Fast ball movement and off-ball cuts that demand quick reads",
+    "Screening actions that need quick recovery",
+    "Pump fakes and shot fakes"
+   ],
+   "attack_sided": []
   }
  ],
  "sources": [
