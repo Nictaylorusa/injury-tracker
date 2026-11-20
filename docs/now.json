@@ -1,33 +1,26 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-19_11_30PM: 134 player rows, 97 kept for Right now.",
- "report_file": "2026-11-19_11_30PM",
- "report_time_utc": "2026-11-20T04:30Z",
- "report_time_et": "2026-11-19 23:30",
- "rows": 97,
- "teams_not_submitted": [],
+ "detail": "Read 2026-11-20_12_30AM: 95 player rows, 63 kept for Right now.",
+ "report_file": "2026-11-20_12_30AM",
+ "report_time_utc": "2026-11-20T05:30Z",
+ "report_time_et": "2026-11-20 00:30",
+ "rows": 63,
+ "teams_not_submitted": [
+  "Bucks",
+  "76ers",
+  "Blazers",
+  "Knicks",
+  "Clippers",
+  "Mavericks",
+  "Grizzlies",
+  "Timberwolves",
+  "Pelicans",
+  "Spurs",
+  "Celtics",
+  "Kings"
+ ],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-19",
-   "time": "08:00",
-   "matchup": "GSW@MEM"
-  },
-  {
-   "date": "2026-11-19",
-   "time": "08:00",
-   "matchup": "LAC@SAS"
-  },
-  {
-   "date": "2026-11-19",
-   "time": "08:00",
-   "matchup": "NYK@MIN"
-  },
-  {
-   "date": "2026-11-19",
-   "time": "08:00",
-   "matchup": "POR@MIL"
-  },
   {
    "date": "2026-11-20",
    "time": "07:00",
@@ -72,6 +65,36 @@
    "date": "2026-11-20",
    "time": "10:00",
    "matchup": "SAC@LAL"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "01:00",
+   "matchup": "MIL@PHI"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "07:30",
+   "matchup": "POR@NYK"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "08:00",
+   "matchup": "LAC@DAL"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "08:00",
+   "matchup": "MEM@MIN"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "08:00",
+   "matchup": "NOP@SAS"
+  },
+  {
+   "date": "2026-11-21",
+   "time": "10:00",
+   "matchup": "BOS@SAC"
   }
  ]
 }
