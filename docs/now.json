@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-20_01_45PM: 96 player rows, 64 kept for Right now.",
- "report_file": "2026-11-20_01_45PM",
- "report_time_utc": "2026-11-20T18:45Z",
- "report_time_et": "2026-11-20 13:45",
+ "detail": "Read 2026-11-20_02_45PM: 96 player rows, 64 kept for Right now.",
+ "report_file": "2026-11-20_02_45PM",
+ "report_time_utc": "2026-11-20T19:45Z",
+ "report_time_et": "2026-11-20 14:45",
  "rows": 64,
  "teams_not_submitted": [
   "Bucks",
