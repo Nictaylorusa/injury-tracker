@@ -1,61 +1,30 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-20_11_30PM: 150 player rows, 101 kept for Right now.",
- "report_file": "2026-11-20_11_30PM",
- "report_time_utc": "2026-11-21T04:30Z",
- "report_time_et": "2026-11-20 23:30",
- "rows": 101,
+ "detail": "Read 2026-11-21_12_30AM: 51 player rows, 39 kept for Right now.",
+ "report_file": "2026-11-21_12_30AM",
+ "report_time_utc": "2026-11-21T05:30Z",
+ "report_time_et": "2026-11-21 00:30",
+ "rows": 39,
  "teams_not_submitted": [
   "Pelicans",
-  "Kings"
+  "Kings",
+  "Pistons",
+  "Hawks",
+  "Thunder",
+  "Heat",
+  "Mavericks",
+  "Jazz",
+  "Nuggets",
+  "Bulls",
+  "Magic",
+  "Wizards",
+  "Pacers",
+  "Knicks",
+  "Celtics",
+  "Warriors"
  ],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-20",
-   "time": "07:00",
-   "matchup": "CHA@ATL"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "07:30",
-   "matchup": "IND@CLE"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "07:30",
-   "matchup": "ORL@BKN"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "07:30",
-   "matchup": "TOR@DET"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "08:00",
-   "matchup": "NOP@OKC"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "08:00",
-   "matchup": "WAS@CHI"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "09:30",
-   "matchup": "PHX@UTA"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "10:00",
-   "matchup": "HOU@DEN"
-  },
-  {
-   "date": "2026-11-20",
-   "time": "10:00",
-   "matchup": "SAC@LAL"
-  },
   {
    "date": "2026-11-21",
    "time": "01:00",
@@ -85,6 +54,41 @@
    "date": "2026-11-21",
    "time": "10:00",
    "matchup": "BOS@SAC"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "03:30",
+   "matchup": "DET@ATL"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "06:00",
+   "matchup": "OKC@MIA"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "07:00",
+   "matchup": "DAL@UTA"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "07:00",
+   "matchup": "DEN@CHI"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "07:00",
+   "matchup": "ORL@WAS"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "08:00",
+   "matchup": "IND@NYK"
+  },
+  {
+   "date": "2026-11-22",
+   "time": "08:30",
+   "matchup": "BOS@GSW"
   }
  ]
 }
