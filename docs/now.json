@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-21_04_30AM: 51 player rows, 39 kept for Right now.",
- "report_file": "2026-11-21_04_30AM",
- "report_time_utc": "2026-11-21T09:30Z",
- "report_time_et": "2026-11-21 04:30",
+ "detail": "Read 2026-11-21_05_30AM: 51 player rows, 39 kept for Right now.",
+ "report_file": "2026-11-21_05_30AM",
+ "report_time_utc": "2026-11-21T10:30Z",
+ "report_time_et": "2026-11-21 05:30",
  "rows": 39,
  "teams_not_submitted": [
   "Pelicans",
