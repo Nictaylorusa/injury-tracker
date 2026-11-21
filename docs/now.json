@@ -1,10 +1,10 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-20_06_15PM: 143 player rows, 102 kept for Right now.",
- "report_file": "2026-11-20_06_15PM",
- "report_time_utc": "2026-11-20T23:15Z",
- "report_time_et": "2026-11-20 18:15",
- "rows": 102,
+ "detail": "Read 2026-11-20_07_00PM: 144 player rows, 101 kept for Right now.",
+ "report_file": "2026-11-20_07_00PM",
+ "report_time_utc": "2026-11-21T00:00Z",
+ "report_time_et": "2026-11-20 19:00",
+ "rows": 101,
  "teams_not_submitted": [
   "Pelicans",
   "Celtics",
