@@ -1,14 +1,13 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-21_05_15PM: 120 player rows, 93 kept for Right now.",
- "report_file": "2026-11-21_05_15PM",
- "report_time_utc": "2026-11-21T22:15Z",
- "report_time_et": "2026-11-21 17:15",
- "rows": 93,
+ "detail": "Read 2026-11-21_06_00PM: 125 player rows, 94 kept for Right now.",
+ "report_file": "2026-11-21_06_00PM",
+ "report_time_utc": "2026-11-21T23:00Z",
+ "report_time_et": "2026-11-21 18:00",
+ "rows": 94,
  "teams_not_submitted": [
   "Mavericks",
   "Jazz",
-  "Nuggets",
   "Knicks",
   "Celtics"
  ],
