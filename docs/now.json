@@ -1,12 +1,11 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-21_12_30PM: 52 player rows, 40 kept for Right now.",
- "report_file": "2026-11-21_12_30PM",
- "report_time_utc": "2026-11-21T17:30Z",
- "report_time_et": "2026-11-21 12:30",
- "rows": 40,
+ "detail": "Read 2026-11-21_01_15PM: 59 player rows, 45 kept for Right now.",
+ "report_file": "2026-11-21_01_15PM",
+ "report_time_utc": "2026-11-21T18:15Z",
+ "report_time_et": "2026-11-21 13:15",
+ "rows": 45,
  "teams_not_submitted": [
-  "Pelicans",
   "Kings",
   "Pistons",
   "Hawks",
