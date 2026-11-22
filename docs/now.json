@@ -1,13 +1,12 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-22_12_15PM: 67 player rows, 49 kept for Right now.",
- "report_file": "2026-11-22_12_15PM",
- "report_time_utc": "2026-11-22T17:15Z",
- "report_time_et": "2026-11-22 12:15",
- "rows": 49,
+ "detail": "Read 2026-11-22_01_00PM: 70 player rows, 52 kept for Right now.",
+ "report_file": "2026-11-22_01_00PM",
+ "report_time_utc": "2026-11-22T18:00Z",
+ "report_time_et": "2026-11-22 13:00",
+ "rows": 52,
  "teams_not_submitted": [
   "Mavericks",
-  "Knicks",
   "Celtics",
   "Grizzlies",
   "Hornets",
