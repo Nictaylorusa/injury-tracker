@@ -1,47 +1,37 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-21_11_45PM: 132 player rows, 98 kept for Right now.",
- "report_file": "2026-11-21_11_45PM",
- "report_time_utc": "2026-11-22T04:45Z",
- "report_time_et": "2026-11-21 23:45",
- "rows": 98,
+ "detail": "Read 2026-11-22_12_45AM: 65 player rows, 47 kept for Right now.",
+ "report_file": "2026-11-22_12_45AM",
+ "report_time_utc": "2026-11-22T05:45Z",
+ "report_time_et": "2026-11-22 00:45",
+ "rows": 47,
  "teams_not_submitted": [
   "Mavericks",
   "Knicks",
-  "Celtics"
+  "Celtics",
+  "Grizzlies",
+  "Hornets",
+  "Blazers",
+  "76ers",
+  "Nets",
+  "Timberwolves",
+  "Bucks",
+  "Raptors",
+  "Thunder",
+  "Pacers",
+  "Cavaliers",
+  "Bulls",
+  "Suns",
+  "Pelicans",
+  "Clippers",
+  "Rockets",
+  "Spurs",
+  "Kings",
+  "Jazz",
+  "Lakers"
  ],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-21",
-   "time": "01:00",
-   "matchup": "MIL@PHI"
-  },
-  {
-   "date": "2026-11-21",
-   "time": "07:30",
-   "matchup": "POR@NYK"
-  },
-  {
-   "date": "2026-11-21",
-   "time": "08:00",
-   "matchup": "LAC@DAL"
-  },
-  {
-   "date": "2026-11-21",
-   "time": "08:00",
-   "matchup": "MEM@MIN"
-  },
-  {
-   "date": "2026-11-21",
-   "time": "08:00",
-   "matchup": "NOP@SAS"
-  },
-  {
-   "date": "2026-11-21",
-   "time": "10:00",
-   "matchup": "BOS@SAC"
-  },
   {
    "date": "2026-11-22",
    "time": "03:30",
@@ -76,6 +66,56 @@
    "date": "2026-11-22",
    "time": "08:30",
    "matchup": "BOS@GSW"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "07:00",
+   "matchup": "MEM@CHA"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "07:00",
+   "matchup": "POR@PHI"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "07:30",
+   "matchup": "BKN@MIN"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "07:30",
+   "matchup": "MIL@TOR"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "07:30",
+   "matchup": "OKC@IND"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "08:00",
+   "matchup": "CLE@CHI"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "08:00",
+   "matchup": "PHX@NOP"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "08:30",
+   "matchup": "LAC@HOU"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "10:00",
+   "matchup": "SAS@SAC"
+  },
+  {
+   "date": "2026-11-23",
+   "time": "10:00",
+   "matchup": "UTA@LAL"
   }
  ]
 }
