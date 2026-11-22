@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-22_04_45AM: 65 player rows, 47 kept for Right now.",
- "report_file": "2026-11-22_04_45AM",
- "report_time_utc": "2026-11-22T09:45Z",
- "report_time_et": "2026-11-22 04:45",
+ "detail": "Read 2026-11-22_05_30AM: 65 player rows, 47 kept for Right now.",
+ "report_file": "2026-11-22_05_30AM",
+ "report_time_utc": "2026-11-22T10:30Z",
+ "report_time_et": "2026-11-22 05:30",
  "rows": 47,
  "teams_not_submitted": [
   "Mavericks",
