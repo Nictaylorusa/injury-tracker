@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_12_30AM: 74 player rows, 49 kept for Right now.",
- "report_file": "2026-11-23_12_30AM",
- "report_time_utc": "2026-11-23T05:30Z",
- "report_time_et": "2026-11-23 00:30",
+ "detail": "Read 2026-11-23_01_45AM: 74 player rows, 49 kept for Right now.",
+ "report_file": "2026-11-23_01_45AM",
+ "report_time_utc": "2026-11-23T06:45Z",
+ "report_time_et": "2026-11-23 01:45",
  "rows": 49,
  "teams_not_submitted": [
   "Thunder",
