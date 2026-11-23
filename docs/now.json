@@ -1,53 +1,24 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-22_11_15PM: 158 player rows, 110 kept for Right now.",
- "report_file": "2026-11-22_11_15PM",
- "report_time_utc": "2026-11-23T04:15Z",
- "report_time_et": "2026-11-22 23:15",
- "rows": 110,
+ "detail": "Read 2026-11-23_12_30AM: 74 player rows, 49 kept for Right now.",
+ "report_file": "2026-11-23_12_30AM",
+ "report_time_utc": "2026-11-23T05:30Z",
+ "report_time_et": "2026-11-23 00:30",
+ "rows": 49,
  "teams_not_submitted": [
   "Thunder",
   "Pacers",
   "Bulls",
-  "Jazz"
+  "Jazz",
+  "Pistons",
+  "Magic",
+  "Celtics",
+  "Wizards",
+  "Mavericks",
+  "Nuggets"
  ],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-22",
-   "time": "03:30",
-   "matchup": "DET@ATL"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "06:00",
-   "matchup": "OKC@MIA"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "07:00",
-   "matchup": "DAL@UTA"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "07:00",
-   "matchup": "DEN@CHI"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "07:00",
-   "matchup": "ORL@WAS"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "08:00",
-   "matchup": "IND@NYK"
-  },
-  {
-   "date": "2026-11-22",
-   "time": "08:30",
-   "matchup": "BOS@GSW"
-  },
   {
    "date": "2026-11-23",
    "time": "07:00",
@@ -97,6 +68,21 @@
    "date": "2026-11-23",
    "time": "10:00",
    "matchup": "UTA@LAL"
+  },
+  {
+   "date": "2026-11-24",
+   "time": "07:00",
+   "matchup": "DET@ORL"
+  },
+  {
+   "date": "2026-11-24",
+   "time": "08:00",
+   "matchup": "BOS@WAS"
+  },
+  {
+   "date": "2026-11-24",
+   "time": "10:00",
+   "matchup": "DAL@DEN"
   }
  ]
 }
