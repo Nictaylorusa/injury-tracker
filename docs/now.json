@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_01_30PM: 94 player rows, 68 kept for Right now.",
- "report_file": "2026-11-23_01_30PM",
- "report_time_utc": "2026-11-23T18:30Z",
- "report_time_et": "2026-11-23 13:30",
+ "detail": "Read 2026-11-23_02_45PM: 94 player rows, 68 kept for Right now.",
+ "report_file": "2026-11-23_02_45PM",
+ "report_time_utc": "2026-11-23T19:45Z",
+ "report_time_et": "2026-11-23 14:45",
  "rows": 68,
  "teams_not_submitted": [
   "Jazz",
