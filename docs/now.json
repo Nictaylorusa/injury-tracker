@@ -1,15 +1,12 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_03_30PM: 94 player rows, 68 kept for Right now.",
- "report_file": "2026-11-23_03_30PM",
- "report_time_utc": "2026-11-23T20:30Z",
- "report_time_et": "2026-11-23 15:30",
- "rows": 68,
+ "detail": "Read 2026-11-23_04_30PM: 105 player rows, 77 kept for Right now.",
+ "report_file": "2026-11-23_04_30PM",
+ "report_time_utc": "2026-11-23T21:30Z",
+ "report_time_et": "2026-11-23 16:30",
+ "rows": 77,
  "teams_not_submitted": [
-  "Jazz",
   "Pistons",
-  "Magic",
-  "Celtics",
   "Wizards",
   "Mavericks",
   "Nuggets"
