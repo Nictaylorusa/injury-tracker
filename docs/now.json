@@ -1,10 +1,10 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_11_30AM: 74 player rows, 49 kept for Right now.",
- "report_file": "2026-11-23_11_30AM",
- "report_time_utc": "2026-11-23T16:30Z",
- "report_time_et": "2026-11-23 11:30",
- "rows": 49,
+ "detail": "Read 2026-11-23_12_30PM: 75 player rows, 50 kept for Right now.",
+ "report_file": "2026-11-23_12_30PM",
+ "report_time_utc": "2026-11-23T17:30Z",
+ "report_time_et": "2026-11-23 12:30",
+ "rows": 50,
  "teams_not_submitted": [
   "Thunder",
   "Pacers",
