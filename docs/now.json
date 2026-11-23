@@ -1,13 +1,11 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_04_30PM: 105 player rows, 77 kept for Right now.",
- "report_file": "2026-11-23_04_30PM",
- "report_time_utc": "2026-11-23T21:30Z",
- "report_time_et": "2026-11-23 16:30",
- "rows": 77,
+ "detail": "Read 2026-11-23_05_30PM: 118 player rows, 86 kept for Right now.",
+ "report_file": "2026-11-23_05_30PM",
+ "report_time_utc": "2026-11-23T22:30Z",
+ "report_time_et": "2026-11-23 17:30",
+ "rows": 86,
  "teams_not_submitted": [
-  "Pistons",
-  "Wizards",
   "Mavericks",
   "Nuggets"
  ],
