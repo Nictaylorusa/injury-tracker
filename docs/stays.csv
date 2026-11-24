@@ -6065,7 +6065,7 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2025-26,Wizards,Bilal Coulibaly,Injury,Right Retrocalcaneal; Bursitis,2026-04-09,2026-04-09,1,1,Regular season,Closed
 2025-26,Wizards,Justin Champagnie,Injury,Right Knee; Contusion,2026-04-10,2026-04-10,1,1,Regular season,Closed
 2025-26,Wizards,Bilal Coulibaly,Injury,Right Retrocalcaneal; Bursitis,2026-04-12,2026-04-12,1,1,Regular season,Closed
-2026-27,76ers,Ariel Hukporti,Injury,Right Achilles Tendon Rupture / Tear,2026-10-20,2026-11-21,17,33,Regular season,Ongoing
+2026-27,76ers,Ariel Hukporti,Injury,Right Achilles Tendon Rupture / Tear,2026-10-20,2026-11-23,18,35,Regular season,Ongoing
 2026-27,76ers,Dean Wade,Injury,Left Ankle Sprain,2026-10-20,2026-10-22,2,3,Regular season,Closed
 2026-27,76ers,Dominick Barlow,Injury,Low Back Stress Reaction,2026-10-20,2026-11-18,16,30,Regular season,Closed
 2026-27,76ers,Tacko Fall,Injury,Left Quadriceps Strain,2026-10-20,2026-10-30,6,11,Regular season,Closed
@@ -6076,24 +6076,24 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,76ers,Jaylen Brown,Injury,Left Patellar Tendinopathy,2026-10-30,2026-10-30,1,1,Regular season,Closed
 2026-27,76ers,Joel Embiid,Injury,Right Foot Plantar Fascia Injury Management,2026-10-31,2026-10-31,1,1,Regular season,Closed
 2026-27,76ers,LeBron James,Injury,Low Back/Sciatica Management,2026-10-31,2026-10-31,1,1,Regular season,Closed
-2026-27,76ers,Adem Bona,Injury,Cervical Spine Sprain,2026-11-06,2026-11-21,8,16,Regular season,Ongoing
+2026-27,76ers,Adem Bona,Injury,Cervical Spine Sprain,2026-11-06,2026-11-21,8,16,Regular season,Closed
 2026-27,76ers,LeBron James,Injury,Low Back/Sciatica Management,2026-11-12,2026-11-12,1,1,Regular season,Closed
 2026-27,76ers,Joel Embiid,Injury,Right Foot Plantar Fascia Injury Management,2026-11-15,2026-11-15,1,1,Regular season,Closed
 2026-27,76ers,LeBron James,Injury,Low Back/Sciatica Management,2026-11-16,2026-11-16,1,1,Regular season,Closed
-2026-27,76ers,Dean Wade,Injury,Left Hamstring Tightness / Soreness,2026-11-18,2026-11-21,2,4,Regular season,Ongoing
-2026-27,76ers,Jaylen Brown,Injury,Left Hamstring Strain,2026-11-18,2026-11-21,2,4,Regular season,Ongoing
+2026-27,76ers,Dean Wade,Injury,Left Hamstring Tightness / Soreness,2026-11-18,2026-11-21,2,4,Regular season,Closed
+2026-27,76ers,Jaylen Brown,Injury,Left Hamstring Strain,2026-11-18,2026-11-21,2,4,Regular season,Closed
 2026-27,76ers,Tyrese Maxey,Injury,Right Foot Soreness,2026-11-18,2026-11-18,1,1,Regular season,Closed
 2026-27,Blazers,Branden Carlson,Injury,Concussion Protocol,2026-10-21,2026-10-23,2,3,Regular season,Closed
 2026-27,Blazers,Chris Youngblood,Injury,Left Ankle Soreness,2026-10-21,2026-10-23,2,3,Regular season,Closed
-2026-27,Blazers,Shaedon Sharpe,Injury,Right Meniscus Surgery,2026-10-21,2026-11-21,16,32,Regular season,Ongoing
-2026-27,Blazers,Ja Morant,Injury,Left Hamstring Strain,2026-10-31,2026-11-21,12,22,Regular season,Ongoing
-2026-27,Blazers,Vit Krejci,Injury,Left Ankle Fracture,2026-11-06,2026-11-21,9,16,Regular season,Ongoing
-2026-27,Blazers,Chris Youngblood,Injury,Right Heel Contusion / Bone Bruise,2026-11-11,2026-11-21,6,11,Regular season,Ongoing
+2026-27,Blazers,Shaedon Sharpe,Injury,Right Meniscus Surgery,2026-10-21,2026-11-23,17,34,Regular season,Ongoing
+2026-27,Blazers,Ja Morant,Injury,Left Hamstring Strain,2026-10-31,2026-11-23,13,24,Regular season,Ongoing
+2026-27,Blazers,Vit Krejci,Injury,Left Ankle Fracture,2026-11-06,2026-11-23,10,18,Regular season,Ongoing
+2026-27,Blazers,Chris Youngblood,Injury,Right Heel Contusion / Bone Bruise,2026-11-11,2026-11-23,7,13,Regular season,Ongoing
 2026-27,Blazers,Deni Avdija,Injury,Left Foot Inflammation / Soreness,2026-11-17,2026-11-19,2,3,Regular season,Closed
 2026-27,Bucks,Kam Jones,Injury,Right Ankle Sprain,2026-11-04,2026-11-04,1,1,Regular season,Closed
 2026-27,Bucks,Gary Trent Jr.,Illness,Illness,2026-11-08,2026-11-08,1,1,Regular season,Closed
 2026-27,Bucks,Tyler Herro,Injury,Right Knee Contusion,2026-11-10,2026-11-10,1,1,Regular season,Closed
-2026-27,Bucks,Ousmane Dieng,Injury,Left Finger Fracture,2026-11-15,2026-11-21,4,7,Regular season,Ongoing
+2026-27,Bucks,Ousmane Dieng,Injury,Left Finger Fracture,2026-11-15,2026-11-21,4,7,Regular season,Closed
 2026-27,Bucks,Ryan Rollins,Illness,Illness,2026-11-15,2026-11-18,2,4,Regular season,Closed
 2026-27,Bucks,Kyle Kuzma,Injury,Right Shoulder Contusion,2026-11-19,2026-11-19,1,1,Regular season,Closed
 2026-27,Bucks,Myles Turner,Injury,Left Shoulder Contusion,2026-11-19,2026-11-19,1,1,Regular season,Closed
@@ -6108,30 +6108,32 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Bulls,Norman Powell,Injury,Low Back Spasms,2026-11-08,2026-11-11,2,4,Regular season,Closed
 2026-27,Bulls,Zach Collins,Injury,Respiratory Illness,2026-11-08,2026-11-08,1,1,Regular season,Closed
 2026-27,Bulls,Tobe Awaka,Injury,Disc Irritation,2026-11-11,2026-11-18,5,8,Regular season,Closed
-2026-27,Bulls,Caleb Wilson,Injury,Right Metacarpal Fracture,2026-11-13,2026-11-22,6,10,Regular season,Ongoing
+2026-27,Bulls,Caleb Wilson,Injury,Right Metacarpal Fracture,2026-11-13,2026-11-22,6,10,Regular season,Closed
 2026-27,Bulls,Jalen Smith,Injury,Left Finger Sprain,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Bulls,Nic Claxton,Injury,Left Hamstring Injury Management,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Bulls,Jalen Smith,Injury,Gastrointestinal Illness,2026-11-20,2026-11-20,1,1,Regular season,Closed
+2026-27,Bulls,Nic Claxton,Illness,Illness,2026-11-22,2026-11-22,1,1,Regular season,Closed
+2026-27,Bulls,Norman Powell,Injury,Right Hamstring Strain,2026-11-22,2026-11-22,1,1,Regular season,Closed
 2026-27,Cavaliers,Khalifa Diop,Injury,Left Knee Injury Management,2026-10-22,2026-10-26,3,5,Regular season,Closed
-2026-27,Cavaliers,Nae'Qwan Tomlin,Injury,Low Back Stress Reaction,2026-10-22,2026-11-20,17,30,Regular season,Ongoing
+2026-27,Cavaliers,Nae'Qwan Tomlin,Injury,Low Back Stress Reaction,2026-10-22,2026-11-23,18,33,Regular season,Ongoing
 2026-27,Cavaliers,Jaylon Tyson,Injury,Right Ankle Sprain,2026-10-31,2026-11-09,6,10,Regular season,Closed
 2026-27,Cavaliers,Peyton Watson,Injury,Right Hamstring Tightness / Soreness,2026-11-02,2026-11-04,2,3,Regular season,Closed
 2026-27,Cavaliers,Jarrett Allen,Injury,Right Knee Contusion,2026-11-06,2026-11-07,2,2,Regular season,Closed
 2026-27,Cavaliers,Sam Merrill,Injury,Right Elbow Injury Management,2026-11-07,2026-11-16,6,10,Regular season,Closed
-2026-27,Cavaliers,Evan Mobley,Injury,Left Great Toe Sprain,2026-11-13,2026-11-20,5,8,Regular season,Ongoing
+2026-27,Cavaliers,Evan Mobley,Injury,Left Great Toe Sprain,2026-11-13,2026-11-23,6,11,Regular season,Ongoing
 2026-27,Cavaliers,Donovan Mitchell,Injury,Left Knee Contusion/Injury Management,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Cavaliers,James Harden,Injury,Left Lower Leg/Calf Tightness,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Cavaliers,Jarrett Allen,Injury,Right Knee Injury Management,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Cavaliers,Peyton Watson,Injury,Right Hamstring Injury Management,2026-11-14,2026-11-14,1,1,Regular season,Closed
-2026-27,Cavaliers,Jaylon Tyson,Injury,Right Ankle Injury Management,2026-11-16,2026-11-20,3,5,Regular season,Ongoing
+2026-27,Cavaliers,Jaylon Tyson,Injury,Right Ankle Injury Management,2026-11-16,2026-11-20,3,5,Regular season,Closed
 2026-27,Cavaliers,Peyton Watson,Injury,Low Back Contusion,2026-11-18,2026-11-18,1,1,Regular season,Closed
 2026-27,Celtics,Devin Carter,Illness,Illness,2026-10-20,2026-11-04,8,16,Regular season,Closed
 2026-27,Celtics,Paul George,Illness,Illness,2026-11-11,2026-11-11,1,1,Regular season,Closed
 2026-27,Celtics,Derrick White,Injury,Left AC Joint Contusion,2026-11-21,2026-11-21,1,1,Regular season,Closed
-2026-27,Celtics,Mitchell Robinson,Illness,Illness,2026-11-21,2026-11-21,1,1,Regular season,Closed
-2026-27,Clippers,Bradley Beal,Injury,Right Knee Injury Management,2026-10-21,2026-11-21,15,32,Regular season,Ongoing
-2026-27,Clippers,Brandon Ingram,Injury,Right Heel Surgery,2026-10-21,2026-11-21,15,32,Regular season,Ongoing
-2026-27,Clippers,Jordan Miller,Injury,Left Rotator Cuff Surgery,2026-10-21,2026-11-21,15,32,Regular season,Ongoing
+2026-27,Celtics,Mitchell Robinson,Illness,Illness,2026-11-21,2026-11-22,2,2,Regular season,Ongoing
+2026-27,Clippers,Bradley Beal,Injury,Right Knee Injury Management,2026-10-21,2026-11-23,16,34,Regular season,Ongoing
+2026-27,Clippers,Brandon Ingram,Injury,Right Heel Surgery,2026-10-21,2026-11-21,15,32,Regular season,Closed
+2026-27,Clippers,Jordan Miller,Injury,Left Rotator Cuff Surgery,2026-10-21,2026-11-23,16,34,Regular season,Ongoing
 2026-27,Clippers,Max Strus,Injury,Right Plantar Fascia Tear,2026-10-21,2026-11-01,6,12,Regular season,Closed
 2026-27,Clippers,Yanic Konan Niederhauser,Injury,Right Lisfranc Surgery,2026-10-21,2026-11-17,13,28,Regular season,Closed
 2026-27,Clippers,Rui Hachimura,Injury,Left Quad Soreness,2026-10-28,2026-10-28,1,1,Regular season,Closed
@@ -6144,19 +6146,19 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Grizzlies,Karim López,Injury,Right Knee Contusion / Bone Bruise,2026-10-25,2026-10-25,1,1,Regular season,Closed
 2026-27,Grizzlies,Zach Edey,Injury,Left Ankle Injury Management,2026-10-25,2026-10-25,1,1,Regular season,Closed
 2026-27,Grizzlies,Quinten Post,Injury,Right Ankle Sprain,2026-10-31,2026-11-02,2,3,Regular season,Closed
-2026-27,Grizzlies,Scotty Pippen Jr.,Injury,Lumbar Disc Herniation,2026-10-31,2026-11-21,12,22,Regular season,Ongoing
+2026-27,Grizzlies,Scotty Pippen Jr.,Injury,Lumbar Disc Herniation,2026-10-31,2026-11-23,13,24,Regular season,Ongoing
 2026-27,Grizzlies,Ty Jerome,Injury,Upper Back Soreness,2026-10-31,2026-10-31,1,1,Regular season,Closed
 2026-27,Grizzlies,Isaiah Stewart,Injury,Right Knee Bone Bruise,2026-11-06,2026-11-09,2,4,Regular season,Closed
-2026-27,Grizzlies,Richie Saunders,Injury,Right Knee Surgery,2026-11-09,2026-11-21,8,13,Regular season,Ongoing
+2026-27,Grizzlies,Richie Saunders,Injury,Right Knee Surgery,2026-11-09,2026-11-23,9,15,Regular season,Ongoing
 2026-27,Grizzlies,Quinten Post,Injury,Concussion Protocol,2026-11-11,2026-11-14,3,4,Regular season,Closed
 2026-27,Grizzlies,Zach Edey,Injury,Left Ankle Injury Management,2026-11-13,2026-11-14,2,2,Regular season,Closed
 2026-27,Grizzlies,Jerami Grant,Injury,Head Injury,2026-11-14,2026-11-14,1,1,Regular season,Closed
 2026-27,Grizzlies,Ty Jerome,Injury,Right Hip Impingement,2026-11-14,2026-11-19,4,6,Regular season,Closed
-2026-27,Grizzlies,GG Jackson,Injury,Left 5th Metatarsal Fracture,2026-11-16,2026-11-21,4,6,Regular season,Ongoing
+2026-27,Grizzlies,GG Jackson,Injury,Left 5th Metatarsal Fracture,2026-11-16,2026-11-23,5,8,Regular season,Ongoing
 2026-27,Grizzlies,Isaiah Stewart,Illness,Illness,2026-11-16,2026-11-18,2,3,Regular season,Closed
 2026-27,Grizzlies,Zach Edey,Injury,Left Ankle Injury Management,2026-11-19,2026-11-19,1,1,Regular season,Closed
-2026-27,Grizzlies,Cameron Boozer,Injury,Right Ankle Sprain,2026-11-21,2026-11-21,1,1,Regular season,Ongoing
-2026-27,Grizzlies,Jerami Grant,Injury,Left Calf Strain,2026-11-21,2026-11-21,1,1,Regular season,Ongoing
+2026-27,Grizzlies,Cameron Boozer,Injury,Right Ankle Sprain,2026-11-21,2026-11-23,2,3,Regular season,Ongoing
+2026-27,Grizzlies,Jerami Grant,Injury,Left Calf Strain,2026-11-21,2026-11-23,2,3,Regular season,Ongoing
 2026-27,Hawks,Henri Veesaar,Injury,Right ACL Tear,2026-10-21,2026-11-22,17,33,Regular season,Ongoing
 2026-27,Hawks,Mouhamed Gueye,Injury,Left Foot Fracture,2026-10-21,2026-11-22,17,33,Regular season,Ongoing
 2026-27,Hawks,Jalen Johnson,Injury,Left Ankle Sprain,2026-11-02,2026-11-06,3,5,Regular season,Closed
@@ -6171,30 +6173,31 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Heat,Pelle Larsson,Illness,Illness,2026-11-13,2026-11-16,3,4,Regular season,Closed
 2026-27,Heat,Nikola Jovic,Illness,Illness,2026-11-16,2026-11-16,1,1,Regular season,Closed
 2026-27,Heat,Myron Gardner,Injury,Right Hamstring Tightness / Soreness,2026-11-18,2026-11-18,1,1,Regular season,Closed
+2026-27,Heat,Giannis Antetokounmpo,Injury,Right Groin tendinitis,2026-11-22,2026-11-22,1,1,Regular season,Ongoing
 2026-27,Hornets,Coby White,Injury,Left Calf Strain,2026-10-21,2026-10-31,7,11,Regular season,Closed
 2026-27,Hornets,Grant Williams,Injury,Right Hamstring Strain,2026-10-21,2026-11-09,11,20,Regular season,Closed
 2026-27,Hornets,Kon Knueppel,Injury,Left Hamstring Strain,2026-10-21,2026-11-02,8,13,Regular season,Closed
 2026-27,Hornets,Kylan Boswell,Injury,Right Knee Surgery,2026-10-21,2026-10-24,3,4,Regular season,Closed
-2026-27,Hornets,Dennis Schroder,Injury,Left Hamstring Strain,2026-11-06,2026-11-20,6,15,Regular season,Ongoing
-2026-27,Hornets,Kon Knueppel,Injury,Left Hamstring Strain,2026-11-06,2026-11-20,6,15,Regular season,Ongoing
+2026-27,Hornets,Dennis Schroder,Injury,Left Hamstring Strain,2026-11-06,2026-11-23,7,18,Regular season,Ongoing
+2026-27,Hornets,Kon Knueppel,Injury,Left Hamstring Strain,2026-11-06,2026-11-23,7,18,Regular season,Ongoing
 2026-27,Hornets,Moussa Diabate,Injury,Right Quadriceps Tendinopathy,2026-11-06,2026-11-09,2,4,Regular season,Closed
 2026-27,Hornets,Brandon Miller,Injury,Right Hip Strain,2026-11-09,2026-11-12,2,4,Regular season,Closed
 2026-27,Hornets,Grayson Allen,Injury,Concussion-like symptoms,2026-11-17,2026-11-17,1,1,Regular season,Closed
-2026-27,Hornets,Grant Williams,Injury,Right Hamstring Injury Management,2026-11-20,2026-11-20,1,1,Regular season,Ongoing
+2026-27,Hornets,Grant Williams,Injury,Right Hamstring Injury Management,2026-11-20,2026-11-23,2,4,Regular season,Ongoing
 2026-27,Jazz,Blake Hinson,Injury,Left Hamstring Strain,2026-10-21,2026-10-21,1,1,Regular season,Closed
-2026-27,Jazz,Jusuf Nurkic,Injury,Right 2nd Plantar Plate Tear,2026-10-21,2026-11-22,18,33,Regular season,Ongoing
+2026-27,Jazz,Jusuf Nurkic,Injury,Right 2nd Plantar Plate Tear,2026-10-21,2026-11-22,18,33,Regular season,Closed
 2026-27,Jazz,Tony Bradley,Injury,Left Quadriceps Strain,2026-10-21,2026-10-21,1,1,Regular season,Closed
 2026-27,Jazz,Trey Alexander,Injury,Left Knee Contusion / Bone Bruise,2026-10-21,2026-10-21,1,1,Regular season,Closed
 2026-27,Jazz,Jaxson Hayes,Injury,Right Shoulder Soreness,2026-10-26,2026-10-26,1,1,Regular season,Closed
-2026-27,Jazz,Jaren Jackson Jr.,Injury,Right MCL Tear,2026-10-28,2026-11-22,14,26,Regular season,Ongoing
+2026-27,Jazz,Jaren Jackson Jr.,Injury,Right MCL Tear,2026-10-28,2026-11-22,14,26,Regular season,Closed
 2026-27,Jazz,Lauri Markkanen,Injury,Right Wrist Sprain,2026-10-28,2026-10-28,1,1,Regular season,Closed
-2026-27,Jazz,Lauri Markkanen,Injury,Right Hand Fracture,2026-11-08,2026-11-22,9,15,Regular season,Ongoing
+2026-27,Jazz,Lauri Markkanen,Injury,Right Hand Fracture,2026-11-08,2026-11-22,9,15,Regular season,Closed
 2026-27,Jazz,Keyonte George,Injury,Right Ankle Sprain,2026-11-10,2026-11-10,1,1,Regular season,Closed
 2026-27,Jazz,Jaxson Hayes,Injury,Left Knee Strain,2026-11-15,2026-11-17,2,3,Regular season,Closed
-2026-27,Kings,Ben Simmons,Injury,Right Achilles Tendon Repair / Surgery,2026-10-21,2026-11-21,16,32,Regular season,Ongoing
+2026-27,Kings,Ben Simmons,Injury,Right Achilles Tendon Repair / Surgery,2026-10-21,2026-11-23,17,34,Regular season,Ongoing
 2026-27,Kings,Dylan Cardwell,Injury,Left Calf Strain,2026-10-21,2026-11-02,7,13,Regular season,Closed
 2026-27,Kings,Malik Monk,Injury,Left Ankle Soreness,2026-10-21,2026-10-21,1,1,Regular season,Closed
-2026-27,Kings,Maxime Raynaud,Injury,Right Patella Subluxation,2026-10-21,2026-11-21,16,32,Regular season,Ongoing
+2026-27,Kings,Maxime Raynaud,Injury,Right Patella Subluxation,2026-10-21,2026-11-23,17,34,Regular season,Ongoing
 2026-27,Kings,Keegan Murray,Injury,Left Ankle Capsulitis,2026-10-25,2026-11-06,7,13,Regular season,Closed
 2026-27,Kings,Daeqwon Plowden,Illness,Illness,2026-11-04,2026-11-04,1,1,Regular season,Closed
 2026-27,Kings,De'Andre Hunter,Illness,Illness,2026-11-06,2026-11-06,1,1,Regular season,Closed
@@ -6205,9 +6208,10 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Kings,Precious Achiuwa,Injury,Left Lower Leg Contusion,2026-11-20,2026-11-20,1,1,Regular season,Closed
 2026-27,Knicks,Jose Alvarado,Injury,Left Ankle Sprain,2026-10-25,2026-10-30,4,6,Regular season,Closed
 2026-27,Knicks,Josh Hart,Injury,Right Ankle Soreness,2026-11-04,2026-11-10,3,7,Regular season,Closed
-2026-27,Knicks,Jordan Clarkson,Injury,Right Plantar Fasciitis,2026-11-21,2026-11-21,1,1,Regular season,Closed
+2026-27,Knicks,Jordan Clarkson,Injury,Right Plantar Fasciitis,2026-11-21,2026-11-22,2,2,Regular season,Ongoing
 2026-27,Knicks,Karl-Anthony Towns,Illness,Illness,2026-11-21,2026-11-21,1,1,Regular season,Closed
-2026-27,Knicks,OG Anunoby,Injury,Left Calf Tightness,2026-11-21,2026-11-21,1,1,Regular season,Closed
+2026-27,Knicks,OG Anunoby,Injury,Left Calf Tightness,2026-11-21,2026-11-22,2,2,Regular season,Ongoing
+2026-27,Knicks,Miles McBride,Injury,Left Left Adductor Tightness,2026-11-22,2026-11-22,1,1,Regular season,Ongoing
 2026-27,Lakers,Adou Thiero,Injury,Left Knee Injury Management,2026-10-21,2026-11-04,9,15,Regular season,Closed
 2026-27,Lakers,Cameron Carr,Injury,Right Oblique Strain,2026-10-21,2026-10-30,6,10,Regular season,Closed
 2026-27,Lakers,Collin Sexton,Injury,Right Soleus Strain,2026-10-21,2026-10-21,1,1,Regular season,Closed
@@ -6217,7 +6221,7 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Lakers,Luka Doncic,Injury,Low Back Tightness,2026-11-08,2026-11-08,1,1,Regular season,Closed
 2026-27,Lakers,Austin Reaves,Illness,Illness,2026-11-09,2026-11-09,1,1,Regular season,Closed
 2026-27,Lakers,Quentin Grimes,Injury,Right Finger Sprain,2026-11-09,2026-11-11,2,3,Regular season,Closed
-2026-27,Lakers,Austin Reaves,Injury,Left Heel Contusion / Bone Bruise,2026-11-15,2026-11-20,4,6,Regular season,Ongoing
+2026-27,Lakers,Austin Reaves,Injury,Left Heel Contusion / Bone Bruise,2026-11-15,2026-11-23,5,9,Regular season,Ongoing
 2026-27,Lakers,Cameron Carr,Illness,Illness,2026-11-15,2026-11-15,1,1,Regular season,Closed
 2026-27,Lakers,Walker Kessler,Injury,Right Lower Leg Soreness,2026-11-17,2026-11-17,1,1,Regular season,Closed
 2026-27,Magic,Anthony Black,Injury,Right Ankle Sprain,2026-10-21,2026-10-23,2,3,Regular season,Closed
@@ -6231,29 +6235,30 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Magic,Tristan da Silva,Injury,Left Calf Strain,2026-11-10,2026-11-11,2,2,Regular season,Closed
 2026-27,Magic,Jamal Cain,Injury,Left Shoulder Contusion,2026-11-11,2026-11-11,1,1,Regular season,Closed
 2026-27,Mavericks,Caleb Martin,Injury,Right Thumb Sprain,2026-10-21,2026-10-26,4,6,Regular season,Closed
-2026-27,Mavericks,Dereck Lively II,Injury,Right Foot Surgery,2026-10-21,2026-11-21,16,32,Regular season,Closed
+2026-27,Mavericks,Dereck Lively II,Injury,Right Foot Surgery,2026-10-21,2026-11-22,17,33,Regular season,Ongoing
 2026-27,Mavericks,Jett Howard,Injury,Right Calf Tightness / Soreness,2026-10-21,2026-10-23,2,3,Regular season,Closed
 2026-27,Mavericks,Santi Aldama,Injury,Right Knee Surgery,2026-10-21,2026-11-04,8,15,Regular season,Closed
-2026-27,Mavericks,Tarik Biberovic,Injury,Right Heel Bursitis,2026-10-21,2026-11-21,16,32,Regular season,Closed
+2026-27,Mavericks,Tarik Biberovic,Injury,Right Heel Bursitis,2026-10-21,2026-11-22,17,33,Regular season,Ongoing
 2026-27,Mavericks,Cooper Flagg,Injury,Left Shoulder Sprain,2026-10-24,2026-10-24,1,1,Regular season,Closed
 2026-27,Mavericks,Kyrie Irving,Injury,Left Knee Injury Management,2026-10-24,2026-10-24,1,1,Regular season,Closed
 2026-27,Mavericks,Naji Marshall,Illness,Illness,2026-10-26,2026-10-28,2,3,Regular season,Closed
-2026-27,Mavericks,Sergio de Larrea,Injury,Right Knee Sprain,2026-10-28,2026-11-21,12,25,Regular season,Closed
+2026-27,Mavericks,Sergio de Larrea,Injury,Right Knee Sprain,2026-10-28,2026-11-22,13,26,Regular season,Ongoing
 2026-27,Mavericks,Kyrie Irving,Injury,Left Knee Injury Management,2026-11-02,2026-11-02,1,1,Regular season,Closed
 2026-27,Mavericks,Max Christie,Injury,Right Hip Soreness / Tightness,2026-11-04,2026-11-04,1,1,Regular season,Closed
 2026-27,Mavericks,Morez Johnson Jr.,Injury,Left Shin / Tibia Contusion,2026-11-09,2026-11-09,1,1,Regular season,Closed
 2026-27,Mavericks,Max Christie,Injury,Left Ankle Sprain,2026-11-14,2026-11-15,2,2,Regular season,Closed
 2026-27,Mavericks,Kyrie Irving,Injury,Left Knee Injury Management,2026-11-15,2026-11-15,1,1,Regular season,Closed
 2026-27,Mavericks,Santi Aldama,Injury,Left Ankle Sprain,2026-11-15,2026-11-15,1,1,Regular season,Closed
-2026-27,Mavericks,Tobi Lawal,Injury,Right Groin Strain,2026-11-18,2026-11-21,2,4,Regular season,Closed
-2026-27,Mavericks,P.J. Washington,Illness,Illness,2026-11-21,2026-11-21,1,1,Regular season,Closed
+2026-27,Mavericks,Tobi Lawal,Injury,Right Groin Strain,2026-11-18,2026-11-22,3,5,Regular season,Ongoing
+2026-27,Mavericks,P.J. Washington,Illness,Illness,2026-11-21,2026-11-22,2,2,Regular season,Ongoing
 2026-27,Nets,Tyler Bilodeau,Injury,Right Shoulder Sprain,2026-10-21,2026-10-25,3,5,Regular season,Closed
 2026-27,Nets,Mikel Brown Jr.,Injury,"Back, Injury Management",2026-10-25,2026-10-25,1,1,Regular season,Closed
 2026-27,Nets,Egor Demin,Injury,Right Bone Bruise,2026-10-30,2026-11-08,6,10,Regular season,Closed
 2026-27,Nets,Mikel Brown Jr.,Injury,"Back, Injury Management",2026-11-01,2026-11-01,1,1,Regular season,Closed
 2026-27,Nets,Mikel Brown Jr.,Illness,"Back, Injury Management",2026-11-08,2026-11-11,2,4,Regular season,Closed
 2026-27,Nets,Nolan Traore,Injury,Right Calf Tightness / Soreness,2026-11-11,2026-11-11,1,1,Regular season,Closed
-2026-27,Nets,Grant Nelson,Injury,Right Ankle Sprain,2026-11-20,2026-11-20,1,1,Regular season,Ongoing
+2026-27,Nets,Grant Nelson,Injury,Right Ankle Sprain,2026-11-20,2026-11-20,1,1,Regular season,Closed
+2026-27,Nets,Nolan Traore,Injury,Right Hamstring Strain,2026-11-23,2026-11-23,1,1,Regular season,Ongoing
 2026-27,Nuggets,Julian Strawther,Injury,Left Knee Sprain,2026-10-22,2026-11-22,15,32,Regular season,Ongoing
 2026-27,Nuggets,Spencer Jones,Injury,Bilateral Hamstring Injury Management,2026-10-22,2026-11-04,7,14,Regular season,Closed
 2026-27,Nuggets,Alpha Diallo,Injury,Right Wrist Sprain,2026-10-24,2026-10-26,2,3,Regular season,Closed
@@ -6261,30 +6266,30 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Nuggets,Alpha Diallo,Injury,Right wrist sprain/Personal Reasons,2026-10-30,2026-10-30,1,1,Regular season,Closed
 2026-27,Nuggets,DeMar DeRozan,Injury,Low Back Spasms,2026-11-04,2026-11-04,1,1,Regular season,Closed
 2026-27,Pacers,Aaron Nesmith,Injury,Left Hamstring Strain,2026-10-21,2026-10-21,1,1,Regular season,Closed
-2026-27,Pacers,Johnny Furphy,Injury,Right ACL Repair / Surgery,2026-10-21,2026-11-22,17,33,Regular season,Ongoing
+2026-27,Pacers,Johnny Furphy,Injury,Right ACL Repair / Surgery,2026-10-21,2026-11-22,17,33,Regular season,Closed
 2026-27,Pacers,T.J. McConnell,Injury,Right Hamstring Strain,2026-10-21,2026-11-04,9,15,Regular season,Closed
-2026-27,Pacers,Ben Sheppard,Injury,Left Meniscus Surgery,2026-10-23,2026-11-22,16,31,Regular season,Ongoing
+2026-27,Pacers,Ben Sheppard,Injury,Left Meniscus Surgery,2026-10-23,2026-11-22,16,31,Regular season,Closed
 2026-27,Pacers,Andrew Nembhard,Injury,Neck Stiffness / Soreness,2026-10-26,2026-10-26,1,1,Regular season,Closed
 2026-27,Pacers,Ivica Zubac,Injury,Left Ankle Sprain,2026-10-26,2026-11-02,5,8,Regular season,Closed
-2026-27,Pacers,Tyrese Haliburton,Injury,Left Hamstring Strain,2026-10-28,2026-11-22,13,26,Regular season,Ongoing
+2026-27,Pacers,Tyrese Haliburton,Injury,Left Hamstring Strain,2026-10-28,2026-11-22,13,26,Regular season,Closed
 2026-27,Pacers,Obi Toppin,Injury,Low Back Soreness,2026-10-30,2026-11-02,3,4,Regular season,Closed
 2026-27,Pacers,Aaron Nesmith,Injury,Left Hamstring Injury Management,2026-11-02,2026-11-02,1,1,Regular season,Closed
 2026-27,Pacers,Andrew Nembhard,Injury,Cervical Injury Management,2026-11-02,2026-11-02,1,1,Regular season,Closed
 2026-27,Pacers,Larry Nance Jr.,Illness,Illness,2026-11-02,2026-11-02,1,1,Regular season,Closed
 2026-27,Pacers,Kelly Oubre Jr.,Injury,Left Calf Contusion,2026-11-04,2026-11-04,1,1,Regular season,Closed
 2026-27,Pacers,Andrew Nembhard,Injury,Left Hip Soreness / Tightness,2026-11-15,2026-11-18,2,4,Regular season,Closed
-2026-27,Pacers,T.J. McConnell,Injury,Left Hamstring Soreness,2026-11-22,2026-11-22,1,1,Regular season,Ongoing
+2026-27,Pacers,T.J. McConnell,Injury,Left Hamstring Soreness,2026-11-22,2026-11-22,1,1,Regular season,Closed
 2026-27,Pelicans,Yves Missi,Injury,Left Knee Contusion / Bone Bruise,2026-10-24,2026-11-13,11,21,Regular season,Closed
 2026-27,Pelicans,Jordan Poole,Injury,Left Ankle Sprain,2026-10-29,2026-11-02,3,5,Regular season,Closed
 2026-27,Pelicans,Trey Murphy III,Injury,Bilateral Patella Tendinopathy,2026-11-04,2026-11-04,1,1,Regular season,Closed
-2026-27,Pelicans,Trendon Watford,Injury,Right Ankle Sprain,2026-11-09,2026-11-21,8,13,Regular season,Ongoing
+2026-27,Pelicans,Trendon Watford,Injury,Right Ankle Sprain,2026-11-09,2026-11-23,9,15,Regular season,Ongoing
 2026-27,Pelicans,Trey Murphy III,Injury,Bilateral Patellar Tendinopathy,2026-11-09,2026-11-18,6,10,Regular season,Closed
 2026-27,Pelicans,Bennedict Mathurin,Injury,Right Thumb Sprain,2026-11-11,2026-11-11,1,1,Regular season,Closed
-2026-27,Pelicans,Bryce McGowens,Injury,Left Elbow Infection,2026-11-13,2026-11-21,6,9,Regular season,Ongoing
-2026-27,Pelicans,Dejounte Murray,Injury,Left Ankle Sprain,2026-11-13,2026-11-21,6,9,Regular season,Ongoing
-2026-27,Pelicans,Bennedict Mathurin,Injury,Left Plantar Fasciitis,2026-11-14,2026-11-21,5,8,Regular season,Ongoing
-2026-27,Pelicans,Trey Murphy III,Injury,Bilateral Patellar Tendinopathy Injury Maintenance,2026-11-21,2026-11-21,1,1,Regular season,Ongoing
-2026-27,Pelicans,Zion Williamson,Injury,Left Thigh Contusion,2026-11-21,2026-11-21,1,1,Regular season,Ongoing
+2026-27,Pelicans,Bryce McGowens,Injury,Left Elbow Infection,2026-11-13,2026-11-21,6,9,Regular season,Closed
+2026-27,Pelicans,Dejounte Murray,Injury,Left Ankle Sprain,2026-11-13,2026-11-23,7,11,Regular season,Ongoing
+2026-27,Pelicans,Bennedict Mathurin,Injury,Left Plantar Fasciitis,2026-11-14,2026-11-23,6,10,Regular season,Ongoing
+2026-27,Pelicans,Trey Murphy III,Injury,Bilateral Patellar Tendinopathy Injury Maintenance,2026-11-21,2026-11-21,1,1,Regular season,Closed
+2026-27,Pelicans,Zion Williamson,Injury,Left Thigh Contusion,2026-11-21,2026-11-21,1,1,Regular season,Closed
 2026-27,Pistons,Ausar Thompson,Injury,Right Ankle Sprain,2026-10-25,2026-10-25,1,1,Regular season,Closed
 2026-27,Pistons,Jalen Duren,Injury,Right Hamstring Strain,2026-10-25,2026-11-22,14,29,Regular season,Ongoing
 2026-27,Pistons,Isaiah Joe,Injury,Right Hip Contusion,2026-10-27,2026-11-17,10,22,Regular season,Closed
@@ -6294,13 +6299,13 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Pistons,Cade Cunningham,Injury,Right Knee Soreness,2026-11-18,2026-11-18,1,1,Regular season,Closed
 2026-27,Pistons,Ebuka Okorie,Injury,Left Oblique Strain,2026-11-20,2026-11-22,2,3,Regular season,Ongoing
 2026-27,Raptors,Nate Bittle,Injury,Right Foot Avulsion Fracture,2026-10-21,2026-11-18,15,29,Regular season,Closed
-2026-27,Raptors,Kawhi Leonard,Injury,Left Knee Injury Management,2026-10-25,2026-11-20,14,27,Regular season,Ongoing
+2026-27,Raptors,Kawhi Leonard,Injury,Left Knee Injury Management,2026-10-25,2026-11-23,15,30,Regular season,Ongoing
 2026-27,Raptors,Jakob Poeltl,Injury,Left Shoulder Bursitis,2026-11-01,2026-11-02,2,2,Regular season,Closed
 2026-27,Raptors,Immanuel Quickley,Injury,Right Hamstring Tightness / Soreness,2026-11-06,2026-11-09,2,4,Regular season,Closed
 2026-27,Raptors,Scottie Barnes,Injury,Left Groin Strain,2026-11-06,2026-11-12,4,7,Regular season,Closed
 2026-27,Raptors,Collin Murray-Boyles,Illness,Illness,2026-11-09,2026-11-09,1,1,Regular season,Closed
 2026-27,Raptors,Trayce Jackson-Davis,Illness,Illness,2026-11-11,2026-11-12,2,2,Regular season,Closed
-2026-27,Raptors,RJ Barrett,Injury,Right Hamstring Strain,2026-11-18,2026-11-20,2,3,Regular season,Ongoing
+2026-27,Raptors,RJ Barrett,Injury,Right Hamstring Strain,2026-11-18,2026-11-23,3,6,Regular season,Ongoing
 2026-27,Raptors,Scottie Barnes,Injury,Left Groin Injury Management,2026-11-18,2026-11-18,1,1,Regular season,Closed
 2026-27,Rockets,Steven Adams,Injury,Right Calf Tightness / Soreness,2026-10-21,2026-10-21,1,1,Regular season,Closed
 2026-27,Rockets,Reed Sheppard,Injury,Left Knee Contusion / Bone Bruise,2026-10-23,2026-10-23,1,1,Regular season,Closed
@@ -6310,38 +6315,40 @@ Season,Team,Player,Category,Injury,Start_Date,End_Date,Games_Out,Days_Span,Phase
 2026-27,Rockets,Alperen Sengun,Injury,Low Back Soreness,2026-10-28,2026-10-30,2,3,Regular season,Closed
 2026-27,Rockets,Reed Sheppard,Injury,Low Back Soreness,2026-10-30,2026-10-31,2,2,Regular season,Closed
 2026-27,Rockets,Fred VanVleet,Injury,Right Knee Injury Management,2026-10-31,2026-10-31,1,1,Regular season,Closed
-2026-27,Rockets,Clint Capela,Injury,Right Ankle Sprain,2026-11-02,2026-11-20,10,19,Regular season,Ongoing
+2026-27,Rockets,Clint Capela,Injury,Right Ankle Sprain,2026-11-02,2026-11-20,10,19,Regular season,Closed
 2026-27,Rockets,Oscar Tshiebwe,Illness,Illness,2026-11-09,2026-11-09,1,1,Regular season,Closed
 2026-27,Rockets,Fred VanVleet,Injury,Right Knee Injury Management,2026-11-15,2026-11-15,1,1,Regular season,Closed
 2026-27,Rockets,Amen Thompson,Injury,Left Knee Soreness,2026-11-16,2026-11-16,1,1,Regular season,Closed
 2026-27,Rockets,Steven Adams,Injury,Left Lower Leg Injury Management,2026-11-16,2026-11-16,1,1,Regular season,Closed
-2026-27,Spurs,Jayden Quaintance,Injury,Right Knee Surgery,2026-10-20,2026-11-21,17,33,Regular season,Ongoing
-2026-27,Spurs,Tobias Harris,Injury,Left Calf Strain,2026-10-20,2026-11-21,17,33,Regular season,Ongoing
+2026-27,Spurs,Jayden Quaintance,Injury,Right Knee Surgery,2026-10-20,2026-11-23,18,35,Regular season,Ongoing
+2026-27,Spurs,Tobias Harris,Injury,Left Calf Strain,2026-10-20,2026-11-23,18,35,Regular season,Ongoing
 2026-27,Spurs,Devin Vassell,Injury,Left Adductor Tightness,2026-11-09,2026-11-11,2,3,Regular season,Closed
 2026-27,Spurs,De'Aaron Fox,Injury,Left Hip Tightness,2026-11-15,2026-11-15,1,1,Regular season,Closed
-2026-27,Spurs,Dylan Harper,Injury,Left Hip External Rotator Strain,2026-11-19,2026-11-21,2,3,Regular season,Ongoing
+2026-27,Spurs,Dylan Harper,Injury,Left Hip External Rotator Strain,2026-11-19,2026-11-23,3,5,Regular season,Ongoing
 2026-27,Suns,Luke Kennard,Injury,Left Knee Tendinopathy,2026-10-21,2026-10-21,1,1,Regular season,Closed
-2026-27,Suns,Mark Williams,Injury,Left Shoulder Surgery,2026-10-21,2026-11-20,15,31,Regular season,Ongoing
+2026-27,Suns,Mark Williams,Injury,Left Shoulder Surgery,2026-10-21,2026-11-23,16,34,Regular season,Ongoing
 2026-27,Suns,Oso Ighodaro,Injury,Right Oblique Strain,2026-10-24,2026-10-26,2,3,Regular season,Closed
 2026-27,Suns,Jordan Goodwin,Injury,Right Calf Injury Management,2026-11-04,2026-11-09,4,6,Regular season,Closed
 2026-27,Suns,Rasheer Fleming,Injury,Left Ankle Sprain,2026-11-04,2026-11-05,2,2,Regular season,Closed
 2026-27,Thunder,Nikola Topic,Injury,Low Back Surgery,2026-10-20,2026-11-06,9,18,Regular season,Closed
 2026-27,Thunder,Otega Oweh,Injury,Right Achilles Tendon Repair / Surgery,2026-10-20,2026-10-22,2,3,Regular season,Closed
-2026-27,Thunder,Thomas Sorber,Injury,Right Knee Surgery,2026-10-20,2026-11-22,17,34,Regular season,Ongoing
-2026-27,Thunder,Cason Wallace,Injury,Left Shoulder Surgery,2026-10-26,2026-11-22,14,28,Regular season,Ongoing
-2026-27,Thunder,Chet Holmgren,Injury,Right Knee/ Injury Recovery,2026-10-26,2026-11-22,14,28,Regular season,Ongoing
-2026-27,Thunder,Jalen Williams,Injury,Left Ankle Surgery,2026-10-26,2026-11-22,14,28,Regular season,Ongoing
+2026-27,Thunder,Thomas Sorber,Injury,Right Knee Surgery,2026-10-20,2026-11-22,17,34,Regular season,Closed
+2026-27,Thunder,Cason Wallace,Injury,Left Shoulder Surgery,2026-10-26,2026-11-22,14,28,Regular season,Closed
+2026-27,Thunder,Chet Holmgren,Injury,Right Knee/ Injury Recovery,2026-10-26,2026-11-22,14,28,Regular season,Closed
+2026-27,Thunder,Jalen Williams,Injury,Left Ankle Surgery,2026-10-26,2026-11-22,14,28,Regular season,Closed
 2026-27,Thunder,Alex Caruso,Injury,Right Ankle Sprain,2026-10-28,2026-11-02,3,6,Regular season,Closed
 2026-27,Thunder,Jaylin Williams,Injury,Low Back Spasms,2026-11-04,2026-11-15,7,12,Regular season,Closed
 2026-27,Thunder,Ajay Mitchell,Injury,Left Ankle Sprain,2026-11-11,2026-11-13,2,3,Regular season,Closed
-2026-27,Thunder,Alex Caruso,Injury,Right Hip Soreness,2026-11-20,2026-11-22,2,3,Regular season,Ongoing
-2026-27,Thunder,Nikola Topic,Injury,Left Hip Strain,2026-11-20,2026-11-22,2,3,Regular season,Ongoing
-2026-27,Thunder,Jaylin Williams,Injury,Low Back Spasms,2026-11-22,2026-11-22,1,1,Regular season,Ongoing
-2026-27,Timberwolves,Donte DiVincenzo,Injury,Right Achilles Tendon Repair / Surgery,2026-10-21,2026-11-21,17,32,Regular season,Ongoing
-2026-27,Timberwolves,Anthony Edwards,Injury,Right Knee Arthroscopy,2026-10-28,2026-11-21,13,25,Regular season,Ongoing
+2026-27,Thunder,Alex Caruso,Injury,Right Hip Soreness,2026-11-20,2026-11-22,2,3,Regular season,Closed
+2026-27,Thunder,Nikola Topic,Injury,Left Hip Strain,2026-11-20,2026-11-22,2,3,Regular season,Closed
+2026-27,Thunder,Aday Mara,Injury,Right Shin Contusion,2026-11-22,2026-11-22,1,1,Regular season,Closed
+2026-27,Thunder,Jaylin Williams,Injury,Low Back Spasms,2026-11-22,2026-11-22,1,1,Regular season,Closed
+2026-27,Thunder,Shai Gilgeous-Alexander,Injury,Low Back Contusion/ Neck Strain,2026-11-22,2026-11-22,1,1,Regular season,Closed
+2026-27,Timberwolves,Donte DiVincenzo,Injury,Right Achilles Tendon Repair / Surgery,2026-10-21,2026-11-23,18,34,Regular season,Ongoing
+2026-27,Timberwolves,Anthony Edwards,Injury,Right Knee Arthroscopy,2026-10-28,2026-11-23,14,27,Regular season,Ongoing
 2026-27,Timberwolves,Rudy Gobert,Injury,Low Back Spasms,2026-10-31,2026-10-31,1,1,Regular season,Closed
 2026-27,Timberwolves,Terrence Shannon Jr,Injury,Left Hip Contusion,2026-11-02,2026-11-06,3,5,Regular season,Closed
-2026-27,Timberwolves,Jaylen Clark,Injury,Right Hamstring Strain,2026-11-16,2026-11-21,4,6,Regular season,Ongoing
+2026-27,Timberwolves,Jaylen Clark,Injury,Right Hamstring Strain,2026-11-16,2026-11-23,5,8,Regular season,Ongoing
 2026-27,Timberwolves,Jonathan Kuminga,Injury,Right Shoulder Contusion,2026-11-17,2026-11-17,1,1,Regular season,Closed
 2026-27,Timberwolves,Zyon Pullin,Injury,Right Quadriceps Contusion,2026-11-17,2026-11-17,1,1,Regular season,Closed
 2026-27,Warriors,Brandin Podziemski,Injury,Bilateral Low Back Soreness,2026-10-21,2026-10-21,1,1,Regular season,Closed
