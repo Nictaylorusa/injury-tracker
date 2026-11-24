@@ -1,13 +1,11 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-23_06_30PM: 124 player rows, 92 kept for Right now.",
- "report_file": "2026-11-23_06_30PM",
- "report_time_utc": "2026-11-23T23:30Z",
- "report_time_et": "2026-11-23 18:30",
- "rows": 92,
- "teams_not_submitted": [
-  "Nuggets"
- ],
+ "detail": "Read 2026-11-23_07_30PM: 126 player rows, 90 kept for Right now.",
+ "report_file": "2026-11-23_07_30PM",
+ "report_time_utc": "2026-11-24T00:30Z",
+ "report_time_et": "2026-11-23 19:30",
+ "rows": 90,
+ "teams_not_submitted": [],
  "parser": 2,
  "games": [
   {
