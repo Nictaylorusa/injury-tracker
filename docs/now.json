@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-24_03_30AM: 26 player rows, 20 kept for Right now.",
- "report_file": "2026-11-24_03_30AM",
- "report_time_utc": "2026-11-24T08:30Z",
- "report_time_et": "2026-11-24 03:30",
+ "detail": "Read 2026-11-24_04_45AM: 26 player rows, 20 kept for Right now.",
+ "report_file": "2026-11-24_04_45AM",
+ "report_time_utc": "2026-11-24T09:45Z",
+ "report_time_et": "2026-11-24 04:45",
  "rows": 20,
  "teams_not_submitted": [
   "Heat",
