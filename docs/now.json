@@ -1,28 +1,13 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-24_11_15PM: 103 player rows, 75 kept for Right now.",
- "report_file": "2026-11-24_11_15PM",
- "report_time_utc": "2026-11-25T04:15Z",
- "report_time_et": "2026-11-24 23:15",
- "rows": 75,
+ "detail": "Read 2026-11-25_12_30AM: 76 player rows, 54 kept for Right now.",
+ "report_file": "2026-11-25_12_30AM",
+ "report_time_utc": "2026-11-25T05:30Z",
+ "report_time_et": "2026-11-25 00:30",
+ "rows": 54,
  "teams_not_submitted": [],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-24",
-   "time": "07:00",
-   "matchup": "DET@ORL"
-  },
-  {
-   "date": "2026-11-24",
-   "time": "08:00",
-   "matchup": "BOS@WAS"
-  },
-  {
-   "date": "2026-11-24",
-   "time": "10:00",
-   "matchup": "DAL@DEN"
-  },
   {
    "date": "2026-11-25",
    "time": "05:00",
