@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-24_06_30PM: 91 player rows, 64 kept for Right now.",
- "report_file": "2026-11-24_06_30PM",
- "report_time_utc": "2026-11-24T23:30Z",
- "report_time_et": "2026-11-24 18:30",
+ "detail": "Read 2026-11-24_07_30PM: 91 player rows, 64 kept for Right now.",
+ "report_file": "2026-11-24_07_30PM",
+ "report_time_utc": "2026-11-25T00:30Z",
+ "report_time_et": "2026-11-24 19:30",
  "rows": 64,
  "teams_not_submitted": [
   "Kings",
