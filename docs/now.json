@@ -1,57 +1,88 @@
 {
- "status": "parse_failed",
- "detail": "Read the report 2026-11-26_02_45PM but found only 4 player rows.",
- "report_file": "2026-11-25_11_15PM",
- "report_time_utc": "2026-11-26T04:15Z",
- "report_time_et": "2026-11-25 23:15",
- "rows": 55,
- "teams_not_submitted": [],
+ "status": "ok",
+ "detail": "Read 2026-11-26_03_45PM: 10 player rows, 4 kept for Right now.",
+ "report_file": "2026-11-26_03_45PM",
+ "report_time_utc": "2026-11-26T20:45Z",
+ "report_time_et": "2026-11-26 15:45",
+ "rows": 4,
+ "teams_not_submitted": [
+  "Heat",
+  "Knicks",
+  "Nets",
+  "Raptors",
+  "Bucks",
+  "Pistons",
+  "76ers",
+  "Pacers",
+  "Hawks",
+  "Grizzlies",
+  "Timberwolves",
+  "Mavericks",
+  "Suns",
+  "Nuggets",
+  "Jazz",
+  "Warriors",
+  "Blazers",
+  "Lakers",
+  "Spurs",
+  "Clippers"
+ ],
  "parser": 2,
  "games": [
   {
-   "date": "2026-11-25",
-   "time": "05:00",
-   "matchup": "MIA@PHI"
-  },
-  {
-   "date": "2026-11-25",
+   "date": "2026-11-27",
    "time": "07:00",
-   "matchup": "CHI@CHA"
+   "matchup": "MIA@NYK"
   },
   {
-   "date": "2026-11-25",
+   "date": "2026-11-27",
    "time": "07:30",
-   "matchup": "CLE@NYK"
+   "matchup": "BKN@TOR"
   },
   {
-   "date": "2026-11-25",
+   "date": "2026-11-27",
    "time": "07:30",
-   "matchup": "MIN@OKC"
+   "matchup": "MIL@DET"
   },
   {
-   "date": "2026-11-25",
+   "date": "2026-11-27",
+   "time": "07:30",
+   "matchup": "PHI@IND"
+  },
+  {
+   "date": "2026-11-27",
    "time": "08:00",
-   "matchup": "BKN@MIL"
+   "matchup": "ATL@BOS"
   },
   {
-   "date": "2026-11-25",
-   "time": "08:00",
-   "matchup": "LAC@MEM"
-  },
-  {
-   "date": "2026-11-25",
+   "date": "2026-11-27",
    "time": "08:30",
-   "matchup": "PHX@HOU"
+   "matchup": "MEM@MIN"
   },
   {
-   "date": "2026-11-25",
-   "time": "10:00",
-   "matchup": "SAC@GSW"
+   "date": "2026-11-27",
+   "time": "09:00",
+   "matchup": "DAL@PHX"
   },
   {
-   "date": "2026-11-25",
-   "time": "10:00",
-   "matchup": "SAS@POR"
+   "date": "2026-11-27",
+   "time": "09:30",
+   "matchup": "DEN@UTA"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "09:30",
+   "matchup": "GSW@POR"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "09:30",
+   "matchup": "LAL@SAS"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "09:30",
+   "matchup": "NOP@LAC"
   }
  ],
  "report_file_seen": "2026-11-26_02_45PM"
