@@ -1,5 +1,5 @@
-2026-11-26_01_30PM
-Injury | Report: | 11/26/26 | 01:30 | PM
+2026-11-26_02_45PM
+Injury | Report: | 11/26/26 | 02:45 | PM
 Game | Date | Game | Time | Matchup | Team | Player | Name | Current | Status | Reason
 11/27/2026 | 07:00 | (ET) | MIA@NYK | Miami | Heat | NOT | YET | SUBMITTED
 New | York | Knicks | NOT | YET | SUBMITTED
@@ -10,16 +10,19 @@ Detroit | Pistons | NOT | YET | SUBMITTED
 PHI@IND | Philadelphia | 76ers | NOT | YET | SUBMITTED
 Indiana | Pacers | NOT | YET | SUBMITTED
 08:00 | (ET) | ATL@BOS | Atlanta | Hawks | NOT | YET | SUBMITTED
-Boston | Celtics | NOT | YET | SUBMITTED
+Boston | Celtics | Carter, | Devin | Out | G | League | - | Two-Way
+Mitchell, | Dillon | Out | G | League | - | Two-Way
+Robinson, | Mitchell | Questionable | Injury/Illness | - | Illness
+Williams, | Amari | Out | G | League | - | Two-Way
 08:30 | (ET) | MEM@MIN | Memphis | Grizzlies | NOT | YET | SUBMITTED
 Minnesota | Timberwolves | NOT | YET | SUBMITTED
 09:00 | (ET) | DAL@PHX | Dallas | Mavericks | NOT | YET | SUBMITTED
 Phoenix | Suns | NOT | YET | SUBMITTED
+Page | 1 | of | 2
+Injury | Report: | 11/26/26 | 02:45 | PM
 09:30 | (ET) | DEN@UTA | Denver | Nuggets | NOT | YET | SUBMITTED
 Utah | Jazz | NOT | YET | SUBMITTED
 GSW@POR | Golden | State | Warriors | NOT | YET | SUBMITTED
-Page | 1 | of | 2
-Injury | Report: | 11/26/26 | 01:30 | PM
 Portland | Trail | Blazers | NOT | YET | SUBMITTED
 LAL@SAS | Los | Angeles | Lakers | NOT | YET | SUBMITTED
 San | Antonio | Spurs | NOT | YET | SUBMITTED

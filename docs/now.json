@@ -1,6 +1,6 @@
 {
  "status": "parse_failed",
- "detail": "Read the report 2026-11-26_01_30PM but found only 0 player rows.",
+ "detail": "Read the report 2026-11-26_02_45PM but found only 4 player rows.",
  "report_file": "2026-11-25_11_15PM",
  "report_time_utc": "2026-11-26T04:15Z",
  "report_time_et": "2026-11-25 23:15",
@@ -54,5 +54,5 @@
    "matchup": "SAS@POR"
   }
  ],
- "report_file_seen": "2026-11-26_01_30PM"
+ "report_file_seen": "2026-11-26_02_45PM"
 }
