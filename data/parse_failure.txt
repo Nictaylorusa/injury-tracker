@@ -1,5 +1,5 @@
-2026-11-26_05_30AM
-Injury | Report: | 11/26/26 | 05:30 | AM
+2026-11-26_06_30AM
+Injury | Report: | 11/26/26 | 06:30 | AM
 Game | Date | Game | Time | Matchup | Team | Player | Name | Current | Status | Reason
 11/27/2026 | 07:00 | (ET) | MIA@NYK | Miami | Heat | NOT | YET | SUBMITTED
 New | York | Knicks | NOT | YET | SUBMITTED
@@ -19,7 +19,7 @@ Phoenix | Suns | NOT | YET | SUBMITTED
 Utah | Jazz | NOT | YET | SUBMITTED
 GSW@POR | Golden | State | Warriors | NOT | YET | SUBMITTED
 Page | 1 | of | 2
-Injury | Report: | 11/26/26 | 05:30 | AM
+Injury | Report: | 11/26/26 | 06:30 | AM
 Portland | Trail | Blazers | NOT | YET | SUBMITTED
 LAL@SAS | Los | Angeles | Lakers | NOT | YET | SUBMITTED
 San | Antonio | Spurs | NOT | YET | SUBMITTED
