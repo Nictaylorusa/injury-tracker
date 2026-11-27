@@ -1,11 +1,22 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-26_11_45PM: 104 player rows, 71 kept for Right now.",
- "report_file": "2026-11-26_11_45PM",
- "report_time_utc": "2026-11-27T04:45Z",
- "report_time_et": "2026-11-26 23:45",
+ "detail": "Read 2026-11-27_12_45AM: 104 player rows, 71 kept for Right now.",
+ "report_file": "2026-11-27_12_45AM",
+ "report_time_utc": "2026-11-27T05:45Z",
+ "report_time_et": "2026-11-27 00:45",
  "rows": 71,
- "teams_not_submitted": [],
+ "teams_not_submitted": [
+  "Magic",
+  "Wizards",
+  "Nets",
+  "Hornets",
+  "Pacers",
+  "Bulls",
+  "Thunder",
+  "Bucks",
+  "76ers",
+  "Rockets"
+ ],
  "parser": 2,
  "games": [
   {
@@ -62,6 +73,31 @@
    "date": "2026-11-27",
    "time": "09:30",
    "matchup": "NOP@LAC"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "05:00",
+   "matchup": "ORL@WAS"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "06:00",
+   "matchup": "BKN@CHA"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "08:00",
+   "matchup": "IND@CHI"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "08:00",
+   "matchup": "OKC@MIL"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "08:30",
+   "matchup": "PHI@HOU"
   }
  ],
  "report_file_seen": "2026-11-26_02_45PM"
