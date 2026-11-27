@@ -1,18 +1,16 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-27_04_30PM: 130 player rows, 91 kept for Right now.",
- "report_file": "2026-11-27_04_30PM",
- "report_time_utc": "2026-11-27T21:30Z",
- "report_time_et": "2026-11-27 16:30",
- "rows": 91,
+ "detail": "Read 2026-11-27_05_30PM: 140 player rows, 95 kept for Right now.",
+ "report_file": "2026-11-27_05_30PM",
+ "report_time_utc": "2026-11-27T22:30Z",
+ "report_time_et": "2026-11-27 17:30",
+ "rows": 95,
  "teams_not_submitted": [
   "Nets",
-  "Hornets",
   "Pacers",
   "Thunder",
   "Bucks",
-  "76ers",
-  "Rockets"
+  "76ers"
  ],
  "parser": 2,
  "games": [
