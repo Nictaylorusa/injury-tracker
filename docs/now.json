@@ -1,17 +1,11 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-26_06_45PM: 83 player rows, 57 kept for Right now.",
- "report_file": "2026-11-26_06_45PM",
- "report_time_utc": "2026-11-26T23:45Z",
- "report_time_et": "2026-11-26 18:45",
- "rows": 57,
- "teams_not_submitted": [
-  "Suns",
-  "Jazz",
-  "Warriors",
-  "Blazers",
-  "Clippers"
- ],
+ "detail": "Read 2026-11-26_08_00PM: 104 player rows, 71 kept for Right now.",
+ "report_file": "2026-11-26_08_00PM",
+ "report_time_utc": "2026-11-27T01:00Z",
+ "report_time_et": "2026-11-26 20:00",
+ "rows": 71,
+ "teams_not_submitted": [],
  "parser": 2,
  "games": [
   {
