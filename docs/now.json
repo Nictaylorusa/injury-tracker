@@ -1,10 +1,10 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-27_02_30PM: 117 player rows, 81 kept for Right now.",
- "report_file": "2026-11-27_02_30PM",
- "report_time_utc": "2026-11-27T19:30Z",
- "report_time_et": "2026-11-27 14:30",
- "rows": 81,
+ "detail": "Read 2026-11-27_03_30PM: 118 player rows, 82 kept for Right now.",
+ "report_file": "2026-11-27_03_30PM",
+ "report_time_utc": "2026-11-27T20:30Z",
+ "report_time_et": "2026-11-27 15:30",
+ "rows": 82,
  "teams_not_submitted": [
   "Magic",
   "Wizards",
