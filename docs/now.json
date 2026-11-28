@@ -1,9 +1,9 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-27_06_30PM: 147 player rows, 102 kept for Right now.",
- "report_file": "2026-11-27_06_30PM",
- "report_time_utc": "2026-11-27T23:30Z",
- "report_time_et": "2026-11-27 18:30",
+ "detail": "Read 2026-11-27_07_30PM: 147 player rows, 102 kept for Right now.",
+ "report_file": "2026-11-27_07_30PM",
+ "report_time_utc": "2026-11-28T00:30Z",
+ "report_time_et": "2026-11-27 19:30",
  "rows": 102,
  "teams_not_submitted": [
   "Nets",
