@@ -1,73 +1,38 @@
 {
  "status": "ok",
- "detail": "Read 2026-11-27_11_45PM: 151 player rows, 100 kept for Right now.",
- "report_file": "2026-11-27_11_45PM",
- "report_time_utc": "2026-11-28T04:45Z",
- "report_time_et": "2026-11-27 23:45",
- "rows": 100,
+ "detail": "Read 2026-11-28_12_45AM: 36 player rows, 24 kept for Right now.",
+ "report_file": "2026-11-28_12_45AM",
+ "report_time_utc": "2026-11-28T05:45Z",
+ "report_time_et": "2026-11-28 00:45",
+ "rows": 24,
  "teams_not_submitted": [
   "Nets",
   "Pacers",
   "Bucks",
-  "76ers"
+  "76ers",
+  "Heat",
+  "Cavaliers",
+  "Celtics",
+  "Spurs",
+  "Lakers",
+  "Grizzlies",
+  "Suns",
+  "Jazz",
+  "Hawks",
+  "Knicks",
+  "Nuggets",
+  "Raptors",
+  "Pelicans",
+  "Blazers",
+  "Magic",
+  "Pistons",
+  "Clippers",
+  "Warriors",
+  "Timberwolves",
+  "Kings"
  ],
  "parser": 2,
  "games": [
-  {
-   "date": "2026-11-27",
-   "time": "07:00",
-   "matchup": "MIA@NYK"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "07:30",
-   "matchup": "BKN@TOR"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "07:30",
-   "matchup": "MIL@DET"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "07:30",
-   "matchup": "PHI@IND"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "08:00",
-   "matchup": "ATL@BOS"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "08:30",
-   "matchup": "MEM@MIN"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "09:00",
-   "matchup": "DAL@PHX"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "09:30",
-   "matchup": "DEN@UTA"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "09:30",
-   "matchup": "GSW@POR"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "09:30",
-   "matchup": "LAL@SAS"
-  },
-  {
-   "date": "2026-11-27",
-   "time": "09:30",
-   "matchup": "NOP@LAC"
-  },
   {
    "date": "2026-11-28",
    "time": "05:00",
@@ -92,6 +57,56 @@
    "date": "2026-11-28",
    "time": "08:30",
    "matchup": "PHI@HOU"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "03:30",
+   "matchup": "MIA@CLE"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "04:00",
+   "matchup": "BOS@SAS"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "04:00",
+   "matchup": "LAL@MEM"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "05:00",
+   "matchup": "PHX@UTA"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "06:00",
+   "matchup": "ATL@NYK"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "06:00",
+   "matchup": "DEN@TOR"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "06:00",
+   "matchup": "NOP@POR"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "06:00",
+   "matchup": "ORL@DET"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "08:30",
+   "matchup": "LAC@GSW"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "09:00",
+   "matchup": "MIN@SAC"
   }
  ],
  "report_file_seen": "2026-11-26_02_45PM"
