@@ -1,39 +1,45 @@
 Team,Player,Status,Category,Injury,Game_Date,Matchup,Report_Time,Game_Time
-76ers,Ariel Hukporti,Out,Injury,Right Achilles Tendon Rupture / Tear,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,Dean Wade,Out,Injury,Left Hamstring Injury Management,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,Dominick Barlow,Out,Injury,Low Back Injury Management,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,Jaylen Brown,Out,Injury,Left Hamstring Injury Management,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,Joel Embiid,Out,Injury,Right Foot Plantar Fascia Injury Management,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,Kentavious Caldwell-Pope,Questionable,Injury,Left Hand Sprain,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-76ers,LeBron James,Out,Injury,Low Back/Sciatica Management,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-Bulls,Caleb Wilson,Out,Injury,Right Metacarpal Fracture,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Bulls,Jalen Smith,Probable,Injury,Gastrointestinal Illness,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Bulls,Josh Giddey,Questionable,Injury,Right Ankle Soreness,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Bulls,Noa Essengue,Probable,Injury,Right Thumb Sprain,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Bulls,Norman Powell,Out,Injury,Right Hamstring Strain,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Hornets,Dennis Schroder,Out,Injury,Left Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 14:00,06:00
-Hornets,Kon Knueppel,Out,Injury,Left Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 14:00,06:00
-Hornets,Ryan Kalkbrenner,Available,Injury,Left Hip Soreness / Tightness,2026-11-28,BKN@CHA,2026-11-28 14:00,06:00
-Magic,Anthony Black,Questionable,Injury,Back soreness,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Magic,Izaiyah Nelson,Out,Injury,Left Ankle injury recovery,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Magic,Jonathan Isaac,Out,Injury,Left Knee Injury Management,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Magic,Kevin Porter Jr.,Out,Reconditioning,Return to competition reconditioning,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Magic,Noah Penda,Out,Injury,Right Partially torn hamstring,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Magic,Paolo Banchero,Out,Injury,Right High Ankle Sprain,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Nets,Moritz Wagner,Out,Injury,Left Knee Injury Management,2026-11-28,BKN@CHA,2026-11-28 14:00,06:00
-Nets,Nolan Traore,Out,Injury,Right Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 14:00,06:00
-Pacers,Ben Sheppard,Out,Injury,Left Meniscus Surgery,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Pacers,Johnny Furphy,Out,Injury,Right ACL Repair / Surgery,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Pacers,T.J. McConnell,Questionable,Injury,Left Hamstring Injury Management,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Pacers,Tyrese Haliburton,Out,Injury,Left Hamstring Strain,2026-11-28,IND@CHI,2026-11-28 14:00,08:00
-Rockets,Steven Adams,Out,Injury,Right Patellofemoral Pain,2026-11-28,PHI@HOU,2026-11-28 14:00,08:30
-Thunder,Aday Mara,Out,Injury,Right Shin Contusion,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Cason Wallace,Out,Injury,Left Shoulder Surgery,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Chet Holmgren,Out,Injury,Right Knee/ Injury Recovery,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Jalen Williams,Out,Injury,Left Ankle Surgery,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Jaylin Williams,Out,Injury,Low Back Spasms,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Nikola Topic,Out,Injury,Left Hip Strain,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Thunder,Thomas Sorber,Out,Injury,Right Knee Surgery,2026-11-28,OKC@MIL,2026-11-28 14:00,08:00
-Wizards,Jamir Watkins,Out,Injury,Left ACL Repair / Surgery,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Wizards,Justin Champagnie,Out,Injury,Right Foot Surgery,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
-Wizards,Tristan Vukcevic,Out,Injury,Left Hip Impingement,2026-11-28,ORL@WAS,2026-11-28 14:00,05:00
+76ers,Ariel Hukporti,Out,Injury,Right Achilles Tendon Rupture / Tear,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,Dean Wade,Out,Injury,Left Hamstring Injury Management,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,Dominick Barlow,Out,Injury,Low Back Injury Management,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,Jaylen Brown,Out,Injury,Left Hamstring Injury Management,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,Joel Embiid,Out,Injury,Right Foot Plantar Fascia Injury Management,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,Kentavious Caldwell-Pope,Questionable,Injury,Left Hand Sprain,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+76ers,LeBron James,Out,Injury,Low Back/Sciatica Management,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+Bucks,Jaime Jaquez Jr.,Out,Injury,Right Ankle Impingement,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Bucks,Kasparas Jakucionis,Out,Injury,Left Ankle Tenosynovitis,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Bucks,Kyle Kuzma,Out,Injury,Left Foot Inflammation / Soreness,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Bucks,Tyler Herro,Out,Injury,Right Foot Inflammation / Soreness,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Bulls,Caleb Wilson,Out,Injury,Right Metacarpal Fracture,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Bulls,Jalen Smith,Probable,Injury,Gastrointestinal Illness,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Bulls,Josh Giddey,Questionable,Injury,Right Ankle Soreness,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Bulls,Noa Essengue,Probable,Injury,Right Thumb Sprain,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Bulls,Norman Powell,Out,Injury,Right Hamstring Strain,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Cavaliers,Evan Mobley,Out,Injury,Left Great Toe Sprain,2026-11-29,MIA@CLE,2026-11-28 15:00,03:30
+Cavaliers,Nae'Qwan Tomlin,Out,Injury,Low Back Stress Reaction,2026-11-29,MIA@CLE,2026-11-28 15:00,03:30
+Hornets,Dennis Schroder,Out,Injury,Left Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 15:00,06:00
+Hornets,Kon Knueppel,Out,Injury,Left Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 15:00,06:00
+Hornets,Ryan Kalkbrenner,Available,Injury,Left Hip Soreness / Tightness,2026-11-28,BKN@CHA,2026-11-28 15:00,06:00
+Magic,Anthony Black,Questionable,Injury,Back soreness,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Magic,Izaiyah Nelson,Out,Injury,Left Ankle injury recovery,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Magic,Jonathan Isaac,Out,Injury,Left Knee Injury Management,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Magic,Kevin Porter Jr.,Out,Reconditioning,Return to competition reconditioning,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Magic,Noah Penda,Out,Injury,Right Partially torn hamstring,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Magic,Paolo Banchero,Out,Injury,Right High Ankle Sprain,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Nets,Moritz Wagner,Out,Injury,Left Knee Injury Management,2026-11-28,BKN@CHA,2026-11-28 15:00,06:00
+Nets,Nolan Traore,Out,Injury,Right Hamstring Strain,2026-11-28,BKN@CHA,2026-11-28 15:00,06:00
+Pacers,Ben Sheppard,Out,Injury,Left Meniscus Surgery,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Pacers,Johnny Furphy,Out,Injury,Right ACL Repair / Surgery,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Pacers,T.J. McConnell,Questionable,Injury,Left Hamstring Injury Management,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Pacers,Tyrese Haliburton,Out,Injury,Left Hamstring Strain,2026-11-28,IND@CHI,2026-11-28 15:00,08:00
+Rockets,Steven Adams,Out,Injury,Right Patellofemoral Pain,2026-11-28,PHI@HOU,2026-11-28 15:00,08:30
+Thunder,Aday Mara,Out,Injury,Right Shin Contusion,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Cason Wallace,Out,Injury,Left Shoulder Surgery,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Chet Holmgren,Out,Injury,Right Knee/ Injury Recovery,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Jalen Williams,Out,Injury,Left Ankle Surgery,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Jaylin Williams,Out,Injury,Low Back Spasms,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Nikola Topic,Out,Injury,Left Hip Strain,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Thunder,Thomas Sorber,Out,Injury,Right Knee Surgery,2026-11-28,OKC@MIL,2026-11-28 15:00,08:00
+Wizards,Jamir Watkins,Out,Injury,Left ACL Repair / Surgery,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Wizards,Justin Champagnie,Out,Injury,Right Foot Surgery,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
+Wizards,Tristan Vukcevic,Out,Injury,Left Hip Impingement,2026-11-28,ORL@WAS,2026-11-28 15:00,05:00
